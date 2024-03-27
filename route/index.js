@@ -18,16 +18,17 @@ mainRouter.route("/activeUser").get(activeUserPage);
 mainRouter.route("/forgotpassword").get(forgotPasswordPage)
 mainRouter.route("/home").get(authorizationMiddleware,homePage);
 
-mainRouter.route("/kukucube").get(authorizationMiddleware,(req,res)=>res.render("kukucube/"))
-mainRouter.route("/dynamictable").get(authorizationMiddleware,(req,res)=>res.render("dynamictable/"))
-mainRouter.route("/tictactoe").get(authorizationMiddleware,(req,res)=>res.render("tictactoe/"))
-mainRouter.route("/eventtable").get(authorizationMiddleware,(req,res)=>res.render("eventtable/"))
-
 mainRouter.route("/api/register").post(register);
 mainRouter.route("/api/login").post(login);
 mainRouter.route("/api/forgotpassword").post(forgorPassword);
 mainRouter.route("/api/newPassword").post(newPassword);
 mainRouter.route("/api/checkAuth").get(checkAuth);
+
+mainRouter.route("/kukucube").get(authorizationMiddleware,(req,res)=>res.render("kukucube/"))
+mainRouter.route("/dynamictable").get(authorizationMiddleware,(req,res)=>res.render("dynamictable/"))
+mainRouter.route("/tictactoe").get(authorizationMiddleware,(req,res)=>res.render("tictactoe/"))
+mainRouter.route("/eventtable").get(authorizationMiddleware,(req,res)=>res.render("eventtable/"))
+mainRouter.route("/numbersorting").get(authorizationMiddleware,(req,res)=>res.render("numbersorting/"))
 
 mainRouter.use("/delimiter-search",authorizationMiddleware,require("../route/delimiter_search/index"));
 mainRouter.use("/job-application-form",authorizationMiddleware,require("../route/job_app_crud/index"));

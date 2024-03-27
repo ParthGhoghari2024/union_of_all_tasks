@@ -5,14 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>index Percentage</title>
 </head>
+<style>
+    
+    td{
+        padding: 0.5rem;
+        text-align: center;
+    }
+    tr:nth-child(even){
+        background: lightgray;
+    }
+    .btn{
+        padding: 0.5rem;
+        font-size: 1rem;
+        background: black;
+        color: white;
+        border: none;
+        border-radius: 10px;
+    }
+    #idText{
+        padding: 0.2rem;
+        font-size: 1rem;
+    }
+</style>
 <body>
     
-    <input type="button" value="New Employee" onclick="window.location='/job-application-form/form'">
-    <input type="text" name="id" id="idText" placeholder="Enter id for update ">
-    <input type="button" value="Update Employee (ex. id 118)" onclick="goToUpdate()">
+    <input type="button" class="btn" value="New Employee" onclick="window.location='/job-application-form/form'">
+    <input type="text" name="id" id="idText" placeholder="Enter id for update (ex.id 118) ">
+    <input type="button"class="btn"  value="Update Employee " onclick="goToUpdate()">
 
 
-    <table border="2" style="border-collapse: collapse;">
+    <table border="2" style="border-collapse: collapse;margin-top: 2rem;">
         <thead>
             <tr>
                 <% metaData.forEach((obj)=>{  %>
@@ -31,8 +53,7 @@
                         </td>
                         <% } %>
                     <td>
-                        <td><a href="/job-application-form/form?id=<%=data[i]['bDMId'] %>">Update</a>
-                        </td>
+                        <a href="/job-application-form/form?id=<%=data[i]['bDMId'] %>">Update</a>
                     </td>
                 </tr>
                 <% } %>
