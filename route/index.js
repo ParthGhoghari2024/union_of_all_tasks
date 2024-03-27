@@ -1,6 +1,5 @@
 const express = require("express");
 var mainRouter = express.Router();
-const indexPageRoute = require("./indexPage");
 const registerPage = require("./registerPage");
 const { register } = require("./api/register");
 const { login } = require("./api/login");
@@ -14,7 +13,6 @@ const { checkAuth } = require("./api/checkAuth");
 const { authorizationMiddleware } = require("../middleware/auth");
 
 mainRouter.route("/").get(loginPage);
-mainRouter.route("/index").get(indexPageRoute);
 mainRouter.route("/register").get(registerPage);
 mainRouter.route("/activeUser").get(activeUserPage);
 mainRouter.route("/forgotpassword").get(forgotPasswordPage)
