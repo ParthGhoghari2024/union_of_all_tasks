@@ -1,0 +1,111 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.mainContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #f0af801f;
+}
+
+.formMainContainer {
+    font-size: 1rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1rem 0;
+    align-items: center;
+    width: fit-content;
+}
+
+.formMainContainer table {
+    width: fit-content;
+    border: 2px solid black;
+    border-radius: 1%;
+    padding: 2% 5%;
+    box-shadow: black 0px 1rem 1rem 0px;
+    display: flex;
+    justify-content: center;
+    background: white;
+
+}
+
+.formMainContainer table tbody {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.formMainContainer td {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4rem 1rem;
+}
+
+.formMainContainer td label {
+    width: 10rem;
+    text-align: right;
+}
+
+.formMainContainer input[type=text],.formMainContainer textarea,.formMainContainer input[type=password] {
+    padding: 0.5rem;
+    font-size: 1rem;
+    width: 18rem;
+    box-shadow: black 0px 2px 1px 0px;
+}
+.formMainContainer legend{
+    font-size: 1.5rem;
+    margin: 1rem 0;
+}
+.formMainContainer input:focus {
+    outline: none !important;
+    /* border: 1px solid red; */
+    box-shadow: 0 0 10px black;
+}
+.anchor{
+    font-size: 1.1rem;
+    color: blue;
+}
+.formnavigationController {
+    display: flex;
+    width: 50%;
+    /* justify-content: center; */
+    justify-content: space-between;
+
+}
+
+.registerTable input[type=button] {
+    padding: 1rem;
+    background: black;
+    color: white;
+    font-size: 1rem;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.registerTable input[type=button]:hover {
+    color: black;
+    background: gray;
+    /* border: 2px soild black; */
+}
+sup{
+    color: red;
+}
+#errorMsg{
+    color: red;
+}
+#forgotPasswordSpan{
+    color: gray;
+    cursor: pointer;
+}
+
+#forgotPasswordSpan:hover{
+    color: black;
+}

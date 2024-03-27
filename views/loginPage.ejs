@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+
+    <div class="mainContainer">
+
+        <div class="formMainContainer">
+
+            <form action="" id="formLogin">
+
+                <table class="inputTable registerTable" id="loginTable">
+                    <tr>
+                        <td>
+                            <legend>Login</legend>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label for="email">Email Address</label>
+                            <input class="reqInput reqEmail" type="text" name="email" id="email" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="password">Password</label>
+                            <input class="reqInput " type="password" name="password" id="password" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <span>New User ? <a class="anchor" href="/register">Register Now</a></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="display: flex;">
+                            <span id="forgotPasswordSpan" onclick="sendForgotPassword()">Forgot Password</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="button" value="Login" id="loginBtn" onclick="sendLogin()">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span id="errorMsg"></span>
+                        </td>
+                    </tr>
+                    <tr id="activationLinkTr" style="display: none;width: fit-content; font-size: 1.15rem; ">
+                        <td><span>Forgot Password link : </span></td>
+                        <td>
+                            <a id="activationLink" href="" target="_blank"
+                                style="font-size: 0.9rem;white-space:nowrap;">Activate it</a>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+
+        </div>
+    </div>
+
+    <script src="/registerLogin.js"></script>
+</body>
+
+</html>
