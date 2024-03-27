@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Table</title>
+</head>
+
+<style>
+    #mainContainer{
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+        padding: 20px;
+        font-size: large;
+    }
+
+    #tableMain{
+        border: 2px solid black;
+        border-collapse: collapse;
+        width: 90%;
+    }
+    #tableMain tr{
+        height: 13rem;
+    }
+    #tableMain td{
+        min-width: 15%;
+        padding: 25px;
+        
+        
+    }
+
+    #tableMain input[type="text"]{
+        height: 25px;
+        width: 100px;
+        border: 2px solid;
+        border-radius: 5px;
+        font-size: 17px;
+    }
+
+
+    
+    #tableMain tr:nth-child(odd) >   td:nth-child(odd){
+        background: gray;
+        color: white;
+    }
+    #tableMain tr:nth-child(even) >   td:nth-child(even){
+        background: gray;
+        color: white;
+    }
+
+    #tableMain td p{
+        font-size: 15px;
+    }
+    
+    
+</style>
+<body >
+
+    <h2 style="display: flex; justify-content: center; align-items: center;">Events Table</h3>
+    <div id="mainContainer">
+        <table id="tableMain" border="2">
+
+            <tr>
+                <td style="cursor: pointer;" onclick="alert('On Click pressed')">
+                    On Click
+                </td>
+                <td>
+                    On Change
+                    <input type="text" value="change this" onchange="alert('on change called')">
+                    <p>Change above text and move focus </p>
+                </td>
+                <td onmouseover="alert('Mouseover called')">
+                    On Mouseover
+                </td>
+                <td onmouseout="alert('Mouseout called')">
+                    On Mouseout
+                </td>
+            </tr>
+
+            <tr>
+                <td ondblclick="alert('mouse double click called')">
+                    On Double Click
+                    <p>doubOn focus out
+                        <input type="text" onfocusout="alert('On focus called')">le click here</p>
+                </td>
+                <td onmouseenter="alert('Mouseenter called')">
+                    On Mouse Enter
+                </td>
+                <td onmouseleave="alert('Mouseleave called')">
+                    On Mouse Leave
+                </td>
+                <td onmouseup="alert('mouse button up called')">
+                    Mouse up
+                    <p>Relase the mouse button here</p>
+                </td>
+            </tr>
+            <tr>
+                <td onmousedown="alert('mouse button down called')">
+                    Mouse down
+                    <p>Press the mouse button here</p>
+                </td>
+                <td> 
+                    on Key Down
+                    <input  type="text" name="" id="" onkeydown="alert('key pressed')" >
+                    <p>Enter anything in above</p>
+                </td>
+                <td>
+                    on Key up
+                    <input  type="text" name="" id="" onkeydown="alert('key pressed')" >
+                    <p>Enter anything in above</p>
+                </td>
+                <td>
+                    on Key press
+                    <input  type="text" name="" id="" onkeydown="alert('key pressed')" >
+                    <p>Enter anything in above</p>
+
+                </td>
+            </tr >
+            <tr>
+                <td>
+                    On blur
+                    <input type="text" onblur="alert('on blur called')">
+                    <p>Enter something and move the focus to somewhere else</p>
+                </td>
+                <td>
+                    On focus
+                    <input type="text" onfocus="alert('On focus called')">
+                </td>
+                <td >
+                    On focus in
+                    <input type="text" onfocusin="alert('On focus called')">
+                </td>
+                <td >
+                    On focus out
+                    <input type="text" onfocusout="alert('On focus called')">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    On copy
+                    <input type="text" oncopy="alert('on copy called')" value="Copy this">
+                    <p>copy text from above input </p>
+                </td>
+                <td>
+                    On cut
+                    <input type="text" oncut="alert('on cut called')" value="Cut this text">
+                    <p>cut text from above input </p>
+                </td>
+                <td >
+                    On paste
+                    <input type="text" onpaste="alert('On paste called')" >
+                    <p>paste something in above input</p>
+                </td>
+                <td>
+                    On scroll
+                    <div style="height: 65px; overflow: scroll; margin-top: 5px;border: 2px solid;" onscroll="alert('onscroll called')">Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci in sunt provident ipsa dolorem beatae, perspiciatis sit facilis, cupiditate qui, magnam officia maxime? Pariatur numquam facere ea illo atque ipsa at iusto a quos minima? Doloribus voluptatibus voluptatum nobis impedit! Asperiores ad eaque repudiandae tempora totam obcaecati? Incidunt, explicabo aliquid.</div>
+                    <p>scroll above field</p>
+                </td>
+                
+            </tr>
+            
+        </table>
+    </div>
+
+    
+</body>
+</html>
