@@ -29,7 +29,7 @@ mainRouter.route("/api/forgotpassword").post(forgorPassword);
 mainRouter.route("/api/newPassword").post(newPassword);
 mainRouter.route("/api/checkAuth").get(checkAuth);
 
-
+mainRouter.use("/delimiter_search",authorizationMiddleware,require("../route/delimiter_search/index"));
 
 
 module.exports = mainRouter;
