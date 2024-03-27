@@ -20,6 +20,11 @@ mainRouter.route("/activeUser").get(activeUserPage);
 mainRouter.route("/forgotpassword").get(forgotPasswordPage)
 mainRouter.route("/home").get(authorizationMiddleware,homePage);
 
+mainRouter.route("/kukucube").get((req,res)=>res.render("kukucube/"))
+mainRouter.route("/dynamictable").get((req,res)=>res.render("dynamictable/"))
+mainRouter.route("/tictactoe").get((req,res)=>res.render("tictactoe/"))
+mainRouter.route("/eventtable").get((req,res)=>res.render("eventtable/"))
+
 mainRouter.route("/api/register").post(register);
 mainRouter.route("/api/login").post(login);
 mainRouter.route("/api/forgotpassword").post(forgorPassword);
