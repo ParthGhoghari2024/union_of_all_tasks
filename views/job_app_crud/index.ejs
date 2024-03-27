@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index Percentage</title>
+</head>
+<body>
+    
+    <input type="button" value="New Employee" onclick="window.location='/job-application-form/form'">
+    <input type="text" name="id" id="idText" placeholder="Enter id for update ">
+    <input type="button" value="Update Employee (ex. id 118)" onclick="goToUpdate()">
+
+
+    <table border="2" style="border-collapse: collapse;">
+        <thead>
+            <tr>
+                <% metaData.forEach((obj)=>{  %>
+                    <td>
+                        <%=obj.name%>
+                    </td>
+                    <% }) %>
+            </tr>
+        </thead>
+        <tbody>
+            <% for(var i=0;i < data.length;i++){ %>
+                <tr>
+                    <% for(var key in data[i]){  %>
+                        <td>
+                            <%=data[i][key] %>
+                        </td>
+                        <% } %>
+                    <td>
+                        <td><a href="/job-application-form/form?id=<%=data[i]['bDMId'] %>">Update</a>
+                        </td>
+                    </td>
+                </tr>
+                <% } %>
+        </tbody>
+
+    </table>
+    <script>
+        function goToUpdate(){
+            var id=document.getElementById('idText').value;
+            window.location=`/job-application-form/form${id? `?id=${id}` : ''}`
+        }
+    </script>
+</body>
+</html>

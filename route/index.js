@@ -29,7 +29,8 @@ mainRouter.route("/api/forgotpassword").post(forgorPassword);
 mainRouter.route("/api/newPassword").post(newPassword);
 mainRouter.route("/api/checkAuth").get(checkAuth);
 
-mainRouter.use("/delimiter_search",authorizationMiddleware,require("../route/delimiter_search/index"));
+mainRouter.use("/delimiter-search",authorizationMiddleware,require("../route/delimiter_search/index"));
+mainRouter.use("/job-application-form",authorizationMiddleware,require("../route/job_app_crud/index"));
 
 
 module.exports = mainRouter;

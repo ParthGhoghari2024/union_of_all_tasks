@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Index Page</title>
+
+
+    <style>
+        legend {
+            font-weight: bold;
+        }
+
+        fieldset {
+            display: flex;
+            justify-content: center;
+            width: 80%;
+        }
+    </style>
+    <link rel="stylesheet" href="/job_app_crud/form.css">
+</head>
+
+<body>
+
+    <div style="margin: auto;">
+        <form action="<%= locals.id?'/job-application-form/updateform?id=' + locals.id : '' %>" method="post"
+            onsubmit="return validateForm()">
+            <h2>Job Application Form</h2>
+            <%if(error!=null){ %>
+                <sup style="display: flex; justify-content: center; font-size: 1.5rem;">
+                    <%=error %>
+                </sup>
+                <%}%>
+                    <div style="display: flex; gap: 1rem 0;">
+                        <fieldset style="display:inline-block; width: 35%;">
+                            <legend>Basic Details</legend>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <label for="firstname">First Name </label>
+                                        <input class="reqInput reqString" type="text" name="firstname" id="firstname"
+                                            value="<%= reqBody.firstname %>" />
+                                    </td>
+                                    <td>
+                                        <label for="lastname">Last Name </label>
+                                        <input class="reqInput reqString" type="text" name="lastname" id="lastname"
+                                            value="<%=reqBody.lastname %>" />
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <label for="designation">Designation</label>
+                                        <input class="reqInput reqString" type="text" name="designation"
+                                            id="designation" value="<%=reqBody.designation %>" />
+                                    </td>
+                                    <td>
+                                        <label for="address1">Address1 </label>
+                                        <textarea type="text" name="address1" id="address1"
+                                            class="reqInput reqString"><%= reqBody.address1 %></textarea>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <label for="email">Email</label>
+                                        <input class="reqInput reqEmail" type="text" name="email" id="email"
+                                            value="<%=reqBody.email %>" />
+                                    </td>
+                                    <td>
+                                        <label for="address2">Address2 </label>
+                                        <textarea type="text" class="reqString" name="address2"
+                                            id="address2"><%=reqBody.address2 %></textarea>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <label for="phone">Phone Number</label><input class="reqInput reqPhone"
+                                            type="text" name="phone" id="phone" value="<%=reqBody.phone %>" />
+                                    </td>
+                                    <td>
+                                        <label for="city">City </label><input class="reqInput" type="text" name="city"
+                                            id="city" value="<%=reqBody.city %>" />
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <label for="gender">Gender</label><br>
+                                        <%- include("inputCombo",{key:selectGender,selected:selectGender.selected }) %>
+                                    </td>
+                                    <td>
+                                        <label for="city">State</label>
+                                        <select name="state" id="state" class="reqInput">
+                                            <option value="gujarat" <%=reqBody.state==='gujarat' ?'selected' : '' %>
+                                                >Gujarat</option>
+                                            <option value="maharastra" <%=reqBody.state==='maharastra' ?'selected' : ''
+                                                %>>Maharastra</option>
+                                        </select>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <label for="relationship_status">Relationship Status</label>
+                                        <select name="relationship_status" id="relationship_status" class="reqInput">
+                                            <option value="single" <%=reqBody.relationship_status==='s' ?'selected' : ''
+                                                %>>Single</option>
+                                            <option value="married" <%=reqBody.relationship_status==='m' ?'selected'
+                                                : '' %>>Married</option>
+                                        </select>
+
+                                    </td>
+                                    <td>
+                                        <label for="dob">Date of birth(mm/dd/yyyyy)</label><input class="reqInput" type="text" placeholder="mm/dd/yyyy"
+                                            name="dob" id="dob" value="<%=reqBody.dob %>">
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </fieldset>
+
+
+                        <fieldset style="display: inline-block ; width: 60% ; ">
+                            <legend>Education Details</legend>
+
+                            <table>
+                                <tr>
+                                    <td>SSC Result </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="board_name">Name of board </label><input class="reqInput edu_1 edu"
+                                            type="text" name="ssc_board_name" id="ssc_board_name"
+                                            value="<%=reqBody.ssc_board_name %>" />
+                                    </td>
+                                    <td>
+                                        <label for="passing_year">Passing Year </label><input class="reqInput edu_1 edu"
+                                            type="text" name="ssc_passing_year" id="ssc_passing_year"
+                                            value="<%=reqBody.ssc_passing_year %>" />
+                                    </td>
+                                    <td>
+                                        <label for="percentage">Percentage </label><input class="reqInput edu_1 edu"
+                                            type="text" name="ssc_percentage" id="ssc_percentage"
+                                            value="<%=reqBody.ssc_percentage %>" />
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>HSC Result </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="board_name">Name of board </label><input class="reqInput edu_2 edu"
+                                            type="text" name="hsc_board_name" id="hsc_board_name"
+                                            value="<%=reqBody.hsc_board_name %>" />
+                                    </td>
+                                    <td>
+                                        <label for="passing_year">Passing Year </label><input class="reqInput edu_2 edu"
+                                            type="text" name="hsc_passing_year" id="hsc_passing_year"
+                                            value="<%=reqBody.hsc_passing_year %>" />
+                                    </td>
+                                    <td>
+                                        <label for="percentage">Percentage </label><input class="reqInput edu_2 edu"
+                                            type="text" name="hsc_percentage" id="hsc_percentage"
+                                            value="<%=reqBody.hsc_percentage %>" />
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>Bachelor degree </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="course_name">Course Name </label><input class="reqInput edu_3 edu"
+                                            type="text" name="bachelor_course_name" id="bachelor_course_name"
+                                            value="<%=reqBody.bachelor_course_name %>" />
+                                    </td>
+                                    <td>
+                                        <label for="university">University</label><input class="reqInput edu_3 edu"
+                                            type="text" name="bachelor_university" id="bachelor_university"
+                                            value="<%=reqBody.bachelor_university%>" />
+                                    </td>
+                                    <td>
+                                        <label for="passing_year">Passing Year </label><input class="reqInput edu_3 edu"
+                                            type="text" name="bachelor_passing_year" id="bachelor_passing_year"
+                                            value="<%=reqBody.bachelor_passing_year%>" />
+                                    </td>
+                                    <td>
+                                        <label for="percentage">Percentage </label><input class="reqInput edu_3 edu"
+                                            type="text" name="bachelor_percentage" id="bachelor_percentage"
+                                            value="<%=reqBody.bachelor_percentage%>" />
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>Master degree </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="course_name">Course Name </label><input type="text"
+                                            name="master_course_name" id="master_course_name" class="edu_4 edu"
+                                            value="<%=reqBody.master_course_name%>" />
+                                    </td>
+                                    <td>
+                                        <label for="university">University</label><input type="text"
+                                            name="master_university" id="master_university" class="edu_4 edu"
+                                            value="<%=reqBody.master_university%>" />
+                                    </td>
+                                    <td>
+                                        <label for="passing_year">Passing Year </label><input type="text"
+                                            name="master_passing_year" id="master_passing_year" class="edu_4 edu"
+                                            value="<%=reqBody.master_passing_year%>" />
+                                    </td>
+                                    <td>
+                                        <label for="percentage">Percentage </label><input type="text"
+                                            name="master_percentage" id="master_percentage" class="edu_4 edu"
+                                            value="<%=reqBody.master_percentage%>" />
+                                    </td>
+                                </tr>
+
+                            </table>
+
+
+                        </fieldset>
+                    </div>
+
+                    <fieldset style="width: 90%; padding: 15px;">
+                        <legend>Work Experience</legend>
+                        <table id="workExTable">
+
+
+                            <% for(var i=0;i< reqBody.company_name.length; i++) {%>
+                                <tr>
+                                    <input type="hidden" name="workId" value="<%=reqBody.workId[i] %>">
+                                    <td>
+                                        <label for="company_name_<%= i+1 %>">Company Name </label><input type="text"
+                                            name="company_name" id="company_name_<%= i+1 %>" class="work_<%= i+1 %>"
+                                            value="<%=reqBody.company_name[i] %>" />
+                                    </td>
+                                    <td>
+                                        <label for="designation_company_<%= i+1 %>">Designation</label><input
+                                            type="text" name="designation_company" id="designation_company_<%= i+1 %>"
+                                            class="work_<%= i+1 %>" value="<%=reqBody.designation_company[i] %>" />
+                                    </td>
+                                    <td>
+                                        <label for="from_date_company_<%= i+1 %>">From(mm/dd/yyyyy) </label><input type="text"
+                                            name="from_date_company" id="from_date_company_<%= i+1 %>"
+                                            class="work_<%= i+1 %>" value="<%=reqBody.from_date_company[i] %>" />
+                                    </td>
+                                    <td>
+                                        <label for="to_date_company_<%= i %>">To(mm/dd/yyyyy) </label><input type="text"
+                                            name="to_date_company" id="to_date_company_<%= i+1 %>"
+                                            class="work_<%= i+1 %>" value="<%=reqBody.to_date_company[i] %>" />
+                                    </td>
+                                </tr>
+                                <% } %>
+                        </table>
+                        <% if(!locals.id){ %>
+                            <div class="Controller">
+                                <span onclick="workExUpdateTable('add')">+</span>
+                                <span onclick="workExUpdateTable('remove')">-</span>
+                            </div>
+                            <% } %>
+                    </fieldset>
+
+                    <div style="display: flex; ">
+                        <fieldset style="width: 35%; display: inline-block; ">
+                            <legend>Language Known</legend>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <input class="reqInput reqCheck" type="checkbox" name="language_1"
+                                            id="language_1" value="hindi"
+                                            <%=reqBody.language_1.includes('hindi')? 'checked' : '' %>><label
+                                            for="language_1">Hindi</label>
+
+                                        <input class="reqInput reqCheck" type="checkbox" name="language_1"
+                                            id="language_1_read" value="read"
+                                            <%=reqBody.language_1.includes('read')? 'checked' : '' %>><label
+                                            for="language_1_read">read</label>
+
+                                        <input class="reqInput reqCheck" type="checkbox" name="language_1"
+                                            id="language_1_write" value="write"
+                                            <%=reqBody.language_1.includes('write')? 'checked' : '' %>><label
+                                            for="language_1_write">write</label>
+
+                                        <input class="reqInput reqCheck" type="checkbox" name="language_1"
+                                            id="language_1_speak" value="speak"
+                                            <%=reqBody.language_1.includes('speak')? 'checked' : '' %>><label
+                                            for="language_1_speak">speak</label>
+                                    </td>
+                                <tr>
+                                    <td>
+                                        <input class="reqInput reqCheck" type="checkbox" name="language_2"
+                                            id="language_2" value="english"
+                                            <%=reqBody.language_2.includes('english')? 'checked' : '' %>><label
+                                            for="language_2">English</label>
+
+
+                                        <input class="reqInput reqCheck" type="checkbox" name="language_2"
+                                            id="language_2_read" value="read"
+                                            <%=reqBody.language_2.includes('read')? 'checked' : '' %>><label
+                                            for="language_2_read">read</label>
+
+                                        <input class="reqInput reqCheck" type="checkbox" name="language_2"
+                                            id="language_2_write" value="write"
+                                            <%=reqBody.language_2.includes('write')? 'checked' : '' %>><label
+                                            for="language_2_write">write</label>
+
+                                        <input class="reqInput reqCheck" type="checkbox" name="language_2"
+                                            id="language_2_speak" value="speak"
+                                            <%=reqBody.language_2.includes('speak')? 'checked' : '' %>><label
+                                            for="language_2_speak">speak</label>
+                                    </td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>
+                                        <input class="reqInput reqCheck" type="checkbox" name="language_3"
+                                            id="language_3" value="gujarati"
+                                            <%=reqBody.language_3.includes('gujarati')? 'checked' : '' %>><label
+                                            for="language_3">Gujarati</label>
+
+                                        <input class="reqInput reqCheck" type="checkbox" name="language_3"
+                                            id="language_3_read" value="read"
+                                            <%=reqBody.language_3.includes('read')? 'checked' : '' %>><label
+                                            for="language_3_read">read</label>
+
+                                        <input class="reqInput reqCheck" type="checkbox" name="language_3"
+                                            id="language_3_write" value="write"
+                                            <%=reqBody.language_3.includes('write')? 'checked' : '' %>><label
+                                            for="language_3_write">write</label>
+
+                                        <input class="reqInput reqCheck" type="checkbox" name="language_3"
+                                            id="language_3_speak" value="speak"
+                                            <%=reqBody.language_3.includes('speak')? 'checked' : '' %>><label
+                                            for="language_3_speak">speak</label>
+                                    </td>
+                                </tr>
+                                </tr>
+                            </table>
+
+                        </fieldset>
+
+                        <fieldset style="width: 65%; display: inline-block; ">
+                            <legend>Technologies You Know</legend>
+
+                            <table>
+                                <tr>
+                                    <td><input class=" reqCheck" type="checkbox" name="tech_1" id="tech_1" value="php"
+                                            <%=reqBody.tech_1.includes('php')? 'checked' : '' %>><label
+                                            for="tech_1">PHP</label></td>
+                                    <td><input class="reqInput reqCheck" type="radio" name="tech_1" id="tech_1_beginer"
+                                            value="beginer" <%=reqBody.tech_1.includes('beginer')? 'checked' : ''
+                                            %>><label for="tech_1_beginer">Beginer</label></td>
+                                    <td><input class="reqInput reqCheck" type="radio" name="tech_1" id="tech_1_mideator"
+                                            value="mideator" <%=reqBody.tech_1.includes('mideator')? 'checked' : ''
+                                            %>><label for="tech_1_mideator">Mideator</label></td>
+                                    <td><input class="reqInput reqCheck" type="radio" name="tech_1" id="tech_1_expert"
+                                            value="expert" <%=reqBody.tech_1.includes('expert')? 'checked' : ''
+                                            %>><label for="tech_1_expert">Expert</label></td>
+                                </tr>
+
+                                <tr>
+                                    <td><input class="reqInput reqCheck" type="checkbox" name="tech_2" id="tech_2"
+                                            value="mysql" <%=reqBody.tech_2.includes('mysql')? 'checked' : '' %>><label
+                                            for="tech_2">Mysql</label></td>
+                                    <td><input class="reqInput reqCheck" type="radio" name="tech_2" id="tech_2_beginer"
+                                            value="beginer" <%=reqBody.tech_2.includes('beginer')? 'checked' : ''
+                                            %>><label for="tech_2_beginer">Beginer</label></td>
+                                    <td><input class="reqInput reqCheck" type="radio" name="tech_2" id="tech_2_mideator"
+                                            value="mideator" <%=reqBody.tech_2.includes('mideator')? 'checked' : ''
+                                            %>><label for="tech_2_mideator">Mideator</label></td>
+                                    <td><input class="reqInput reqCheck" type="radio" name="tech_2" id="tech_2_expert"
+                                            value="expert" <%=reqBody.tech_2.includes('expert')? 'checked' : ''
+                                            %>><label for="tech_2_expert">Expert</label></td>
+                                </tr>
+
+                                <tr>
+                                    <td><input class="reqInput reqCheck" type="checkbox" name="tech_3" id="tech_3"
+                                            value="laravel" <%=reqBody.tech_3.includes('laravel')? 'checked' : ''
+                                            %>><label for="tech_3">Laravel</label></td>
+                                    <td><input class="reqInput reqCheck" type="radio" name="tech_3" id="tech_3_beginer"
+                                            value="beginer" <%=reqBody.tech_3.includes('beginer')? 'checked' : ''
+                                            %>><label for="tech_3_beginer">Beginer</label></td>
+                                    <td><input class="reqInput reqCheck" type="radio" name="tech_3" id="tech_3_mideator"
+                                            value="mideator" <%=reqBody.tech_3.includes('mideator')? 'checked' : ''
+                                            %>><label for="tech_3_mideator">Mideator</label></td>
+                                    <td><input class="reqInput reqCheck" type="radio" name="tech_3" id="tech_3_expert"
+                                            value="expert" <%=reqBody.tech_3.includes('expert')? 'checked' : ''
+                                            %>><label for="tech_3_expert">Expert</label></td>
+                                </tr>
+
+                                <tr>
+                                    <td><input class="reqInput reqCheck" type="checkbox" name="tech_4" id="tech_4"
+                                            value="oracle" <%=reqBody.tech_4.includes('oracle')? 'checked' : ''
+                                            %>><label for="tech_4">Oracle</label></td>
+                                    <td><input class="reqInput reqCheck" type="radio" name="tech_4" id="tech_4_beginer"
+                                            value="beginer" <%=reqBody.tech_4.includes('beginer')? 'checked' : ''
+                                            %>><label for="tech_4_beginer">Beginer</label></td>
+                                    <td><input class="reqInput reqCheck" type="radio" name="tech_4" id="tech_4_mideator"
+                                            value="mideator" <%=reqBody.tech_4.includes('mideator')? 'checked' : ''
+                                            %>><label for="tech_4_mideator">Mideator</label></td>
+                                    <td><input class="reqInput reqCheck" type="radio" name="tech_4" id="tech_4_expert"
+                                            value="expert" <%=reqBody.tech_4.includes('expert')? 'checked' : ''
+                                            %>><label for="tech_4_expert">Expert</label></td>
+                                </tr>
+                            </table>
+                        </fieldset>
+                    </div>
+
+
+                    <div style="display: flex; ">
+                        <fieldset style="width: 30%; display: inline-block; ">
+                            <legend>Reference Contact </legend>
+
+                            <table id="refTable">
+                                <% for(var i=0;i< reqBody.reference_name.length; i++) {%>
+                                    <tr>
+                                        <input type="hidden" name="refId" value="<%=reqBody.refId[i] %>">
+                                        <td><label for="reference_<%= i+1 %>">Name </label><input type="text"
+                                                name="reference_name" id="reference_<%= i+1 %>_name"
+                                                class="ref_<%= i+1 %>" value="<%=reqBody.reference_name[i] %>" /></td>
+                                        <td><label for="reference_<%= i+1 %>">Contact Number</label><input type="text"
+                                                name="reference_contact" id="reference_1_contact" class="ref_<%= i+1 %>"
+                                                value="<%=reqBody.reference_contact[i] %>" /></td>
+                                        <td><label for="reference_<%= i+1 %>">Relation</label><input type="text"
+                                                name="reference_relation" id="reference_<%= i+1 %>_relation"
+                                                class="ref_<%= i+1 %>" value="<%=reqBody.reference_relation[i] %>" />
+                                        </td>
+                                    </tr>
+                                    <% } %>
+                            </table>
+                            <% if(!locals.id){ %>
+                                <div class="Controller">
+                                    <span onclick="refUpdateTable('add')">+</span>
+                                    <span onclick="refUpdateTable('remove')">-</span>
+                                </div>
+                                <% } %>
+                        </fieldset>
+
+                        <fieldset style="width: 65%; display: inline-block;">
+                            <legend>Preferences</legend>
+                            <div style="display: flex; align-items: center; gap: 0rem 2rem;">
+                                <table>
+                                    <td>
+                                        <tr>
+                                            <td><label for="prefered_location">Prefered Location : </label></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <input type="hidden" name="prefId" value="<%= reqBody.prefId[0] %>">
+
+                                                <input class="reqInput" type="text" name="prefered_location"
+                                                    id="prefered_location_1" placeholder="Prefered Location 1"
+                                                    value="<%=reqBody.prefered_location[0] %>" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <input type="hidden" name="prefId" value="<%= reqBody.prefId[1] %>">
+
+                                                <input class="reqInput" type="text" name="prefered_location"
+                                                    id="prefered_location_2" placeholder="Prefered Location 2"
+                                                    value="<%=reqBody.prefered_location[1] %>" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <input type="hidden" name="prefId" value="<%= reqBody.prefId[2] %>">
+
+                                                <input class="reqInput" type="text" name="prefered_location"
+                                                    id="prefered_location_3" placeholder="Prefered Location 3"
+                                                    value="<%=reqBody.prefered_location[2] %>" />
+                                            </td>
+                                        </tr>
+                                    </td>
+                                </table>
+                                <table>
+                                    <tr>
+                                        <td><label for="notice_period">Notice Period </label><input class="reqInput"
+                                                type="text" name="notice_period" id="notice_period"
+                                                value="<%=reqBody.notice_period %>"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="expeted_ctc">Expected CTC </label><input class="reqInput"
+                                                type="text" name="expected_ctc" id="expected_ctc"
+                                                value="<%=reqBody.expected_ctc %>"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="current_ctc">Current CTC </label><input class="reqInput"
+                                                type="text" name="current_ctc" id="current_ctc"
+                                                value="<%=reqBody.current_ctc %>"></td>
+                                    </tr>
+                                </table>
+
+                                <table>
+                                    <tr>
+                                        <td style="display: flex;justify-content: center ; gap:0 1rem">
+                                            <label for="department">Department : </label>
+                                            <select name="department" id="department" multiple class="reqInput">
+                                                <option value="development"
+                                                    <%=reqBody.department.includes('development')? 'selected' : '' %>
+                                                    >Development</option>
+                                                <option value="marketing"
+                                                    <%=reqBody.department.includes('marketing')? 'selected' : '' %>
+                                                    >Marketing</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                </table>
+
+                            </div>
+
+                        </fieldset>
+
+                    </div>
+
+                    <div style="display: flex; justify-content: center; margin-top: 25px;">
+                        <input type="submit" value="Submit" class="formBtn  reqInput">
+                        <input type="reset" value="reset" class="formBtn reqInput">
+                    </div>
+        </form>
+
+
+
+    </div>
+
+    <script src="/job_app_crud/index.js"></script>
+
+</body>
+
+</html>
