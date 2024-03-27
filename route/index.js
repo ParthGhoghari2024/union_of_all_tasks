@@ -13,9 +13,9 @@ const homePage = require("./homePage");
 const { checkAuth } = require("./api/checkAuth");
 const { authorizationMiddleware } = require("../middleware/auth");
 
-mainRouter.route("/").get(indexPageRoute);
+mainRouter.route("/").get(loginPage);
+mainRouter.route("/index").get(indexPageRoute);
 mainRouter.route("/register").get(registerPage);
-mainRouter.route("/login").get(loginPage);
 mainRouter.route("/activeUser").get(activeUserPage);
 mainRouter.route("/forgotpassword").get(forgotPasswordPage)
 mainRouter.route("/home").get(authorizationMiddleware,homePage);

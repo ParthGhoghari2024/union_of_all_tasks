@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice 2 </title>
+</head>
+<style>
+
+    body{
+        background: rgb(255, 138, 162);
+    }
+    .tableContainer {
+        display: flex;
+        justify-content: center;
+        min-width: fit-content;
+        margin-top: 15px;
+    }
+
+    #tableMain {
+        height: 40rem;
+        width: 40rem;
+        border: 2px solid white
+    }
+
+    #tableMain tr td{
+        border: 2px solid black;
+        border-radius: 3px;
+        
+    }
+
+    #tableMain td {
+        border: 2px solid black;
+    }
+
+
+    #tableMain td{
+        background: lightskyblue;
+        cursor: pointer;
+        /* filter: brightness(85%); */
+    }
+    #temp{
+        /* filter: brightness(85%) !important; */
+        opacity: 0.7 !important;
+        /* background: red !important; */
+    }
+
+    #scoreCell{
+        border: 2px solid;
+        font-size: 2.5rem;
+        padding: 10px;
+
+    }
+    #timerCell{
+        border: 2px solid;
+        font-size: 2.5rem;
+        padding: 10px;
+    }
+    #pauseCell{
+        border: 2px solid;
+        font-size: 2.5rem;
+        padding: 10px;
+        cursor: pointer;
+        width: 10rem;
+        text-align: center;
+    }
+    .box{
+        border: 2px solid;
+        font-size: 2.5rem;
+        padding: 10px;
+    }
+    #gameOver{
+        border: 2px solid;
+        font-size: 2.5rem;
+        padding: 10px;
+        display: flex;
+        width: fit-content;
+        margin: 10px 0;
+    }
+    
+</style>
+
+<body>
+
+    <div style="display: flex;justify-content: center;">
+        <h2 >Name: Parth Ghoghari Em.Id : 24DEV052 Date: 02-02-2024</h2>
+    </div>
+
+    <div style="display: flex;justify-content: space-around;">
+        <span id="scoreCell">Score : <span id="score">0</span></span>
+        <span id="timerCell">Time : <span id="timer">60</span></span>
+        <span id="pauseCell" onclick="pauseIt()">Pause</span>
+    </div>
+
+    <div class="tableContainer">
+        <table id="tableMain" >
+            <tbody id="tableMainBody">
+                <tr>
+                    <td id="temp"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div style="display: flex;justify-content: space-around;">
+        <span  id="gameOver"style="display: none;">Game Over , Final score : <span id="finalScore"></span></span>
+        <span class="box"  id="reload" style="display: none; cursor: pointer;" onclick="location.reload()">Play Again</span>
+    </div>
+    <script>
+        var isPaused =0;//flag to check if game is paused or not
+
+        function pauseIt(){// to pause or resume the game
+            if(isPaused){
+                isPaused=0;
+                document.getElementById("pauseCell").innerText="Pause";
+            }else{
+                document.getElementById("pauseCell").innerText="Resume";
+                isPaused=1;
+            }
+        }
+        var countDown =60;//note: full time is of 1min
+
+        //initial timer 
+        var timerCount = setInterval(() => {
+            if(!isPaused){
+                countDown--;
+                document.getElementById("timer").innerText = countDown;
+                if(countDown==0){
+                    gameOver();
+                }
+            }
+        },(1000));
+
+        
+        // below will be called to show game over message and to remove timer , and to disable the buttons
+        function gameOver(){
+            alert("Game over");
+                clearInterval(timerCount);
+                document.getElementById("gameOver").style.display = "flex";
+                var allTds = tableMainEle.getElementsByTagName("td");
+                for (let i = 0; i < allTds.length; i++) {
+                    allTds[i].removeEventListener("click",checkAndUpdateCell);
+                }
+
+                document.getElementById("finalScore").innerText = finalScore;
+                document.getElementById("reload").style.display="flex";
+        }
+        var finalRowCount =2 ;
+
+        var finalColCount =2;
+
+        var oddCell = [1,1];
+
+        var tableMainEle = document.getElementById("tableMain");
+
+        var finalScore = 0;
+
+        function getNewOddCell (){
+            var indOfRow = Math.floor(Math.random() * finalRowCount) + 1;
+            oddCell = []
+        }
+
+        function addRow(){
+            if(finalRowCount>7)return;
+            finalRowCount++;
+            var colCount= tableMainEle.rows[0].cells.length ;
+            var newRow = tableMainEle.insertRow();
+            for(var i=0;i<colCount;i++){
+                var newCell = newRow.insertCell(i);
+            }
+            document.getElementById("tableMainBody").appendChild(newRow);
+        }
+
+        function addCol(){
+            if(finalColCount>7)return;
+            finalColCount++;
+            var rowCount = tableMainEle.rows.length ;
+            var newTd = document.createElement("td");
+            for(var i=0;i<rowCount;i++){
+                var newCell = tableMainEle.rows[i].insertCell(newTd)
+            }
+        }
+
+        var tableMain = document.getElementById("tableMain");
+
+        setEventOnId();
+        function setEventOnId(){
+            document.getElementById("temp").addEventListener("click",checkAndUpdateCell);
+        }
+
+
+        // below func will add check if selected cell is correct , and then it will do accordingly
+        function checkAndUpdateCell(event){
+            
+
+            var idOfClickedCell = event.target.id;
+
+            if(idOfClickedCell=="temp"){// to check that selected cell is correct or not
+                if(isPaused)return;
+                finalScore++;
+                document.getElementById("temp").removeEventListener("click",checkAndUpdateCell)
+                document.getElementById("temp").id="";
+                addRow();
+                addCol();
+                addIdToOtherCell();// this will modify any one random cell
+            }
+            document.getElementById("score").innerText = finalScore
+        }
+
+
+        var colors = ["lightblue","lightcoral","lightgreen","gray","green","khaki","lightpink","lightsalmon","lightseagreen","greenyellow" ,"yellow"]
+        var nextColorInd = 0;
+
+        function addIdToOtherCell(){//wil add id to any random cell
+            // console.log(finalColCount,finalRowCount);
+            var oddNewRow  = Math.floor(Math.random()*finalRowCount )+1;
+            var oddNewCol = Math.floor(Math.random()*finalRowCount )+1;
+
+            // console.log(oddNewCol,oddNewRow);
+            var allTds  =tableMainEle.getElementsByTagName("td");
+
+            nextColorInd = (nextColorInd+1) % colors.length ;// to select the next color
+
+            
+            for (let i = 0; i < allTds.length  ; i++) {// to change bg of all cells
+                allTds[i].style.background = colors[nextColorInd];
+            }
+            // console.log(allTds);
+            allTds[oddNewCol*oddNewRow -1].id = "temp";
+            setEventOnId();
+            
+        }
+
+        
+    </script>
+    
+</body>
+
+</html>
