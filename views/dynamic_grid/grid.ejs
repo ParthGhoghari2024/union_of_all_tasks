@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Grid Page</title>
+    <link rel="stylesheet" type="text/css" href="/dynamic_grid/main.css">
+</head>
+
+<body>
+    <div class="gridPageContainer">
+        <form action="/dynamic-grid" method="get">
+            <input type="text" name="query" placeholder="Query" id="queryInput">
+            <input type="submit" value="go">
+        </form>
+        <%if( error!="" ){%>
+            <h2>
+                <%= error %>
+            </h2>
+            <%} %>
+                <%- include('paginationController',{currentPage :
+                    currentPage,totalPages:totalPages,query:query,orderBy,ascQuery}) -%>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <% metaData.forEach((obj)=>{ %>
+                                    <td>
+                                        <%=obj.name%>
+                                    </td>
+                                    <% }) %>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for(var i=0;i < data.length;i++){ %>
+                                <tr>
+                                    <% for(var key in data[i]){ %>
+                                        <td>
+                                            <%=data[i][key] %>
+                                        </td>
+                                        <% } %>
+                                </tr>
+                                <% } %>
+                        </tbody>
+
+                    </table>
+    </div>
+    <script>
+        window.onload = function () {
+            var queryInputTag = document.getElementById("queryInput");
+            var urlParams = new URLSearchParams(window.location.search);
+
+            queryInputTag.value = urlParams.get("query");
+        }
+    </script>
+</body>
+
+</html>

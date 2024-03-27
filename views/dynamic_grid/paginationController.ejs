@@ -1,0 +1,79 @@
+<div class="paginationControllerMainContainer">
+    <span class="placeHolder">Order By : <span id="orderByPlaceholder">id</span> , <span
+            id="ascByPlaceHolder">Ascending</span> </span>
+
+    <a id="paggingLink-first"
+        href="<%=currentPage!==1? `/dynamic-grid?query=${query}&rows=${rows}&page=${1}&order=${orderBy}&asc=${ascQuery}&offset=${offset}&limit=${limit} ` : 'javascript:void(0)' %> ">
+        << </a>
+            <a id="paggingLink-prev"
+                href="<%=currentPage!==1? `/dynamic-grid?query=${query}&rows=${rows}&page=${currentPage-1}&order=${orderBy}&asc=${ascQuery}&offset=${offset}&limit=${limit} ` : 'javascript:void(0)' %>">
+                < </a>
+                    <p>
+                        <%= currentPage %>
+                    </p>
+                    <a id="paggingLink-next"
+                        href="<%=currentPage!==totalPages? `/dynamic-grid?query=${query}&rows=${rows}&page=${currentPage+1}&order=${orderBy}&asc=${ascQuery}&offset=${offset}&limit=${limit} ` : 'javascript:void(0)' %>">></a>
+                    <a id="paggingLink-last"
+                        href="<%=currentPage!==totalPages? `/dynamic-grid?query=${query}&rows=${rows}&page=${totalPages}&order=${orderBy}&asc=${ascQuery}&offset=${offset}&limit=${limit} ` : 'javascript:void(0)' %>">>></a>
+                    <select name="orderby" id="orderBy" onchange="orderIt(this)">
+                        <option disabled selected value>--sort option --</option>
+                            <% metaData.forEach((obj)=>{ %>
+                                <option value=<%=obj.name %>>
+                                    <%=obj.name %>
+                                </option>
+                            <% }) %>
+                    </select>
+                    <select name="orderby" id="ascBy" onchange="orderItAscOrDesc(this)">
+                        <option disabled selected value>--order option --</option>
+                        <option value="asc">Ascending</option>
+                        <option value="desc">Descending</option>
+                    </select>
+
+
+</div>
+
+<script>
+    function getQuerystring(key) {
+        var query = window.location.search.substring(1);
+        var vars = query.split("&");
+        for (var i = 0; i < vars.length; i++) {
+            var pair = vars[i].split("=");
+            if (pair[0] == key) {
+                return pair[1];
+            }
+        }
+    }
+
+    window.onload = function () {
+        var orderByValue = getQuerystring("order") || "id";
+        if (orderByValue === "stMId") orderByValue = "id";
+        var ascByValue = getQuerystring("asc") || "asc";
+
+        var selectOrderTag = document.getElementById("orderBy");
+        var ascByTag = document.getElementById("ascBy");
+        var orderByPlaceholder = document.getElementById("orderByPlaceholder");
+        var ascByPlaceholder = document.getElementById("ascByPlaceHolder");
+        console.log(orderByValue, ascByValue);
+        for (const s of selectOrderTag) {
+            if (s.value === orderByValue) {
+                s.setAttribute("selected", true)
+                orderByPlaceholder.innerText = s.value;
+            }
+        }
+        for (const s of ascByTag) {
+            if (s.value === ascByValue) {
+                s.setAttribute("selected", true)
+                ascByPlaceholder.innerText = (s.value === "asc" ? "Ascending" : "Descending");;
+            }
+        }
+    }
+
+    function orderIt(e) {
+        location = `/dynamic-grid?query=<%=query.indexOf("order by")!=-1? query.substring(0,query.indexOf("order by")) : query%>&page= <%= 1 %>&order=${e.value}`
+    }
+    function orderItAscOrDesc(e) {
+        var order = getQuerystring("order") || "id";
+        location = `/dynamic-grid?query=<%=query%>&page= <%= 1 %>&order=${order}&asc=${e.value}`
+    }
+
+</script>

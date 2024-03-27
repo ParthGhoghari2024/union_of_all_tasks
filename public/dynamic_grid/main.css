@@ -1,0 +1,86 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body {
+    background-color: lightgray;
+    text-decoration-color: white;
+    font-size: 1rem;
+    
+}
+.gridPageContainer{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+table  td{
+    border: 2px solid white;
+}
+td{
+    min-width: fit-content;
+    padding: 0.5rem;
+    text-align: center;
+}
+thead{
+    background: white;
+}
+
+.homeLinksContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem 0;
+}
+.homeLinksContainer input{
+    font-size: 2rem;
+}
+input[type=submit]{
+    border: none;
+    width: 2rem;
+    height: 2rem;
+    font-size: 1rem;
+}
+#queryInput{
+    width: 40rem;
+    padding: 0.2rem 0.5rem;
+    font-size: 1rem;
+}
+input[type=radio],input[type=checkbox]{
+    border: none;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+
+.paginationControllerMainContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0 1rem ;
+    font-size: 1.5rem;
+}
+a{
+    border: 2px solid black;
+    padding: 0.5rem;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+}
+a:hover{
+    background: black;
+    color: white;
+}
+.placeHolder{
+    background: black;
+    color: white;
+    padding: 1rem;
+}
+thead{
+    font-size: 1.1rem;
+}
+
+#resultTable td{
+    max-width: 10rem;
+    text-align: center;
+}
