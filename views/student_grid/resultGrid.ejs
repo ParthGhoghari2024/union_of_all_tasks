@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Result grid Page</title>
+    <link rel="stylesheet" type="text/css" href="/student_grid/main.css">
+</head>
+
+<body>
+    <%- include('resultPaginationController',{currentPage : currentPage,totalPages:totalPages}) -%>
+        <div class="container">
+
+        <table >
+            <thead>
+                <tr>
+                    <td rowspan="2">Student Id</td>
+                    <td rowspan="2">Student Name</td>
+                    <td colspan="2">Prilimary</td>
+                    <td colspan="2">Terminal</td>
+                    <td colspan="2">Final</td>
+                    <td rowspan="2">Total</td>
+                    <td rowspan="2">Action</td>
+                </tr>
+                <tr>
+                    <td>Practical</td>
+                    <td>Theory</td>
+                    <td>Practical</td>
+                    <td>Theory</td>
+                    <td>Practical</td>
+                    <td>Theory</td>
+                </tr>
+            </thead>
+            <tbody>
+
+
+
+                <% for (let i=0; i < prilimaryData.length; i++) { %>
+
+                    <tr>
+                        <td>
+                            <%=prilimaryData[i].id %>
+                        </td>
+                        <td>
+                            <%=prilimaryData[i].name %>
+                        </td>
+                        <td>
+                            <%=prilimaryData[i].pracOptainedMarks %>
+                        </td>
+                        <td>
+                            <%=prilimaryData[i].theoryOptainedMarks %>
+                        </td>
+                        <td>
+                            <%=terminalData[i].pracOptainedMarks %>
+                        </td>
+                        <td>
+                            <%=terminalData[i].theoryOptainedMarks %>
+                        </td>
+                        <td>
+                            <%=finalData[i].pracOptainedMarks %>
+                        </td>
+                        <td>
+                            <%=finalData[i].theoryOptainedMarks %>
+                        </td>
+                        <td>
+                            <%= prilimaryData[i].pracOptainedMarks + prilimaryData[i].theoryOptainedMarks + terminalData[i].pracOptainedMarks + terminalData[i].theoryOptainedMarks + finalData[i].pracOptainedMarks + finalData[i].theoryOptainedMarks %>
+                        </td>
+                        <td>
+                            <a href="/student-grid/viewResult?id=<%=prilimaryData[i].id %>" target="_blank" style="padding: 0.2rem;">view</a>
+                        </td>
+                    </tr>
+                    <% } %>
+
+                        </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+
+</body>
+
+</html>

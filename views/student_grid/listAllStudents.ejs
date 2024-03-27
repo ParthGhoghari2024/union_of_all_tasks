@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>List user Page</title>
+    <link rel="stylesheet" type="text/css" href="/student_grid/main.css">
+</head>
+
+<body>
+    <table>
+        <thead>
+
+            <tr>
+                <td>Student Id</td>
+                <td>First Name</td>
+                <td>Last Name</td>
+                <td>Email</td>
+                <td>Email2</td>
+                <td>Board</td>
+                <td>Birth Date</td>
+                <td>Address</td>
+                <td>City</td>
+                <td>Country</td>
+                <td>Country Code</td>
+                <td>Created At</td>
+            </tr>
+        </thead>
+        <tbody>
+            <% students.forEach((obj)=>{ %>
+                <tr>
+                    <% var o=obj; for (const key in o) {%>
+                        <td>
+                            <%= o[key]%>
+                        </td>
+
+                        <% } %>
+
+                </tr>
+                <% })%>
+        </tbody>
+
+    </table>
+</body>
+
+</html>

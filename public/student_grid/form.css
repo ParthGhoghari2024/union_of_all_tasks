@@ -1,0 +1,10 @@
+table{
+    border-collapse:  collapse;
+}
+
+table td{
+    padding: 1rem 0;
+}
+table input{
+    font-size: 1.5rem;
+}
