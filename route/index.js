@@ -33,6 +33,7 @@ mainRouter.use("/delimiter-search",authorizationMiddleware,require("../route/del
 mainRouter.use("/job-application-form",authorizationMiddleware,require("../route/job_app_crud/index"));
 mainRouter.use("/dynamic-grid",authorizationMiddleware,require("../route/dynamic_grid/index"));
 mainRouter.use("/student-grid",authorizationMiddleware,require("../route/student_grid/index"));
+mainRouter.use("/multistep-jobapp",authorizationMiddleware,require("../route/multistep_jobapp/index"));
 
 
 

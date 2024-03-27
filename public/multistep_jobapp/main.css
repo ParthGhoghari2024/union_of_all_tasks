@@ -1,0 +1,113 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.formMainContainer{
+    font-size: 1rem;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1rem 0;
+    align-items: center;
+    margin-top: 2rem;
+    
+}
+
+.formMainContainer table{
+    width: fit-content; 
+    border: 2px solid black;
+    padding: 2% 5%;
+    box-shadow: black 0px 1rem 1rem 0px ;
+    display: flex;
+    justify-content: center;
+}
+.formMainContainer table tbody{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem ;
+}
+
+.formMainContainer td{
+    display: flex;
+    align-items: center;
+    gap: 4rem 1rem;
+}
+
+.formMainContainer td label{
+    width: 10rem;
+    text-align: right;
+}
+
+.formMainContainer input[type=text], .formMainContainer textarea{
+    padding: 0.5rem;
+    font-size: 1rem;
+    width: 18rem;
+    box-shadow: black 0px 2px 1px 0px ;
+}
+
+.formnavigationController {
+    display: flex;
+    width: 50%;
+    /* justify-content: center; */
+    justify-content: space-between;
+
+}
+
+.formnavigationController input[type=button]{
+    padding: 1rem;
+    background: black;
+    color: white;
+    font-size: 1rem;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.formnavigationController input[type=checkbox]{
+    margin: 1rem;
+}
+.formnavigationController input[type=button]:hover{
+    color: black;
+    background: gray;
+    /* border: 2px soild black; */
+}
+
+.activeTable{
+    display: flex !important;
+}
+
+#langTable td{
+    padding: 0.5rem 1rem;
+
+}
+#techTable tr{
+    display: flex;
+}
+#techTable td{
+    display: block !important;
+    padding: 0.5rem 1rem;
+}
+
+.slideBtn:disabled{
+    background: gray !important;
+}
+.Controller{
+    margin: 0 1rem;
+}
+.Controller span{
+    font-size: 2rem;
+    border: 2px solid black;
+    color: white;
+    background: black;
+    cursor: pointer;
+}
+sup{
+    color: red;
+}
+/* 
+fieldset{
+    border: none;
+} */
