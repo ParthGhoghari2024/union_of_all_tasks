@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Post Page</title>
+
+
+    <style>
+        legend {
+            font-weight: bold;
+        }
+
+        fieldset {
+            display: flex;
+            justify-content: center;
+            width: 80%;
+        }
+    </style>
+    <link rel="stylesheet" href="/fetch_posts/main.css">
+</head>
+
+<body>
+
+    <h1>post details page</h1>
+    <div class="postDetailsContainer">
+    </div>
+</body>
+<script>
+
+
+
+    var currentPageIndex = 1;
+    var postsPerPage = 10;
+
+    var totalPages;
+    var postJson;
+    async function run() {
+        var herfArr = window.location.href.split("/");
+
+        var indexOfPostDetails = herfArr.indexOf("posts-details");
+        console.log(herfArr,herfArr[indexOfPostDetails+1]);
+        var postId = parseInt(herfArr[indexOfPostDetails+1]) || 1;
+        var fetchPost = () => {
+            return fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`);
+        }   
+
+        var postData = await fetchPost();
+        console.log(postData.headers);
+        try {
+            postJson = await postData.json();
+        } catch (error) {
+            document.getElementsByTagName("body")[0].innerText = "invalid url";
+            return;
+        }
+        document.getElementsByClassName("postDetailsContainer")[0].innerHTML = generateTable(postJson);
+
+    }
+
+    function generateTable(post) {
+        console.log(post);
+        var tableHtml = "<table  class='postTable'>"
+
+            var id;
+            for (const key in post) {
+                tableHtml += "<tr>"
+                id=post.id || 1;
+                if (post.hasOwnProperty(key)){
+                    tableHtml += `<th>${key}</th>`  
+                    tableHtml += `<td class='${key === "content" ? "contentRow" : ""}'><div>`
+                    if (key === "image") {
+                        tableHtml += `<img src='${post[key]}' class="trMainImg"> `
+                    } else if (key === "thumbnail") {
+                        tableHtml += `<img src='${post[key]}' > `
+                    }
+                    else {
+                        tableHtml += post[key]
+                    }
+                    tableHtml += `</div></td>`
+                }
+                tableHtml += "</tr>"
+            }
+            tableHtml += `<tr><td><input type='button' onclick='showComments(${id})' value='show comments' /></td>`
+            tableHtml += `<td><div id='commentContainer'></div></td></tr>`
+            
+
+
+        tableHtml += "</table>"
+
+        return tableHtml;
+    }
+    async function showComments(id){
+        var fetchComments = () => {
+            return fetch(`https://jsonplaceholder.typicode.com/comments/`);
+        }   
+
+        var commentsData = await fetchComments();
+        var commentsJson = await commentsData.json();
+        console.log(commentsJson);
+
+        commentsJson = commentsJson.filter((comment)=>comment.postId===id);
+        console.log(commentsJson,commentsJson.length);
+        
+        var commentContainer = document.getElementById("commentContainer");
+        if(commentsJson.length===0){
+            commentContainer.innerHTML = "no comments";
+            return;
+        }
+        var commentHtml = "";
+        commentsJson.forEach(post => {
+            commentHtml += `<div class='commentMain'> <div class='UserIdCommentContainer'> ${post.email}</div><div class='commentContainer'>  ${post.body} </div></div>` 
+        });
+
+        commentContainer.innerHTML = commentHtml;
+
+
+        
+        
+    }
+
+    run();
+
+</script>
+
+</html>

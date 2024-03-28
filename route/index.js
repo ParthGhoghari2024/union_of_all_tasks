@@ -35,6 +35,7 @@ mainRouter.use("/job-application-form",authorizationMiddleware,require("../route
 mainRouter.use("/dynamic-grid",authorizationMiddleware,require("../route/dynamic_grid/index"));
 mainRouter.use("/student-grid",authorizationMiddleware,require("../route/student_grid/index"));
 mainRouter.use("/multistep-jobapp",authorizationMiddleware,require("../route/multistep_jobapp/index"));
+mainRouter.use("/fetch-posts",authorizationMiddleware,require("../route/fetch_posts/index"));
 
 
 

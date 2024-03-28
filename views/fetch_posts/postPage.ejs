@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Post Page</title>
+
+
+    <style>
+        legend {
+            font-weight: bold;
+        }
+
+        fieldset {
+            display: flex;
+            justify-content: center;
+            width: 80%;
+        }
+    </style>
+    <link rel="stylesheet" href="/fetch_posts/main.css">
+</head>
+
+<body>
+
+    <div class="paginationControllerMainContainer">
+        <input type="button" id="paggingLink-prev" value="<" onclick="prevPage()" disabled>
+        <span id="pageTagSpan">1</span>
+        <input type="button" id="paggingLink-next" value=">" onclick="nextPage()">
+    </div>
+    <div>
+        <span>Search in content </span>
+        <input type="text" name="" id="search">
+        <input type="button" value="search" onclick="searchIt()">
+    </div>
+    <div class="postContainer">
+    </div>
+</body>
+<script>
+
+
+
+    var currentPageIndex = 1;
+    var postsPerPage = 7;
+
+    var totalPages;
+    var postJson;
+
+    var masterCopyOfPost;
+    async function run() {
+
+        var fetchPost = () => {
+            return fetch("https://jsonplaceholder.typicode.com/posts");
+        }
+
+        var postData = await fetchPost();
+
+        postJson = await postData.json();
+        masterCopyOfPost = postJson;
+        var totalPosts = postJson.length;
+        totalPages = totalPosts / postsPerPage;
+
+        document.getElementById("pageTagSpan").innerText = currentPageIndex;
+
+        tempPost = postJson.slice((currentPageIndex - 1) * postsPerPage, (currentPageIndex - 1) * postsPerPage + postsPerPage);
+        if (currentPageIndex > totalPages) {
+            document.getElementsByTagName("body")[0].innerText = "invalid url"
+        }
+        document.getElementsByClassName("postContainer")[0].innerHTML = generateTable(tempPost);
+
+
+
+    }
+    function searchIt() {
+        currentPageIndex = 1;
+
+        var searchQuery = document.getElementById("search").value;
+        if (searchQuery === "" || !searchQuery) {
+            postJson = masterCopyOfPost;    
+        } else {
+            filteredPost = masterCopyOfPost.filter((obj) => { return obj.body.includes(searchQuery) });
+            postJson = filteredPost;
+        }
+        tempPost = postJson.slice((currentPageIndex - 1) * postsPerPage, (currentPageIndex - 1) * postsPerPage + postsPerPage);
+        totalPages = Math.ceil(postJson.length / postsPerPage);
+
+        document.getElementById("paggingLink-prev").disabled = true;
+        document.getElementById("pageTagSpan").innerText = currentPageIndex;
+        if (currentPageIndex === totalPages){
+            document.getElementById("paggingLink-next").disabled = true;
+        } else {
+            document.getElementById("paggingLink-next").disabled = false;
+        }
+        
+        if (tempPost.length === 0) {
+            document.getElementsByClassName("postContainer")[0].innerHTML = "No posts matched";
+        } else {
+            document.getElementsByClassName("postContainer")[0].innerHTML = generateTable(tempPost);
+        }
+    }
+
+    function nextPage() {
+        if (currentPageIndex < totalPages) {
+            currentPageIndex++;
+            var tempPost = postJson.slice((currentPageIndex - 1) * postsPerPage, (currentPageIndex - 1) * postsPerPage + postsPerPage);
+            document.getElementsByClassName("postContainer")[0].innerHTML = generateTable(tempPost);
+            document.getElementById("paggingLink-prev").disabled = false;
+            document.getElementById("pageTagSpan").innerText = currentPageIndex;
+            if (currentPageIndex === totalPages) {
+                document.getElementById("paggingLink-next").disabled = true;
+            }
+        } else {
+            document.getElementById("paggingLink-next").disabled = true;
+
+        }
+        // document.getElementById("search").value = "";
+
+
+    }
+    function prevPage() {
+        // console.log(currentPageIndex, totalPages, postJson);
+        if (currentPageIndex > 1) {
+            currentPageIndex--;
+            var tempPost = postJson.slice((currentPageIndex - 1) * postsPerPage, (currentPageIndex - 1) * postsPerPage + postsPerPage);
+            document.getElementsByClassName("postContainer")[0].innerHTML = generateTable(tempPost);
+            document.getElementById("paggingLink-next").disabled = false;
+            document.getElementById("pageTagSpan").innerText = currentPageIndex;
+            if (currentPageIndex === 1) {
+                document.getElementById("paggingLink-prev").disabled = true;
+            }
+        } else {
+            document.getElementById("paggingLink-prev").disabled = true;
+        }
+        // document.getElementById("search").value = "";
+    }
+
+    function generateTable(arr) {
+        // console.log(arr);
+        if (!arr || !arr[0]) return;
+        var tableHtml = "<table  class='postTable'>"
+
+        tableHtml += "<tr class='headRow'>"
+        for (const key in arr[0]) {
+            // console.log(key);
+            if (arr[0].hasOwnProperty(key)) {
+                tableHtml += `<th>${key}</th>`
+            }
+        }
+        tableHtml += `<th>action </th>`;
+        tableHtml += "</tr>"
+        arr.forEach(post => {
+            tableHtml += "<tr>"
+            var id;
+            for (const key in post) {
+                // console.log(key);
+                id = post.id || 1;
+                if (post.hasOwnProperty(key)) {
+                    tableHtml += `<td class='${key === "content" ? "contentRow" : ""}'><div>`
+                    if (key === "image") {
+                        tableHtml += `<img src='${post[key]}' class="trMainImg"> `
+                    } else if (key === "thumbnail") {
+                        tableHtml += `<img src='${post[key]}' > `
+                    }
+                    else {
+                        tableHtml += post[key]
+                    }
+                    tableHtml += `</div></td>`
+                }
+            }
+            tableHtml += `<td><a href='/fetch-posts/posts-details/${id}' target="_blank">view post </a></td>`
+            tableHtml += "</tr>"
+        });
+
+        tableHtml += "</table>"
+
+        return tableHtml;
+    }
+    run();
+
+</script>
+
+</html>
