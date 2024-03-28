@@ -5,13 +5,14 @@ const { insertBasicDetailsRoute, insertForm, insertEduDetailsRoute, insertWorkEx
 const { getJobAppData } = require("../api/multistep_jobapp/getJobAppData");
 const { updateForm } = require("../api/multistep_jobapp/updateJobApp");
 const { updateBasicDetailsRoute, updateEduDetailsRoute, updateWorkExpDetailsRoute, updateLanguageDetailsRoute, updateTechDetailsRoute, updatePreferenceDetailsRoute, updateReferenceDetailsRoute } = require("../api/multistep_jobapp/updateOnAtATime");
+const { jobAppValidate } = require("../../middleware/multistep_jobapp/jobAppMiddlewares");
 
 mainRouter.route("/").get(indexPageRoute);
 
 
-mainRouter.route("/api/submitJobApp").post(insertForm);//for whole insert at once
+mainRouter.route("/api/submitJobApp").post(jobAppValidate,insertForm);//for whole insert at once
 mainRouter.route("/api/getJobAppData").post(getJobAppData);
-mainRouter.route("/api/updateJobApp").post(updateForm);
+mainRouter.route("/api/updateJobApp").post(jobAppValidate,updateForm);
 
 //for step by step form submit
 mainRouter.route("/api/insertBasicDetails").post(insertBasicDetailsRoute);

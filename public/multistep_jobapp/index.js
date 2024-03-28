@@ -1020,7 +1020,10 @@ async function submitForm() {
 
 
     var submitResult = await submit.json();
-
+    if(submitResult && submitResult.error ){
+        // alert(submitResult.error)
+        document.getElementById("errorMsg").innerText = submitResult.error;
+    }
     if (submitResult.result === 1) {
         // window.location = "/"
         var resultOfSubmitSpan = document.getElementById("resultOfSubmitTag");
