@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
     <style>
-        ul li{
+        ul li {
             padding: 0.5rem;
             border: 1px solid black;
             width: 50%;
@@ -14,14 +15,16 @@
             box-shadow: 2px 2px 5px;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        ul li a{
+
+        ul li a {
             padding: 0.5rem;
         }
-       
+
     </style>
 </head>
 
 <body>
+    <%- include("nav") %>
     <div style="display: flex;flex-direction: column;font-size: 1.3rem;">
         Tasks
         <ul>
@@ -41,9 +44,10 @@
             <li><a href="/html-template-3" target="_blank">Html Template 3</a></li>
         </ul>
 
-        
+
 
     </div>
     <script src="/index.js"></script>
 </body>
+
 </html>

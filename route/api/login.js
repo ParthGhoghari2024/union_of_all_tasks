@@ -28,7 +28,8 @@ async function login(req, res) {
 
         res.cookie("token", jwtToken, {
             httpOnly: true, // The cookie only accessible by the web server
-            maxAge: 1000 * 60 * 60 * 24 ,
+            maxAge: 1000 * 60 * 60 * 24 ,//Don't use this if you want to auto-logout at the closing of the browser  
+            //If maxAge is unset, then the browser will store cookies as session cookies and will automatically delete them once the browser is closed.
             sameSite:true
         });
         res.json({ result: passwordCheck, token: jwtToken })

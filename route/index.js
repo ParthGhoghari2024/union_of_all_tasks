@@ -11,12 +11,16 @@ const { newPassword } = require("./api/newPassword");
 const homePage = require("./homePage");
 const { checkAuth } = require("./api/checkAuth");
 const { authorizationMiddleware } = require("../middleware/auth");
+const logout = require("./logout");
 
 mainRouter.route("/").get(loginPage);
 mainRouter.route("/register").get(registerPage);
 mainRouter.route("/activeUser").get(activeUserPage);
 mainRouter.route("/forgotpassword").get(forgotPasswordPage)
 mainRouter.route("/home").get(authorizationMiddleware,homePage);
+mainRouter.route("/logout").get(authorizationMiddleware,logout);
+
+
 
 mainRouter.route("/api/register").post(register);
 mainRouter.route("/api/login").post(login);
