@@ -11,7 +11,7 @@ const { updateBasicDetailsRoute, updateEduDetailsRoute, updateWorkExpDetailsRout
 
 async function insertBasicDetailsRoute(req, res) {
     try {
-        console.log(req.body);
+        // console.log(req.body);
         var basicDetailsObj = {
             firstName: req.body.firstname || '',
             lastName: req.body.lastname || '',
@@ -50,7 +50,7 @@ async function insertBasicDetailsRoute(req, res) {
 async function insertEduDetailsRoute(req, res) {
     try {
 
-        console.log(req.body);
+        // console.log(req.body);
         var eduDetailsObjSSC = {
             bDMId: req.body.insertId,
             eduType: "school",
@@ -91,11 +91,11 @@ async function insertEduDetailsRoute(req, res) {
         }
 
         var id = req.body.insertId;
-        console.log(id);
+        // console.log(id);
         //checking if its update or insert (in case of next then prev then next -->its update not insert)
         if (id != -1) {
             var checkDataExist = await dataExistBybDMId("eduDetailsMaster", id);
-            console.log(checkDataExist);
+            // console.log(checkDataExist);
             if (checkDataExist.length != 0 && checkDataExist[0].bDMId === id) {// its update (in case of user went to prev slide and then next slide)
                 updateEduDetailsRoute(req, res);
             }
@@ -117,12 +117,9 @@ async function insertEduDetailsRoute(req, res) {
 async function insertWorkExpDetailsRoute(req, res) {
     try {
         var id = req.body.insertId;
-        console.log(id);
-        console.log("b",req.body);
         //checking if its update or insert (in case of next then prev then next -->its update not insert)
         if (id != -1) {
             var checkDataExist = await dataExistBybDMId("workExperienceMaster", id);
-            console.log(checkDataExist);
             if (checkDataExist.length != 0 && checkDataExist[0].bDMId === id) {// its update (in case of user went to prev slide and then next slide)
                 updateWorkExpDetailsRoute(req, res);
             }
@@ -146,7 +143,6 @@ async function insertWorkExpDetailsRoute(req, res) {
                         insertWorkExpResult[i] = await insertWorkExpDetails(Object.values(temp));
                     }
                 }
-                console.log(insertWorkExpResult);
                 res.json({ insertWorkExpResult });
             }
         }
@@ -158,11 +154,11 @@ async function insertWorkExpDetailsRoute(req, res) {
 async function insertLanguageDetailsRoute(req, res) {
     try {
         var id = req.body.insertId;
-        console.log(id);
+        // console.log(id);
         //checking if its update or insert (in case of next then prev then next -->its update not insert)
         if (id != -1) {
             var checkDataExist = await dataExistBybDMId("languageKnown", id);
-            console.log(checkDataExist);
+            // console.log(checkDataExist);
             if (checkDataExist.length != 0 && checkDataExist[0].bDMId === id) {// its update (in case of user went to prev slide and then next slide)
                 updateLanguageDetailsRoute(req, res);
             }
@@ -195,11 +191,11 @@ async function insertLanguageDetailsRoute(req, res) {
 async function insertTechDetailsRoute(req, res) {
     try {
         var id = req.body.insertId;
-        console.log(id);
+        // console.log(id);
         //checking if its update or insert (in case of next then prev then next -->its update not insert)
         if (id != -1) {
             var checkDataExist = await dataExistBybDMId("technologiesKnown", id);
-            console.log(checkDataExist);
+            // console.log(checkDataExist);
             if (checkDataExist.length != 0 && checkDataExist[0].bDMId === id) {// its update (in case of user went to prev slide and then next slide)
                 updateTechDetailsRoute(req, res);
             }
@@ -233,11 +229,11 @@ async function insertTechDetailsRoute(req, res) {
 async function insertPreferenceDetailsRoute(req, res) {
     try {
         var id = req.body.insertId;
-        console.log(id);
+        // console.log(id);
         //checking if its update or insert (in case of next then prev then next -->its update not insert)
         if (id != -1) {
             var checkDataExist = await dataExistBybDMId("preference", id);
-            console.log(checkDataExist);
+            // console.log(checkDataExist);
             if (checkDataExist.length != 0 && checkDataExist[0].bDMId === id) {// its update (in case of user went to prev slide and then next slide)
                 updatePreferenceDetailsRoute(req, res);
             }
@@ -269,11 +265,11 @@ async function insertPreferenceDetailsRoute(req, res) {
 async function insertReferenceDetailsRoute(req, res) {
     try {
         var id = req.body.insertId;
-        console.log(id);
+        // console.log(id);
         //checking if its update or insert (in case of next then prev then next -->its update not insert)
         if (id != -1) {
             var checkDataExist = await dataExistBybDMId("referenceContact", id);
-            console.log(checkDataExist);
+            // console.log(checkDataExist);
             if (checkDataExist.length != 0 && checkDataExist[0].bDMId === id) {// its update (in case of user went to prev slide and then next slide)
                 updateReferenceDetailsRoute(req, res);
             }
@@ -306,7 +302,7 @@ async function insertReferenceDetailsRoute(req, res) {
 
 async function insertForm(req, res) {
     try {
-        console.log(req.body);
+        // console.log(req.body);
         var basicDetailsObj = {
             firstName: req.body.firstname || '',
             lastName: req.body.lastname || '',

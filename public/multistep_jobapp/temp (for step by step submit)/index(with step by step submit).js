@@ -117,7 +117,7 @@ function changeSlide(action) {
     if (currentSlide === 6 && !validateByTableName("preferencesTable")) return;
 
 
-    console.log(insertId);
+    // console.log(insertId);
     if (action === 1) {
         //for submit one by one
         if (currentSlide === 0) submitBasicDetails();
@@ -179,7 +179,7 @@ async function submitBasicDetails() {
         insertId: insertId
     }
 
-    console.log(body);
+    // console.log(body);
     var submitBasicDetails = await fetch("/multistep-jobapp/api/insertbasicdetails", {
         method: "post",
         headers: {
@@ -192,7 +192,7 @@ async function submitBasicDetails() {
 
     var submitBasicDetailsResult = await submitBasicDetails.json();
 
-    console.log(submitBasicDetailsResult);
+    // console.log(submitBasicDetailsResult);
     insertId = submitBasicDetailsResult.insertId;
 }
 async function submitEduDetails() {
@@ -228,7 +228,7 @@ async function submitEduDetails() {
 
     var submitDetailsResult = await submitDetails.json();
 
-    console.log(submitDetailsResult);
+    // console.log(submitDetailsResult);
     // insertId = submitBasicDetailsResult.insertId;
 }
 
@@ -257,7 +257,7 @@ async function submitWorkDetails() {
 
     var submitDetailsResult = await submitDetails.json();
 
-    console.log(submitDetailsResult);
+    // console.log(submitDetailsResult);
     reqBody.workId = [];
 
     submitDetailsResult.insertWorkExpResult?.forEach(element => {
@@ -265,7 +265,6 @@ async function submitWorkDetails() {
     });
     workExTableTag.innerHTML = generateWorkTable(reqBody);
 
-    console.log("f", reqBody);
     // insertId = submitBasicDetailsResult.insertId;
 }
 async function submitLanguageDetails() {
@@ -290,7 +289,7 @@ async function submitLanguageDetails() {
 
     var submitDetailsResult = await submitDetails.json();
 
-    console.log(submitDetailsResult);
+    // console.log(submitDetailsResult);
     // insertId = submitBasicDetailsResult.insertId;
 }
 
@@ -317,7 +316,7 @@ async function submitTechDetails() {
 
     var submitDetailsResult = await submitDetails.json();
 
-    console.log(submitDetailsResult);
+    // console.log(submitDetailsResult);
     // insertId = submitBasicDetailsResult.insertId;
 }
 async function submitReferencesDetails() {
@@ -344,7 +343,7 @@ async function submitReferencesDetails() {
 
     var submitDetailsResult = await submitDetails.json();
 
-    console.log(submitDetailsResult);
+    // console.log(submitDetailsResult);
     // insertId = submitBasicDetailsResult.insertId;
 }
 async function submitPreferenceDetails() {
@@ -373,7 +372,7 @@ async function submitPreferenceDetails() {
 
     var submitDetailsResult = await submitDetails.json();
 
-    console.log(submitDetailsResult);
+    // console.log(submitDetailsResult);
     // insertId = submitBasicDetailsResult.insertId;
 }
 // reqBody={};
@@ -381,7 +380,7 @@ var basicDetailsTableTag = document.getElementById("basicDetailsTable")
 basicDetailsTableTag.innerHTML = generateBasicDetailsTable(reqBody);
 
 function generateBasicDetailsTable(reqBody) {
-    console.log(reqBody);
+    // console.log(reqBody);
     var basicDetailsHtml = "";
 
     basicDetailsHtml += ` 

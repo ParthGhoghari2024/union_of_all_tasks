@@ -35,7 +35,7 @@ async function goToUpdate() {
     var hiddenTag = document.getElementById("id");
     hiddenTag.value = submitResult.reqBody.id;
 
-    console.log(hiddenTag);
+    // console.log(hiddenTag);
 
     // console.log(9,submitResult);
     document.getElementById("actionText").innerText = "Update "
@@ -72,7 +72,7 @@ function changeSlide(action) {
     if (currentSlide === 6 && !validateByTableName("preferencesTable")) return;
 
 
-    console.log(insertId);
+    // console.log(insertId);
     if (action === 1) {
 
 
@@ -117,7 +117,7 @@ var basicDetailsTableTag = document.getElementById("basicDetailsTable")
 basicDetailsTableTag.innerHTML = generateBasicDetailsTable(reqBody);
 
 function generateBasicDetailsTable(reqBody) {
-    console.log(reqBody);
+    // console.log(reqBody);
     var basicDetailsHtml = "";
 
     basicDetailsHtml += ` 
@@ -1025,11 +1025,11 @@ async function submitForm() {
         document.getElementById("errorMsg").innerText = submitResult.error;
     }
     if (submitResult.result === 1) {
-        // window.location = "/"
+        document.getElementById("errorMsg").innerText = "";
         var resultOfSubmitSpan = document.getElementById("resultOfSubmitTag");
         if (isUpdate === 0) resultOfSubmitSpan.innerHTML = "inserted Succefully";
         else resultOfSubmitSpan.innerHTML = "updated Succefully";
-        resultOfSubmitSpan.innerHTML += " <a href='/'>insert new </a>"
+        resultOfSubmitSpan.innerHTML += " <a href='/multistep-jobapp'>insert new </a>"
     }
 
     // console.log(submitResult);

@@ -68,7 +68,7 @@ function addSupAndBrTag(parent, text) {
         var brTag = document.createElement("br");
         parent.appendChild(brTag)
         parent.appendChild(supTag)
-        console.log(parent, text);
+        // console.log(parent, text);
     }
 
 }
@@ -80,6 +80,7 @@ function removeSupAndBrTag(parent) {
     }
 }
 function validateForm() {
+    var flag=0;
     var reqEmail = document.getElementsByClassName("reqEmail");
 
     for (let i = 0; i < reqEmail.length; i++) {
@@ -175,12 +176,11 @@ function validateForm() {
         tech_4Arr[i] = tech_4Tag[i].checked;
 
     }
-    console.log(1, tech_1Arr);
+    // console.log(1, tech_1Arr);
     if ((tech_1Arr[0] || tech_1Arr[1] || tech_1Arr[2] || tech_1Arr[3]) && (!tech_1Arr[0] || !tech_1Arr[1] && !tech_1Arr[2] && !tech_1Arr[3])) {
         addSupAndBrTag(tech_1Tag[0].parentNode, "Select properly");
         flag = 1;
     } else {
-        console.log("no");
         removeSupAndBrTag(tech_1Tag[0].parentNode)
     }
     if ((tech_2Arr[0] || tech_2Arr[1] || tech_2Arr[2] || tech_2Arr[3]) && (!tech_2Arr[0] || !tech_2Arr[1] && !tech_2Arr[2] && !tech_2Arr[3])) {
@@ -208,28 +208,28 @@ function validateForm() {
     var work_2Arr = [];
     var work_3Arr = [];
     for (let i = 0; i < work_1Tag.length; i++) {
-        work_1Arr[i] = work_1Tag[i].value === "" ? null : work_1Tag[i].value;
-        work_2Arr[i] = work_2Tag[i].value === "" ? null : work_2Tag[i].value;
-        work_3Arr[i] = work_3Tag[i].value === "" ? null : work_3Tag[i].value;
+        work_1Tag[i]?work_1Arr[i] = work_1Tag[i].value === "" ? null : work_1Tag[i].value:"";
+        work_2Tag[i]?work_2Arr[i] = work_2Tag[i].value === "" ? null : work_2Tag[i].value:"";
+        work_3Tag[i]?work_3Arr[i] = work_3Tag[i].value === "" ? null : work_3Tag[i].value:"";
     }
-    console.log(work_1Arr);
+    // console.log(work_1Arr);
     if ((work_1Arr[0] || work_1Arr[1] || work_1Arr[2] || work_1Arr[3]) && (!work_1Arr[0] || !work_1Arr[1] || !work_1Arr[2] || !work_1Arr[3])) {
-        addSupAndBrTag(work_1Tag[0].parentNode, "Enter all details properly");
+        work_1Tag[0]?addSupAndBrTag(work_1Tag[0].parentNode, "Enter all details properly"):"";
         flag = 1;
     } else {
-        removeSupAndBrTag(work_1Tag[0].parentNode)
+        work_1Tag[0]?removeSupAndBrTag(work_1Tag[0].parentNode):"";
     }
     if ((work_2Arr[0] || work_2Arr[1] || work_2Arr[2] || work_2Arr[3]) && (!work_2Arr[0] || !work_2Arr[1] || !work_2Arr[2] || !work_2Arr[3])) {
-        addSupAndBrTag(work_2Tag[0].parentNode, "Enter all details properly");
+        work_2Tag[0]?addSupAndBrTag(work_2Tag[0].parentNode, "Enter all details properly"):"";
         flag = 1;
     } else {
-        removeSupAndBrTag(work_2Tag[0].parentNode)
+        work_2Tag[0]?removeSupAndBrTag(work_2Tag[0].parentNode):""
     }
     if ((work_3Arr[0] || work_3Arr[1] || work_3Arr[2] || work_3Arr[3]) && (!work_3Arr[0] || !work_3Arr[1] || !work_3Arr[2] || !work_3Arr[3])) {
-        addSupAndBrTag(work_3Tag[0].parentNode, "Enter all details properly");
+        work_3Tag[0]?addSupAndBrTag(work_3Tag[0].parentNode, "Enter all details properly"):"";
         flag = 1;
     } else {
-        removeSupAndBrTag(work_3Tag[0].parentNode)
+        work_3Tag[0]?removeSupAndBrTag(work_3Tag[0].parentNode):""
     }
 
     var edu_1Tag = document.getElementsByClassName("edu_1");
@@ -282,36 +282,34 @@ function validateForm() {
     var ref_1Arr = [];
     var ref_2Arr = [];
     for (let i = 0; i < ref_1Tag.length; i++) {
-        ref_1Arr[i] = ref_1Tag[i].value === "" ? null : ref_1Tag[i].value;
-        ref_2Arr[i] = ref_2Tag[i].value === "" ? null : ref_2Tag[i].value;
+        ref_1Tag[i]?ref_1Arr[i] = ref_1Tag[i].value === "" ? null : ref_1Tag[i].value:"";
+        ref_2Tag[i]?ref_2Arr[i] = ref_2Tag[i].value === "" ? null : ref_2Tag[i].value:"";
     }
     if ((ref_1Arr[0] || ref_1Arr[1] || ref_1Arr[2]) && (!ref_1Arr[0] || !ref_1Arr[1] || !ref_1Arr[2])) {
-        addSupAndBrTag(ref_1Tag[0].parentNode, "Enter all details properly");
+        ref_1Tag[0]?addSupAndBrTag(ref_1Tag[0].parentNode, "Enter all details properly"):"";
         flag = 1;
     } else {
-        removeSupAndBrTag(ref_1Tag[0].parentNode)
+        ref_1Tag[0]?removeSupAndBrTag(ref_1Tag[0].parentNode):""
     }
     if ((ref_2Arr[0] || ref_2Arr[1] || ref_2Arr[2]) && (!ref_2Arr[0] || !ref_2Arr[1] || !ref_2Arr[2])) {
-        addSupAndBrTag(ref_2Tag[0].parentNode, "Enter all details properly");
+        ref_2Tag[0]?addSupAndBrTag(ref_2Tag[0].parentNode, "Enter all details properly"):"";
         flag = 1;
     } else {
-        removeSupAndBrTag(ref_2Tag[0].parentNode)
+        ref_2Tag[0]?removeSupAndBrTag(ref_2Tag[0].parentNode):""
     }
 
 
     var reqInputs = document.getElementsByClassName("reqInput");
-    var flag = 0;
     for (let i = 0; i < reqInputs.length; i++) {
         var inputTagParent = reqInputs[i].parentNode;
         if (reqInputs[i].value === "") {
             addSupAndBrTag(inputTagParent, "This field can't be empty");
             flag = 1;
         } else if ((reqInputs[i].classList.length === 1 && reqInputs[i].classList.contains("reqInput")) || (reqInputs[i].classList.contains("reqInput") && reqInputs[i].classList.contains("edu"))) {
-            console.log(reqInputs[i].classList);
+            // console.log(reqInputs[i].classList);
             removeSupAndBrTag(inputTagParent)
         }
     }
-
     if (flag) {
         return false;
     }

@@ -50,7 +50,7 @@ async function updateLanguageDetails(values,id) {
     
     var query = `update languageKnown set langId=?,langName=?,langLevelId=?,langLevel=? where bDMId=${id} and langId='${values[0]}' and langLevelId='${values[2]}'`;
 
-    console.log(query);
+    // console.log(query);
     return new Promise((resolve, reject) => {
         con.query(query,values, (err, result, fields) => {
             if (err) return reject(err);

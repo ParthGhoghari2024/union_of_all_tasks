@@ -17,7 +17,7 @@ async function sendRegistration() {
     })
 
     var registerResult = await registerFetch.json();
-    console.log(registerResult);
+    // console.log(registerResult);
     var activationLinkTr = document.getElementById("activationLinkTr");
     activationLinkTr.style.display = "none";
 
@@ -59,7 +59,7 @@ async function sendLogin() {
     })
 
     var loginResult = await loginFetch.json();
-    console.log(loginResult);
+    // console.log(loginResult);
 
     if(loginResult && loginResult.result===true && loginResult.token){
         
@@ -94,14 +94,14 @@ async function sendResetPassword(){
     })
 
     var newPasswordFetchResult = await newPasswordFetch.json();
-    console.log(newPasswordFetchResult);
+    // console.log(newPasswordFetchResult);
     document.getElementById("errorMsg").innerHTML="";
     document.getElementById("successMsg").innerHTML="";
     if(newPasswordFetchResult ){
         if(newPasswordFetchResult.error===1){
             document.getElementById("errorMsg").innerText="Something went wrong"
         }else{
-            document.getElementById("successMsg").innerHTML="Password changed <a href='/login' >Login</a>"
+            document.getElementById("successMsg").innerHTML="Password changed <a href='/' >Login</a>"
         }
     }
 
@@ -142,7 +142,7 @@ async function sendForgotPassword() {
     })
 
     var forgotPasswordResult = await forgotPasswordFetch.json();
-    console.log(forgotPasswordResult);
+    // console.log(forgotPasswordResult);
     var errorMsgTag = document.getElementById("errorMsg");
     if (!forgotPasswordResult ) {
         // alert("wrong register details")

@@ -107,7 +107,7 @@ function validateBasicDeatils(reqBody, req, res) {
         })
     }
     if (!checkIfNumber(reqBody.phone) || !checkLength(reqBody.phone, 10)) {
-        return res.json("job_app_form/form", {
+        return res.json( {
             error: "Enter phone number properly"
         })
     }

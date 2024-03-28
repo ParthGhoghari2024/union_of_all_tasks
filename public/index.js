@@ -5,6 +5,6 @@ window.onload = async ()=>{
     }) 
     var checkAuthFetchResult = await checkAuthFetch.json();
 
-    console.log(checkAuthFetchResult);
+    // console.log(checkAuthFetchResult);
 }
 

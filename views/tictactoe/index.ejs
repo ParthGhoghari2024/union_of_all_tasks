@@ -134,11 +134,11 @@
 
 
         function fillMatrix(id,mark){//this function will help to put the mark in matrix either 0 or x accordingly 
-            console.log(id,mark);
+            // console.log(id,mark);
             if(id<4)matrix[0][id-1]=mark;//check in row1
             else if(id>3 && id<7)matrix[1][id-1-3]=mark;//check in row2
             else matrix[2][id-1-6]=mark;//check in row3
-            console.log(matrix);
+            // console.log(matrix);
         }
 
         var markedCount= 0;//to store the count of total filled cells
@@ -162,7 +162,7 @@
             }
 
             var res = checkMatrix();// to check if game over or not
-            console.log(res);
+            // console.log(res);
             if(res==="x" || res==="0"){// if res is 0 or x then winner is found 
                 document.getElementById("gameOver").style.display="flex";
                 document.getElementById("finalScore").innerText= res+" won";

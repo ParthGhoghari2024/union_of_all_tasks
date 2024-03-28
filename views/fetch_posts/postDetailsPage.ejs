@@ -38,14 +38,14 @@
         var herfArr = window.location.href.split("/");
 
         var indexOfPostDetails = herfArr.indexOf("posts-details");
-        console.log(herfArr,herfArr[indexOfPostDetails+1]);
+        // console.log(herfArr,herfArr[indexOfPostDetails+1]);
         var postId = parseInt(herfArr[indexOfPostDetails+1]) || 1;
         var fetchPost = () => {
             return fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`);
         }   
 
         var postData = await fetchPost();
-        console.log(postData.headers);
+        // console.log(postData.headers);
         try {
             postJson = await postData.json();
         } catch (error) {
@@ -57,7 +57,7 @@
     }
 
     function generateTable(post) {
-        console.log(post);
+        // console.log(post);
         var tableHtml = "<table  class='postTable'>"
 
             var id;
@@ -95,10 +95,10 @@
 
         var commentsData = await fetchComments();
         var commentsJson = await commentsData.json();
-        console.log(commentsJson);
+        // console.log(commentsJson);
 
         commentsJson = commentsJson.filter((comment)=>comment.postId===id);
-        console.log(commentsJson,commentsJson.length);
+        // console.log(commentsJson,commentsJson.length);
         
         var commentContainer = document.getElementById("commentContainer");
         if(commentsJson.length===0){

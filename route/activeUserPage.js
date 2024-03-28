@@ -6,7 +6,7 @@ async function activeUserPage(req, res) {
         var token = req.query.token;
 
         var userLoginData = await getLoginDataByUserEmail(email)
-        console.log(userLoginData);
+        // console.log(userLoginData);
 
         var activationTimeLimitInHours = 4;
         if (userLoginData.length === 1  ) {
@@ -15,8 +15,6 @@ async function activeUserPage(req, res) {
                 res.send("error: invalid token,email pair,recheck the  link ");
                 return;
             }
-            console.log(new Date(userLoginData.tokenGenerationTime));
-            console.log(new Date());
             var tokenValidate = (Math.abs(new Date() - new Date(userLoginData.tokenGenerationTime)) / (3600 * 1000)) <= activationTimeLimitInHours;//1 hour = 3600 second and 1 second = 1000 miliseconds so 3600000
             
             var isAlreadyActive = userLoginData.activationStatus;

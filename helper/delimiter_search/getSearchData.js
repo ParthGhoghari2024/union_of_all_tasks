@@ -2,7 +2,7 @@ const con = require("../../db");
 
 async function getSearchData(queryObj) {
     var tempForAnd = Object.keys(queryObj).length - 1;
-    console.log(tempForAnd);
+    // console.log(tempForAnd);
     var getSearchData = `
     select stMId as id , firstname,lastname,email,email2,country,city 
     from studentMaster 
