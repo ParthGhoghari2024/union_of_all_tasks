@@ -29,6 +29,9 @@ mainRouter.route("/dynamictable").get(authorizationMiddleware,(req,res)=>res.ren
 mainRouter.route("/tictactoe").get(authorizationMiddleware,(req,res)=>res.render("tictactoe/"))
 mainRouter.route("/eventtable").get(authorizationMiddleware,(req,res)=>res.render("eventtable/"))
 mainRouter.route("/numbersorting").get(authorizationMiddleware,(req,res)=>res.render("numbersorting/"))
+mainRouter.route("/html-template-1").get(authorizationMiddleware,(req,res)=>res.render("html_template_1/"))
+mainRouter.route("/html-template-2").get(authorizationMiddleware,(req,res)=>res.render("html_template_2/"))
+mainRouter.route("/html-template-3").get(authorizationMiddleware,(req,res)=>res.render("html_template_3/"))
 
 mainRouter.use("/delimiter-search",authorizationMiddleware,require("../route/delimiter_search/index"));
 mainRouter.use("/job-application-form",authorizationMiddleware,require("../route/job_app_crud/index"));
