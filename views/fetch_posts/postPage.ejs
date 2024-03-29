@@ -20,16 +20,17 @@
 </head>
 
 <body>
+    <%- include("../nav") %>
 
     <div class="paginationControllerMainContainer">
         <input type="button" id="paggingLink-prev" value="<" onclick="prevPage()" disabled>
         <span id="pageTagSpan">1</span>
         <input type="button" id="paggingLink-next" value=">" onclick="nextPage()">
     </div>
-    <div>
+    <div class="searchBar">
         <span>Search in content </span>
         <input type="text" name="" id="search">
-        <input type="button" value="search" onclick="searchIt()">
+        <input type="button" value="search" id="searchBtn" onclick="searchIt()">
     </div>
     <div class="postContainer">
     </div>

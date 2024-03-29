@@ -1,8 +1,23 @@
 .postTable{
     border-collapse: collapse;
-    font-size: 0.9rem;
+    font-size: 1.75rem;
 }
-
+#search{
+    padding: 0.2rem;
+    font-size: 1rem;
+}
+#searchBtn{
+    color: white;
+    background: black;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+}
+.searchBar{
+    margin: 1rem 0;
+    font-size: 1.2rem;
+}
 .postTable tr{
     /* display: flex;
     justify-content: start;
@@ -51,7 +66,6 @@
     background: black;
     color: white;
 }
-
 .postDetailsContainer th{
     background: black;
     color: white;

@@ -38,7 +38,7 @@ async function homePage(req, res) {
 
         for (const key in queryObj) {
             if (Object.hasOwnProperty.call(queryObj, key)) {
-                console.log("--",queryObj[key].length);
+                // console.log("--",queryObj[key].length);
                 if(queryObj[key].length>1){
                     temp = "";
                     for (let i = 0; i < queryObj[key].length; i++) {

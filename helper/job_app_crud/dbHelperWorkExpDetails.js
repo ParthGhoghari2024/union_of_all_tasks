@@ -1,7 +1,7 @@
 const con = require("../../db");
 
 async function insertWorkExpDetails(values) {
-    console.log(values);
+    // console.log(values);
     var query = `insert into workExperienceMaster(
         bDMId,
         companyName,
@@ -17,7 +17,7 @@ async function insertWorkExpDetails(values) {
 }
 
 async function updateWorkExpDetails(values, id, wEMId) {
-    console.log(values);
+    // console.log(values);
     var query = `update  workExperienceMaster set companyName=?,designation=?,fromDate=?,toDate=?  where  wEMId=${wEMId}`
     return new Promise((resolve, reject) => {
         con.query(query, values, (err, result, fields) => {

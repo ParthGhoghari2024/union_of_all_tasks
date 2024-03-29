@@ -3,7 +3,7 @@ var crypto = require('crypto');
 
 async function newPassword(req, res) {
     try {
-        console.log(req.body);
+        // console.log(req.body);
         var userPassword = req.body.password;
         var confirmPassword = req.body.confirmPassword;
         var userEmail = req.body.email;

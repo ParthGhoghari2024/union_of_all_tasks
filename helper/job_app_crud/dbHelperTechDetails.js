@@ -9,7 +9,7 @@ async function insertTechDetails(values) {
         bDMId,
         technologyName,
         technologyLevel) values (?)`
-    console.log(values);
+    // console.log(values);
     return new Promise((resolve, reject) => {
         con.query(query, [values], (err, result, fields) => {
             if (err) return reject(err);
@@ -24,7 +24,7 @@ async function updateTechDetails(values,id) {
 
 
     var query = `update  technologiesKnown set technologyName=?,technologyLevel=? where bDMId=${id} and technologyName='${values[2]}'`
-    console.log(values);
+    // console.log(values);
     // console.log(query);
 
     return new Promise((resolve, reject) => {

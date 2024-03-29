@@ -15,7 +15,6 @@ app.engine('ejs', require('ejs').__express);
 app.set('view engine', 'ejs');
 app.use(express.static("public"));
 
-
 con.connect((err) => {
     if (err) throw err;
     console.log("mysql connected");
