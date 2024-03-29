@@ -1,6 +1,7 @@
 const fs = require("fs");
 const getGridData = require("../../helper/dynamic_grid/getGridData");
 const getRowCountOfSelect = require("../../helper/dynamic_grid/getRowCountOfSelect");
+const { log } = require("console");
 
 async function homePage(req, res) {
     try {
@@ -20,6 +21,22 @@ async function homePage(req, res) {
                 rows: 0
             });
             return;
+        }
+        temp = query.toLowerCase();
+        if(temp.indexOf("select")===-1 || temp.indexOf("drop")!==-1 || temp.indexOf("truncate")!==-1 || temp.indexOf("update")!==-1 || temp.indexOf("delete")!==-1 || temp.indexOf("alter")!==-1 || temp.indexOf("create")!==-1 || temp.indexOf("insert")!==-1){
+            return res.render("dynamic_grid/grid", {
+                error: "invalid query (only select allowed) ",
+                data: [],
+                metaData: [],
+                query: "",
+                currentPage: 1,
+                totalPages: 1,
+                orderBy: "",
+                ascQuery: "",
+                offset: 0,
+                limit: 0,
+                rows: 0
+            });
         }
         var currentPage = Number(req.query.page) || 1;
         var recordsPerPage = 20;
@@ -55,6 +72,7 @@ async function homePage(req, res) {
             rows: numberOfRows
         })
     } catch (error) {
+        console.log(error);
         res.render("dynamic_grid/grid", {
             error: "wrong sql query",
             data: [],
