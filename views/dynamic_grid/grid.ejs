@@ -19,9 +19,21 @@
                 <%= error %>
             </h2>
             <%} %>
-                <%- include('paginationController',{currentPage :
-                    currentPage,totalPages:totalPages,query:query,orderBy,ascQuery}) -%>
-
+                    <table>
+                        <tr> 
+                            <td colspan="6">Available Tables</td>
+                        </tr>
+                        <tr>
+                            <td>studentMaster</td>
+                            <td>attendanceMaster</td>
+                            <td>basicDetailsMaster</td>
+                            <td>eduDetailsMaster</td>
+                            <td>examMaster</td>
+                            <td>resultMaster</td>
+                        </tr>
+                    </table>
+                    <%- include('paginationController',{currentPage :
+                        currentPage,totalPages:totalPages,query:query,orderBy,ascQuery}) -%>
                     <table>
                         <thead>
                             <tr>

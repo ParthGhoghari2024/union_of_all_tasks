@@ -42,9 +42,9 @@ async function sendRegistration() {
 }
 async function sendLogin() {
     var isValidatedLoginForm = validateByTableId("loginTable");
-    // if (!isValidatedLoginForm) {//if form data is not validated 
-    //     return;
-    // }
+    if (!isValidatedLoginForm) {//if form data is not validated 
+        return;
+    }
     var formData = new FormData(document.getElementById("formLogin"));
     var body = {};
     formData.forEach(function (value, key) {
