@@ -1,7 +1,7 @@
 
 async function logout(req, res) {
     try {
-        console.log(req);
+        // console.log(req);
         res.clearCookie("token");
         res.redirect("/");
     } catch (error) {   

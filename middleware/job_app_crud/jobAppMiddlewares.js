@@ -2,82 +2,84 @@ const getSelectMetaData = require("../../helper/job_app_crud/getSelectMetaData")
 var selectGender;
 var selectRelationshipStatus;
 async function jobAppValidate(req, res, next) {
-
-    var reqBody = req.body;
-
-    selectGender= await getSelectMetaData("gender");
-    selectRelationshipStatus = await getSelectMetaData("relationship_status");
-
+    try {
+        var reqBody = req.body;
+        selectGender = await getSelectMetaData("gender");
+        selectRelationshipStatus = await getSelectMetaData("relationship_status");
 
 
-    if (!req.body.department) {
-        reqBody.department = [''];
-    }
-    if (!req.body.language_1) {
-        reqBody.language_1 = ['', '', ''];
-    }
-    if (!req.body.language_2) {
-        reqBody.language_2 = ['', '', ''];
-    }
-    if (!req.body.language_3) {
-        reqBody.language_3 = ['', '', ''];
-    }
-    if (typeof (req.body.language_1) === "string") {
-        reqBody.language_1 = [req.body.language_1, '', ''];
-    }
-    if (typeof (req.body.language_2) === "string") {
-        reqBody.language_2 = [req.body.language_2, '', ''];
-    }
-    if (typeof (req.body.language_3) === "string") {
-        reqBody.language_3 = [req.body.language_3, '', ''];
-    }
 
-    if (!req.body.department) {
-        reqBody.department = [''];
-    }
+        if (!req.body.department) {
+            reqBody.department = [''];
+        }
+        if (!req.body.language_1) {
+            reqBody.language_1 = ['', '', ''];
+        }
+        if (!req.body.language_2) {
+            reqBody.language_2 = ['', '', ''];
+        }
+        if (!req.body.language_3) {
+            reqBody.language_3 = ['', '', ''];
+        }
+        if (typeof (req.body.language_1) === "string") {
+            reqBody.language_1 = [req.body.language_1, '', ''];
+        }
+        if (typeof (req.body.language_2) === "string") {
+            reqBody.language_2 = [req.body.language_2, '', ''];
+        }
+        if (typeof (req.body.language_3) === "string") {
+            reqBody.language_3 = [req.body.language_3, '', ''];
+        }
 
-    if (!req.body.tech_1) {
-        reqBody.tech_1 = ['', '', ''];
-    }
-    if (!req.body.tech_2) {
-        reqBody.tech_2 = ['', '', ''];
-    }
-    if (!req.body.tech_3) {
-        reqBody.tech_3 = ['', '', ''];
-    }
-    if (!req.body.tech_4) {
-        reqBody.tech_4 = ['', '', ''];
-    }
-    if (typeof (req.body.tech_1) === "string") {
-        reqBody.tech_1 = [req.body.tech_1, ''];
-    }
-    if (typeof (req.body.tech_2) === "string") {
-        reqBody.tech_2 = [req.body.tech_2, ''];
-    }
-    if (typeof (req.body.tech_3) === "string") {
-        reqBody.tech_3 = [req.body.tech_3, ''];
-    }
-    if (typeof (req.body.tech_4) === "string") {
-        reqBody.tech_4 = [req.body.tech_4, ''];
-    }
-    // console.log(reqBody);
+        if (!req.body.department) {
+            reqBody.department = [''];
+        }
 
-    var validateBasicDeatilsResult = validateBasicDeatils(reqBody, req, res);
-    if (validateBasicDeatilsResult) return;
-    var validateEduDetailsResult = validateEduDetails(reqBody, req, res);
-    if (validateEduDetailsResult) return;
-    var validateWorkExDetailsResult = validateWorkExDetails(reqBody, req, res);
-    if (validateWorkExDetailsResult) return;
-    var validateLanguageDetailsResult = validateLanguageDetails(reqBody, req, res);
-    if (validateLanguageDetailsResult) return;
-    var validateTechDetailsResult = validateTechDetails(reqBody, req, res);
-    if (validateTechDetailsResult) return;
-    var validateRefDetailsResult = validateRefDetails(reqBody, req, res);
-    if (validateRefDetailsResult) return;
-    var validatePreferencesDetailsResult = validatePreferencesDetails(reqBody, req, res);
-    if (validatePreferencesDetailsResult) return;
+        if (!req.body.tech_1) {
+            reqBody.tech_1 = ['', '', ''];
+        }
+        if (!req.body.tech_2) {
+            reqBody.tech_2 = ['', '', ''];
+        }
+        if (!req.body.tech_3) {
+            reqBody.tech_3 = ['', '', ''];
+        }
+        if (!req.body.tech_4) {
+            reqBody.tech_4 = ['', '', ''];
+        }
+        if (typeof (req.body.tech_1) === "string") {
+            reqBody.tech_1 = [req.body.tech_1, ''];
+        }
+        if (typeof (req.body.tech_2) === "string") {
+            reqBody.tech_2 = [req.body.tech_2, ''];
+        }
+        if (typeof (req.body.tech_3) === "string") {
+            reqBody.tech_3 = [req.body.tech_3, ''];
+        }
+        if (typeof (req.body.tech_4) === "string") {
+            reqBody.tech_4 = [req.body.tech_4, ''];
+        }
+        // console.log(reqBody);
 
-    next();
+        var validateBasicDeatilsResult = validateBasicDeatils(reqBody, req, res);
+        if (validateBasicDeatilsResult) return;
+        var validateEduDetailsResult = validateEduDetails(reqBody, req, res);
+        if (validateEduDetailsResult) return;
+        var validateWorkExDetailsResult = validateWorkExDetails(reqBody, req, res);
+        if (validateWorkExDetailsResult) return;
+        var validateLanguageDetailsResult = validateLanguageDetails(reqBody, req, res);
+        if (validateLanguageDetailsResult) return;
+        var validateTechDetailsResult = validateTechDetails(reqBody, req, res);
+        if (validateTechDetailsResult) return;
+        var validateRefDetailsResult = validateRefDetails(reqBody, req, res);
+        if (validateRefDetailsResult) return;
+        var validatePreferencesDetailsResult = validatePreferencesDetails(reqBody, req, res);
+        if (validatePreferencesDetailsResult) return;
+
+        next();
+    }catch(error){
+        console.log(error);
+    }
 }
 function checkIfNumber(text) {
     return !isNaN(parseInt(text));

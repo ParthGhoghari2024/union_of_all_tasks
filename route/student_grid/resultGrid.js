@@ -28,7 +28,7 @@ async function resultGrid(req, res) {
         var daysOfMonth = (month === 4 || month === 6 || month === 9 || month === 11) ? daysOfMonth = 30 : daysOfMonth = 31;
         if (month === 2) daysOfMonth = 28;
         var resultGridData = await getResultGridData(offsetForStudentsData, limitForStudentsData, orderByColumnName, ascQuery, year, month, daysOfMonth);
-        console.log("-",resultGridData);
+        // console.log("-",resultGridData);
         res.render("student_grid/resultGrid", {
             prilimaryData : resultGridData.prilimaryData,
             terminalData : resultGridData.terminalData,

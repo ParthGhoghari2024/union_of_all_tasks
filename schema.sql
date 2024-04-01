@@ -1,8 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `unionOfAllTaskDB` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `unionOfAllTaskDB`;
+CREATE DATABASE  IF NOT EXISTS `unionOfAllTasksDB` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `unionOfAllTasksDB`;
 -- MySQL dump 10.13  Distrib 8.0.36, for Linux (x86_64)
 --
--- Host: localhost    Database: unionOfAllTaskDB
+-- Host: localhost    Database: unionOfAllTasksDB
 -- ------------------------------------------------------
 -- Server version	8.0.36-0ubuntu0.20.04.1
 
@@ -28,7 +28,8 @@ CREATE TABLE attendanceMaster (
   `date` date DEFAULT NULL,
   present varchar(5) DEFAULT NULL,
   PRIMARY KEY (aMId),
-  KEY stMId (stMId)
+  KEY stMId (stMId),
+  CONSTRAINT attendanceMaster_ibfk_1 FOREIGN KEY (stMId) REFERENCES studentMaster (stMId)
 ) ENGINE=InnoDB AUTO_INCREMENT=45001 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -56,7 +57,7 @@ CREATE TABLE basicDetailsMaster (
   PRIMARY KEY (bDMId),
   CONSTRAINT basicDetailsMaster_chk_1 CHECK ((`gender` in (_utf8mb4'f',_utf8mb4'm'))),
   CONSTRAINT basicDetailsMaster_chk_2 CHECK ((`relationshipStatus` in (_utf8mb4's',_utf8mb4'm',_utf8mb4'd')))
-) ENGINE=InnoDB AUTO_INCREMENT=201 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=198 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -71,7 +72,8 @@ CREATE TABLE cityDetails (
   `name` text,
   stateId int DEFAULT NULL,
   PRIMARY KEY (cityId),
-  KEY stateId (stateId)
+  KEY stateId (stateId),
+  CONSTRAINT cityDetails_ibfk_1 FOREIGN KEY (stateId) REFERENCES stateDetails (stateId)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -92,8 +94,9 @@ CREATE TABLE eduDetailsMaster (
   percentage float DEFAULT NULL,
   `name` varchar(45) DEFAULT NULL,
   PRIMARY KEY (sEDMId),
-  UNIQUE KEY unIdEdu (bDMId,`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=285 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  UNIQUE KEY unIdEdu (bDMId,`name`),
+  CONSTRAINT eduDetailsMaster_ibfk_1 FOREIGN KEY (bDMId) REFERENCES basicDetailsMaster (bDMId)
+) ENGINE=InnoDB AUTO_INCREMENT=276 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -125,7 +128,8 @@ CREATE TABLE lang (
   writeMark int DEFAULT NULL,
   speakMark int DEFAULT NULL,
   PRIMARY KEY (lKId),
-  KEY bDMId (bDMId)
+  KEY bDMId (bDMId),
+  CONSTRAINT lang_ibfk_1 FOREIGN KEY (bDMId) REFERENCES basicDetailsMaster (bDMId)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -145,8 +149,10 @@ CREATE TABLE languageKnown (
   langLevel varchar(255) DEFAULT NULL,
   PRIMARY KEY (lKId),
   KEY bDMId (bDMId),
-  KEY langId (langId)
-) ENGINE=InnoDB AUTO_INCREMENT=859 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY langId (langId),
+  CONSTRAINT languageKnown_ibfk_1 FOREIGN KEY (bDMId) REFERENCES basicDetailsMaster (bDMId),
+  CONSTRAINT languageKnown_ibfk_2 FOREIGN KEY (langId) REFERENCES option_master (oMId)
+) ENGINE=InnoDB AUTO_INCREMENT=856 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -165,7 +171,8 @@ CREATE TABLE option_master (
   UNIQUE KEY optionKey (optionKey),
   UNIQUE KEY optionVal (optionVal),
   UNIQUE KEY optionKey_2 (optionKey,optionVal),
-  KEY sMId (sMId)
+  KEY sMId (sMId),
+  CONSTRAINT option_master_ibfk_1 FOREIGN KEY (sMId) REFERENCES select_master (sMId)
 ) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -187,8 +194,9 @@ CREATE TABLE preference (
   department varchar(255) DEFAULT NULL,
   PRIMARY KEY (prefId),
   KEY bDMId (bDMId),
+  CONSTRAINT preference_ibfk_1 FOREIGN KEY (bDMId) REFERENCES basicDetailsMaster (bDMId),
   CONSTRAINT preference_chk_1 CHECK ((`preferenceOrder` > 0))
-) ENGINE=InnoDB AUTO_INCREMENT=157 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=148 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -205,8 +213,9 @@ CREATE TABLE referenceContact (
   contactNumber varchar(255) DEFAULT NULL,
   relation varchar(255) DEFAULT NULL,
   PRIMARY KEY (rCId),
-  KEY bDMId (bDMId)
-) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY bDMId (bDMId),
+  CONSTRAINT referenceContact_ibfk_1 FOREIGN KEY (bDMId) REFERENCES basicDetailsMaster (bDMId)
+) ENGINE=InnoDB AUTO_INCREMENT=88 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -227,29 +236,9 @@ CREATE TABLE resultMaster (
   theoryOptainedMarks int NOT NULL,
   PRIMARY KEY (eMId),
   KEY suMId (suMId),
-  KEY examId (examId)
-) ENGINE=InnoDB AUTO_INCREMENT=3601 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `resultMaster2`
---
-
-DROP TABLE IF EXISTS resultMaster2;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE resultMaster2 (
-  eMId int NOT NULL AUTO_INCREMENT,
-  stMId int NOT NULL,
-  suMId int NOT NULL,
-  examId int NOT NULL,
-  pracTotalMarks int NOT NULL,
-  pracOptainedMarks int NOT NULL,
-  theoryTotalMarks int NOT NULL,
-  theoryOptainedMarks int NOT NULL,
-  PRIMARY KEY (eMId),
-  KEY suMId (suMId),
-  KEY examId (examId)
+  KEY examId (examId),
+  CONSTRAINT resultMaster_ibfk_1 FOREIGN KEY (suMId) REFERENCES subjectMaster (suMId),
+  CONSTRAINT resultMaster_ibfk_2 FOREIGN KEY (examId) REFERENCES examMaster (eTId)
 ) ENGINE=InnoDB AUTO_INCREMENT=3601 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -311,29 +300,6 @@ CREATE TABLE studentMaster (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `studentMaster2`
---
-
-DROP TABLE IF EXISTS studentMaster2;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE studentMaster2 (
-  stMId int NOT NULL DEFAULT '0',
-  firstname varchar(255) DEFAULT NULL,
-  lastname varchar(255) DEFAULT NULL,
-  email varchar(255) DEFAULT NULL,
-  email2 varchar(255) DEFAULT NULL,
-  board varchar(255) DEFAULT NULL,
-  birthdate date DEFAULT NULL,
-  address text,
-  city varchar(255) DEFAULT NULL,
-  country varchar(255) DEFAULT NULL,
-  country_code varchar(255) DEFAULT NULL,
-  created_at timestamp(6) NULL DEFAULT CURRENT_TIMESTAMP(6)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Table structure for table `subjectMaster`
 --
 
@@ -360,8 +326,9 @@ CREATE TABLE technologiesKnown (
   technologyName varchar(255) DEFAULT NULL,
   technologyLevel varchar(255) DEFAULT NULL,
   PRIMARY KEY (tKId),
-  KEY bDMId (bDMId)
-) ENGINE=InnoDB AUTO_INCREMENT=263 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY bDMId (bDMId),
+  CONSTRAINT technologiesKnown_ibfk_1 FOREIGN KEY (bDMId) REFERENCES basicDetailsMaster (bDMId)
+) ENGINE=InnoDB AUTO_INCREMENT=260 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -400,8 +367,9 @@ CREATE TABLE workExperienceMaster (
   fromDate date DEFAULT NULL,
   toDate date DEFAULT NULL,
   PRIMARY KEY (wEMId),
-  KEY bDMId (bDMId)
-) ENGINE=InnoDB AUTO_INCREMENT=177 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY bDMId (bDMId),
+  CONSTRAINT workExperienceMaster_ibfk_1 FOREIGN KEY (bDMId) REFERENCES basicDetailsMaster (bDMId)
+) ENGINE=InnoDB AUTO_INCREMENT=174 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -413,38 +381,3 @@ CREATE TABLE workExperienceMaster (
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed
---
--- Dumping data for table `option_master`
---
-
-INSERT INTO option_master VALUES (1,1,'lang_hindi','hindi');
-INSERT INTO option_master VALUES (2,1,'lang_guj','gujarati');
-INSERT INTO option_master VALUES (3,1,'lang_eng','english');
-INSERT INTO option_master VALUES (4,2,'lang_read','read');
-INSERT INTO option_master VALUES (5,2,'lang_write','write');
-INSERT INTO option_master VALUES (6,2,'lang_speak','speak');
-INSERT INTO option_master VALUES (7,3,'tech_php','php');
-INSERT INTO option_master VALUES (8,3,'lang_mysql','mysql');
-INSERT INTO option_master VALUES (9,3,'lang_laravel','laravel');
-INSERT INTO option_master VALUES (10,3,'lang_oracle','oracle');
-INSERT INTO option_master VALUES (11,4,'tech_beginer','beginer');
-INSERT INTO option_master VALUES (12,4,'tech_mideator','mideator');
-INSERT INTO option_master VALUES (13,4,'tech_expert','expert');
-INSERT INTO option_master VALUES (14,5,'gender_male','male');
-INSERT INTO option_master VALUES (15,5,'gender_female','female');
-INSERT INTO option_master VALUES (16,6,'relationship_status_married','married');
-INSERT INTO option_master VALUES (17,6,'relationship_status_single','single');
-INSERT INTO option_master VALUES (18,7,'department_dev','development');
-INSERT INTO option_master VALUES (19,7,'department_marketing','marketing');
-
---
--- Dumping data for table `select_master`
---
-
-INSERT INTO select_master VALUES (1,'language','language_known','checkbox');
-INSERT INTO select_master VALUES (2,'language_level','language_level','checkbox');
-INSERT INTO select_master VALUES (3,'technology','technology_known','checkbox');
-INSERT INTO select_master VALUES (4,'technology_level','technology_level','radio');
-INSERT INTO select_master VALUES (5,'gender','gender','radio');
-INSERT INTO select_master VALUES (6,'relationship_status','relationshipStatus','select');
-INSERT INTO select_master VALUES (7,'department','department','select');

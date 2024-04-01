@@ -2,82 +2,86 @@ const getSelectMetaData = require("../../helper/job_app_crud/getSelectMetaData")
 var selectGender;
 var selectRelationshipStatus;
 async function jobAppValidate(req, res, next) {
+    try {
 
-    var reqBody = req.body;
+        var reqBody = req.body;
 
-    selectGender = await getSelectMetaData("gender");
-    selectRelationshipStatus = await getSelectMetaData("relationship_status");
+        selectGender = await getSelectMetaData("gender");
+        selectRelationshipStatus = await getSelectMetaData("relationship_status");
 
 
 
-    if (!req.body.department) {
-        reqBody.department = [''];
-    }
-    if (!req.body.language_1) {
-        reqBody.language_1 = ['', '', ''];
-    }
-    if (!req.body.language_2) {
-        reqBody.language_2 = ['', '', ''];
-    }
-    if (!req.body.language_3) {
-        reqBody.language_3 = ['', '', ''];
-    }
-    if (typeof (req.body.language_1) === "string") {
-        reqBody.language_1 = [req.body.language_1, '', ''];
-    }
-    if (typeof (req.body.language_2) === "string") {
-        reqBody.language_2 = [req.body.language_2, '', ''];
-    }
-    if (typeof (req.body.language_3) === "string") {
-        reqBody.language_3 = [req.body.language_3, '', ''];
-    }
+        if (!req.body.department) {
+            reqBody.department = [''];
+        }
+        if (!req.body.language_1) {
+            reqBody.language_1 = ['', '', ''];
+        }
+        if (!req.body.language_2) {
+            reqBody.language_2 = ['', '', ''];
+        }
+        if (!req.body.language_3) {
+            reqBody.language_3 = ['', '', ''];
+        }
+        if (typeof (req.body.language_1) === "string") {
+            reqBody.language_1 = [req.body.language_1, '', ''];
+        }
+        if (typeof (req.body.language_2) === "string") {
+            reqBody.language_2 = [req.body.language_2, '', ''];
+        }
+        if (typeof (req.body.language_3) === "string") {
+            reqBody.language_3 = [req.body.language_3, '', ''];
+        }
 
-    if (!req.body.department) {
-        reqBody.department = [''];
-    }
+        if (!req.body.department) {
+            reqBody.department = [''];
+        }
 
-    if (!req.body.tech_1) {
-        reqBody.tech_1 = ['', '', ''];
-    }
-    if (!req.body.tech_2) {
-        reqBody.tech_2 = ['', '', ''];
-    }
-    if (!req.body.tech_3) {
-        reqBody.tech_3 = ['', '', ''];
-    }
-    if (!req.body.tech_4) {
-        reqBody.tech_4 = ['', '', ''];
-    }
-    if (typeof (req.body.tech_1) === "string") {
-        reqBody.tech_1 = [req.body.tech_1, ''];
-    }
-    if (typeof (req.body.tech_2) === "string") {
-        reqBody.tech_2 = [req.body.tech_2, ''];
-    }
-    if (typeof (req.body.tech_3) === "string") {
-        reqBody.tech_3 = [req.body.tech_3, ''];
-    }
-    if (typeof (req.body.tech_4) === "string") {
-        reqBody.tech_4 = [req.body.tech_4, ''];
-    }
-    // console.log(reqBody);
+        if (!req.body.tech_1) {
+            reqBody.tech_1 = ['', '', ''];
+        }
+        if (!req.body.tech_2) {
+            reqBody.tech_2 = ['', '', ''];
+        }
+        if (!req.body.tech_3) {
+            reqBody.tech_3 = ['', '', ''];
+        }
+        if (!req.body.tech_4) {
+            reqBody.tech_4 = ['', '', ''];
+        }
+        if (typeof (req.body.tech_1) === "string") {
+            reqBody.tech_1 = [req.body.tech_1, ''];
+        }
+        if (typeof (req.body.tech_2) === "string") {
+            reqBody.tech_2 = [req.body.tech_2, ''];
+        }
+        if (typeof (req.body.tech_3) === "string") {
+            reqBody.tech_3 = [req.body.tech_3, ''];
+        }
+        if (typeof (req.body.tech_4) === "string") {
+            reqBody.tech_4 = [req.body.tech_4, ''];
+        }
+        // console.log(reqBody);
 
-    var validateBasicDeatilsResult = validateBasicDeatils(reqBody, req, res);
-    if (validateBasicDeatilsResult) return;
-    var validateEduDetailsResult = validateEduDetails(reqBody, req, res);
-    if (validateEduDetailsResult) return;
-    var validateWorkExDetailsResult = validateWorkExDetails(reqBody, req, res);
-    if (validateWorkExDetailsResult) return;
-    var validateLanguageDetailsResult = validateLanguageDetails(reqBody, req, res);
-    if (validateLanguageDetailsResult) return;
-    var validateTechDetailsResult = validateTechDetails(reqBody, req, res);
-    if (validateTechDetailsResult) return;
-    var validateRefDetailsResult = validateRefDetails(reqBody, req, res);
-    if (validateRefDetailsResult) return;
-    var validatePreferencesDetailsResult = validatePreferencesDetails(reqBody, req, res);
-    if (validatePreferencesDetailsResult) return;
+        var validateBasicDeatilsResult = validateBasicDeatils(reqBody, req, res);
+        if (validateBasicDeatilsResult) return;
+        var validateEduDetailsResult = validateEduDetails(reqBody, req, res);
+        if (validateEduDetailsResult) return;
+        var validateWorkExDetailsResult = validateWorkExDetails(reqBody, req, res);
+        if (validateWorkExDetailsResult) return;
+        var validateLanguageDetailsResult = validateLanguageDetails(reqBody, req, res);
+        if (validateLanguageDetailsResult) return;
+        var validateTechDetailsResult = validateTechDetails(reqBody, req, res);
+        if (validateTechDetailsResult) return;
+        var validateRefDetailsResult = validateRefDetails(reqBody, req, res);
+        if (validateRefDetailsResult) return;
+        var validatePreferencesDetailsResult = validatePreferencesDetails(reqBody, req, res);
+        if (validatePreferencesDetailsResult) return;
 
-    next();
+        next();
+    } catch (error) {
+        console.log(error);
+    }
 }
 function checkIfNumber(text) {
     return !isNaN(parseInt(text));
@@ -107,7 +111,7 @@ function validateBasicDeatils(reqBody, req, res) {
         })
     }
     if (!checkIfNumber(reqBody.phone) || !checkLength(reqBody.phone, 10)) {
-        return res.json( {
+        return res.json({
             error: "Enter phone number properly"
         })
     }
@@ -157,7 +161,7 @@ function validateWorkExDetails(reqBody, req, res) {
         isNaN(new Date(workExpCompanyFromDate[i]).getDate()) ? temp.fromDate = null : "";
         isNaN(new Date(workExpCompanyToDate[i]).getDate()) ? temp.toDate = null : "";
         if ((temp.companyName || temp.designation || temp.fromDate || temp.toDate) && (!temp.companyName || !temp.designation || !temp.toDate || !temp.fromDate)) {
-            return res.json( {
+            return res.json({
                 error: "Enter work experience details properly"
             })
         }
@@ -225,7 +229,7 @@ function validateRefDetails(reqBody, req, res) {
             relation: refRelations[i]
         }
         if ((t.name || t.contactNumber || t.relation) && (!t.name || !t.contactNumber || !t.relation)) {
-            return res.json( {
+            return res.json({
                 error: "Enter references details properly"
             })
         }
