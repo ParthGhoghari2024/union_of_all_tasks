@@ -125,6 +125,7 @@ function validateForm() {
 
 
 
+
 	var language_1Tag = document.getElementsByName("language_1");
 	var language_2Tag = document.getElementsByName("language_2");
 	var language_3Tag = document.getElementsByName("language_3");
@@ -298,11 +299,11 @@ function validateForm() {
 		ref_2Tag[0] ? removeSupAndBrTag(ref_2Tag[0].parentNode) : ""
 	}
 
-
 	var reqInputs = document.getElementsByClassName("reqInput");
 	for (let i = 0; i < reqInputs.length; i++) {
 		var inputTagParent = reqInputs[i].parentNode;
-		if (reqInputs[i].value === "") {
+		var temp = reqInputs[i].value.trim();
+		if (reqInputs[i].value === "" || temp === "") {
 			addSupAndBrTag(inputTagParent, "This field can't be empty");
 			flag = 1;
 		} else if ((reqInputs[i].classList.length === 1 && reqInputs[i].classList.contains("reqInput")) || (reqInputs[i].classList.contains("reqInput") && reqInputs[i].classList.contains("edu"))) {
@@ -310,6 +311,19 @@ function validateForm() {
 			removeSupAndBrTag(inputTagParent)
 		}
 	}
+	// var reqNumber = document.getElementsByClassName("reqNumber");
+	// console.log(reqNumber);
+	// for (let i = 0; i < reqNumber.length; i++) {
+	// 	var inputTagParent = reqNumber[i].parentNode;
+	// 	var val = reqNumber[i].value;
+	// 	console.log(isNaN(parseInt(val)));
+	// 	if (isNaN(parseInt(val))) {
+	// 		addSupAndBrTag(inputTagParent, "Enter Number only");
+	// 		flag = 1;
+	// 	} else {
+	// 		removeSupAndBrTag(inputTagParent)
+	// 	}
+	// }
 	if (flag) {
 		return false;
 	}

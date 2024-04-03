@@ -98,7 +98,7 @@ function validateBasicDeatils(reqBody, req, res) {
 		!reqBody.state ||
 		!reqBody.relationship_status ||
 		!reqBody.dob) {
-		res.render("job_app_form/form", {
+		res.render("job_app_crud/form", {
 			error: "Enter basic details properly", reqBody: reqBody, selectGender: {
 				data: selectGender,
 				selected: reqBody.gender === "f" ? "female" : "male"
@@ -112,7 +112,7 @@ function validateBasicDeatils(reqBody, req, res) {
 	}
 	var emailRegEx = /\S+@\S+\.\S+/;
 	if (!emailRegEx.test(reqBody.email)) {
-		res.render("job_app_form/form", {
+		res.render("job_app_crud/form", {
 			error: "Enter Email properly", reqBody: reqBody, selectGender: {
 				data: selectGender,
 				selected: reqBody.gender === "f" ? "female" : "male"
@@ -125,7 +125,7 @@ function validateBasicDeatils(reqBody, req, res) {
 		return 1;
 	}
 	if (!checkIfNumber(reqBody.phone) || !checkLength(reqBody.phone, 10)) {
-		res.render("job_app_form/form", {
+		res.render("job_app_crud/form", {
 			error: "Enter phone number properly", reqBody: reqBody, selectGender: {
 				data: selectGender,
 				selected: reqBody.gender === "f" ? "female" : "male"
@@ -158,7 +158,7 @@ function validateEduDetails(reqBody, req, res) {
 			reqBody.master_passing_year ||
 			reqBody.master_percentage) && (!reqBody.master_course_name || !reqBody.master_university || !reqBody.master_passing_year || !reqBody.master_percentage || !checkIfNumber(reqBody.master_percentage) || !checkIfNumber(reqBody.master_passing_year)))//FOR MASTER IF ONE VALUE IS THERE THEN ALL FOUR VALUES ARE NEEDED
 	) {
-		res.render("job_app_form/form", {
+		res.render("job_app_crud/form", {
 			error: "Enter Education details properly", reqBody: reqBody, selectGender: {
 				data: selectGender,
 				selected: reqBody.gender === "f" ? "female" : "male"
@@ -191,7 +191,7 @@ function validateWorkExDetails(reqBody, req, res) {
 		isNaN(new Date(workExpCompanyFromDate[i]).getDate()) ? temp.fromDate = null : "";
 		isNaN(new Date(workExpCompanyToDate[i]).getDate()) ? temp.toDate = null : "";
 		if ((temp.companyName || temp.designation || temp.fromDate || temp.toDate) && (!temp.companyName || !temp.designation || !temp.toDate || !temp.fromDate)) {
-			res.render("job_app_form/form", {
+			res.render("job_app_crud/form", {
 				error: "Enter work experience details properly", reqBody: reqBody, selectGender: {
 					data: selectGender,
 					selected: reqBody.gender === "f" ? "female" : "male"
@@ -228,7 +228,7 @@ function validateLanguageDetails(reqBody, req, res) {
 	var checkForLanguage_3 = temp.language_3.filter((obj) => obj != "").length === 1;
 
 	if (checkForLanguage_1 || checkForLanguage_2 || checkForLanguage_3) {
-		res.render("job_app_form/form", {
+		res.render("job_app_crud/form", {
 			error: "select language properly", reqBody: reqBody, selectGender: {
 				data: selectGender,
 				selected: reqBody.gender === "f" ? "female" : "male"
@@ -256,7 +256,7 @@ function validateTechDetails(reqBody, req, res) {
 		temp.tech_3 = null;
 	}
 	if ((temp.tech_1 && temp.tech_1[0] === "") || (temp.tech_2 && temp.tech_2[0] === "") || (temp.tech_3 && temp.tech_3[0] === "")) {
-		res.render("job_app_form/form", {
+		res.render("job_app_crud/form", {
 			error: "select technology properly", reqBody: reqBody, selectGender: {
 				data: selectGender,
 				selected: reqBody.gender === "f" ? "female" : "male"
@@ -283,7 +283,7 @@ function validateRefDetails(reqBody, req, res) {
 			relation: refRelations[i]
 		}
 		if ((t.name || t.contactNumber || t.relation) && (!t.name || !t.contactNumber || !t.relation)) {
-			res.render("job_app_form/form", {
+			res.render("job_app_crud/form", {
 				error: "Enter references details properly", reqBody: reqBody, selectGender: {
 					data: selectGender,
 					selected: reqBody.gender === "f" ? "female" : "male"
@@ -301,7 +301,7 @@ function validateRefDetails(reqBody, req, res) {
 function validatePreferencesDetails(reqBody, req, res) {
 	for (let i = 0; i < reqBody.prefered_location.length; i++) {
 		if (!reqBody.prefered_location[i] || reqBody.prefered_location[i] === "") {
-			res.render("job_app_form/form", {
+			res.render("job_app_crud/form", {
 				error: "Enter prefered details properly", reqBody: reqBody, selectGender: {
 					data: selectGender,
 					selected: reqBody.gender === "f" ? "female" : "male"
@@ -315,7 +315,7 @@ function validatePreferencesDetails(reqBody, req, res) {
 		}
 	};
 	if (!reqBody.notice_period || !reqBody.expected_ctc || !reqBody.current_ctc || !reqBody.department || isNaN(parseFloat(reqBody.notice_period)) || isNaN(parseFloat(reqBody.expected_ctc)) || isNaN(parseFloat(reqBody.current_ctc))) {
-		res.render("job_app_form/form", {
+		res.render("job_app_crud/form", {
 			error: "Enter Preferences  details properly", reqBody: reqBody, selectGender: {
 				data: selectGender,
 				selected: reqBody.gender === "f" ? "female" : "male"

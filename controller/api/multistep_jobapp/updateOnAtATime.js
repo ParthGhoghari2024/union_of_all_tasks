@@ -153,7 +153,7 @@ async function updateLanguageDetailsController(req, res) {
                     langNameInput: langNameInput,
                     langLevelInput: langLevelInput
                 }
-                
+
                 updateLanguageKnownResult[i] = await updateLanguageDetails(Object.values(temp), queryId);
                 // console.log(updateLanguageKnownResult);
             }
@@ -213,7 +213,7 @@ async function updatePreferenceDetailsController(req, res) {
                 department: req.body.department + ""
             }
             // console.log(temp);
-            updatePreferencesResult[i] = await updatePreferenceDetails(Object.values(temp),queryId,prefIds[i]);
+            updatePreferencesResult[i] = await updatePreferenceDetails(Object.values(temp), queryId, prefIds[i]);
         }
 
 
@@ -247,4 +247,4 @@ async function updateReferenceDetailsController(req, res) {
         console.log(error);
     }
 }
-module.exports ={updateBasicDetailsController,updateEduDetailsController,updateWorkExpDetailsController,updateLanguageDetailsController,updateTechDetailsController,updateReferenceDetailsController,updatePreferenceDetailsController};
+module.exports = { updateBasicDetailsController, updateEduDetailsController, updateWorkExpDetailsController, updateLanguageDetailsController, updateTechDetailsController, updateReferenceDetailsController, updatePreferenceDetailsController };

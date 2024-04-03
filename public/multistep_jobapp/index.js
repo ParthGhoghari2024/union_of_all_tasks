@@ -26,7 +26,7 @@ async function goToUpdate() {
 
     var submitResult = await submit.json();
 
-    if(submitResult && submitResult.error  ){
+    if (submitResult && submitResult.error) {
         alert("invalid id");
         return;
     }
@@ -691,7 +691,7 @@ function validateByTableName(name) {
     for (let i = 0; i < reqPhone.length; i++) {
         var inputTagParent = reqPhone[i].parentNode;
         var val = reqPhone[i].value;
-        if(val==="")continue;
+        if (val === "") continue;
         if (val.length != 10) {
             addSupAndBrTag(inputTagParent, "Enter Phone Number properly");
             flag = 1;
@@ -733,7 +733,8 @@ function validateByTableName(name) {
     var reqInputs = table.getElementsByClassName("reqInput");
     for (let i = 0; i < reqInputs.length; i++) {
         var inputTagParent = reqInputs[i].parentNode;
-        if (reqInputs[i].value === "") {
+        var temp = reqInputs[i].value.trim();
+        if (reqInputs[i].value === "" || temp === "") {
             addSupAndBrTag(inputTagParent, "This field can't be empty");
             flag = 1;
         } else if ((reqInputs[i].classList.length === 1 && reqInputs[i].classList.contains("reqInput")) || (reqInputs[i].classList.contains("reqInput") && reqInputs[i].classList.contains("edu"))) {
@@ -1020,7 +1021,7 @@ async function submitForm() {
 
 
     var submitResult = await submit.json();
-    if(submitResult && submitResult.error ){
+    if (submitResult && submitResult.error) {
         // alert(submitResult.error)
         document.getElementById("errorMsg").innerText = submitResult.error;
     }

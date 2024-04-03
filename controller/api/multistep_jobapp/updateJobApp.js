@@ -93,8 +93,8 @@ async function updateForm(req, res) {
             }
             // console.log(temp);
             // if(typeof(workExpId)==="string")workExpId[0]=workExpId;
-            if(workExpId[i]!=0)
-            updateWorkExpResult[i] = await updateWorkExpDetails(Object.values(temp), queryId, workExpId[i]);
+            if (workExpId[i] != 0)
+                updateWorkExpResult[i] = await updateWorkExpDetails(Object.values(temp), queryId, workExpId[i]);
         }
 
 
@@ -109,22 +109,22 @@ async function updateForm(req, res) {
             if (j == 1) langNameInput = "english";
             if (j == 2) langNameInput = "gujarati";
             // if(languages[j].length>0){
-                for (let i = 1; i < 4; i++) {
-                    let langLevelInput = "";
-                    if (i == 1) langLevelInput = "read";
-                    if (i == 2) langLevelInput = "write";
-                    if (i == 3) langLevelInput = "speak";
-                    var temp = {
-                        langId: "",
-                        langName: languages[j][0],
-                        langLevelId: "",
-                        langLevel: languages[j][i] || "",
-                        langNameInput: langNameInput,
-                        langLevelInput: langLevelInput
-                    }
-                    // console.log(temp,queryId);
-                    updateLanguageKnownResult[i] = await updateLanguageDetails(Object.values(temp), queryId);
+            for (let i = 1; i < 4; i++) {
+                let langLevelInput = "";
+                if (i == 1) langLevelInput = "read";
+                if (i == 2) langLevelInput = "write";
+                if (i == 3) langLevelInput = "speak";
+                var temp = {
+                    langId: "",
+                    langName: languages[j][0],
+                    langLevelId: "",
+                    langLevel: languages[j][i] || "",
+                    langNameInput: langNameInput,
+                    langLevelInput: langLevelInput
                 }
+                // console.log(temp,queryId);
+                updateLanguageKnownResult[i] = await updateLanguageDetails(Object.values(temp), queryId);
+            }
             // }
         }
         // console.log(1,updateLanguageKnownResult);
@@ -149,7 +149,7 @@ async function updateForm(req, res) {
             updateTechResult[j] = await updateTechDetails(Object.values(t), queryId);
         }
 
-        var refNames = req.body.reference_name  || [];
+        var refNames = req.body.reference_name || [];
         var refContacts = req.body.reference_contact || [];
         var refRelations = req.body.reference_relation || [];
         var refIds = req.body.refId || [];
@@ -179,14 +179,14 @@ async function updateForm(req, res) {
                 department: req.body.department + ""
             }
             // console.log(temp);
-            updatePreferencesResult[i] = await updatePreferenceDetails(Object.values(temp),queryId,prefIds[i]);
+            updatePreferencesResult[i] = await updatePreferenceDetails(Object.values(temp), queryId, prefIds[i]);
         }
 
 
-        res.json({result : 1})
+        res.json({ result: 1 })
     } catch (error) {
         console.log(error);
     }
 }
 
-module.exports = {updateForm};
+module.exports = { updateForm };
