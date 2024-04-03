@@ -2,93 +2,93 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register Page</title>
-    <link rel="stylesheet" href="main.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Register Page</title>
+	<link rel="stylesheet" href="main.css">
 </head>
 
 <body>
 
-    <div class="mainContainer">
+	<div class="mainContainer">
 
-        <div class="formMainContainer">
+		<div class="formMainContainer">
 
-            <form action="" id="formRegister">
+			<form action="" id="formRegister">
 
-                <table class="inputTable registerTable" id="registerTable">
-                    <tr>
-                        <td>
-                            <legend>Register</legend>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label for="firstname">First Name </label>
-                            <input class="reqInput " type="text" name="firstname" id="firstname" />
-                        </td>
+				<table class="inputTable registerTable" id="registerTable">
+					<tr>
+						<td>
+							<legend>Register</legend>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="firstname">First Name </label>
+							<input class="reqInput " type="text" name="firstname" id="firstname" />
+						</td>
 
-                    </tr>
+					</tr>
 
-                    <tr>
-                        <td>
-                            <label for="lastname">Last Name</label>
-                            <input class="reqInput " type="text" name="lastname" id="lastname" />
-                        </td>
+					<tr>
+						<td>
+							<label for="lastname">Last Name</label>
+							<input class="reqInput " type="text" name="lastname" id="lastname" />
+						</td>
 
-                    </tr>
-                    <tr>
-                        <td>
-                            <label for="email">Email Address</label>
-                            <input class="reqInput reqEmail" type="text" name="email" id="email" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label for="password">Password</label>
-                            <input class="reqInput " type="password" name="password" id="password" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label for="confirmPasssword">Confirm Password</label>
-                            <input class="reqInput " type="password" name="confirmPassword" id="confirmPasssword" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span>Already Registered? <a class="anchor" href="/">login</a></label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="button" value="Register" onclick="sendRegistration()">
-                        </td>
-                    </tr>
+					</tr>
+					<tr>
+						<td>
+							<label for="email">Email Address</label>
+							<input class="reqInput reqEmail" type="text" name="email" id="email" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="password">Password</label>
+							<input class="reqInput " type="password" name="password" id="password" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="confirmPasssword">Confirm Password</label>
+							<input class="reqInput " type="password" name="confirmPassword" id="confirmPasssword" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<span>Already Registered? <a class="anchor" href="/">login</a></label>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="button" value="Register" onclick="sendRegistration()">
+						</td>
+					</tr>
 
-                    <tr>
-                        <td>
-                            <span id="errorMsg"></span>
-                        </td>
-                    </tr>
+					<tr>
+						<td>
+							<span id="errorMsg"></span>
+						</td>
+					</tr>
 
-                    <tr id="activationLinkTr" style="display: none;width: fit-content; font-size: 1.15rem; ">
-                        <td style="color: green;">
-                            Thank you for registration
-                        </td>
-                        <td><span>Activation link : </span></td>
-                        <td>
-                            <a id="activationLink" href="" target="_blank"
-                                style="font-size: 0.9rem;white-space:nowrap;">Activate it</a>
-                        </td>
-                    </tr>
-                </table>
-            </form>
+					<tr id="activationLinkTr" style="display: none;width: fit-content; font-size: 1.15rem; ">
+						<td style="color: green;">
+							Thank you for registration
+						</td>
+						<td><span>Activation link : </span></td>
+						<td>
+							<a id="activationLink" href="" target="_blank" style="font-size: 0.9rem;white-space:nowrap;">Activate
+								it</a>
+						</td>
+					</tr>
+				</table>
+			</form>
 
-        </div>
-    </div>
+		</div>
+	</div>
 
-    <script src="/registerLogin.js"></script>
+	<script src="/registerLogin.js"></script>
 </body>
 
 </html>

@@ -1,22 +1,36 @@
 <% if(key){%>
-        
-            <% for(var i=0;i<key.data.length;i++){ %>
-                <%if(key.data[i].input_type==="checkbox") { %>
-                    <label for="<%= key.data[i].optionVal %>"><%= key.data[i].optionVal %></label>
-                    <input type="checkbox" name="<%= key.data[i].selectName %>" value="<%= key.data[i].optionVal %>"  id="<%= key.data[i].selectName %>_<%= key.data[i].optionVal %>" <%=selected.includes(key.data[i].optionVal)? 'checked' : "" %> >
-                <% } %> 
-                <%if(key.data[i].input_type==="radio") { %>
-                    <input type="radio" name="<%= key.data[i].selectName  %> <%= key.selected.includes('key.data[i].selectName') %>" id="" value="<%= key.data[i].optionVal %>" <%=selected.includes(key.data[i].optionVal)? 'checked' : "" %>>
-                    <label for="<%= key.data[i].optionVal %>"><%= key.data[i].optionVal %></label>
-                <% } %> 
-                <%if(key.data[i].input_type==="select") { %>
-                    <% if(i==0){ %>
-                        <label for="<%= key.data[i].selectName %>"><%= key.data[i].selectName %> &nbsp </label>
-                    <select name="<%= key.data[i].selectName %>" id=""> <% }%>
-                        <option value="<%= key.data[i].optionVal %>"  <%=selected.includes(key.data[i].optionVal)? 'selected' : "" %>><%= key.data[i].optionVal %></option>
-                    <% if(i==key.data.length-1){ %></select> <% } %>
-                <% } %> 
-            <% } %>
-            <br>
-<%} %>
 
+	<% for(var i=0;i<key.data.length;i++){ %>
+		<%if(key.data[i].input_type==="checkbox") { %>
+			<label for="<%= key.data[i].optionVal %>">
+				<%= key.data[i].optionVal %>
+			</label>
+			<input type="checkbox" name="<%= key.data[i].selectName %>" value="<%= key.data[i].optionVal %>"
+				id="<%= key.data[i].selectName %>_<%= key.data[i].optionVal %>"
+				<%=selected.includes(key.data[i].optionVal)? 'checked' : "" %> >
+			<% } %>
+				<%if(key.data[i].input_type==="radio") { %>
+					<input type="radio"
+						name="<%= key.data[i].selectName  %> <%= key.selected.includes('key.data[i].selectName') %>" id=""
+						value="<%= key.data[i].optionVal %>" <%=selected.includes(key.data[i].optionVal)? 'checked' : "" %>>
+					<label for="<%= key.data[i].optionVal %>">
+						<%= key.data[i].optionVal %>
+					</label>
+					<% } %>
+						<%if(key.data[i].input_type==="select") { %>
+							<% if(i==0){ %>
+								<label for="<%= key.data[i].selectName %>">
+									<%= key.data[i].selectName %> &nbsp
+								</label>
+								<select name="<%= key.data[i].selectName %>" id="">
+									<% }%>
+										<option value="<%= key.data[i].optionVal %>" <%=selected.includes(key.data[i].optionVal)? 'selected'
+											: "" %>><%= key.data[i].optionVal %>
+										</option>
+										<% if(i==key.data.length-1){ %>
+								</select>
+								<% } %>
+									<% } %>
+										<% } %>
+											<br>
+											<%} %>

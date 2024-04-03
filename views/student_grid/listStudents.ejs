@@ -2,44 +2,44 @@
 <html>
 
 <head>
-    <title>List user Page</title>
-    <link rel="stylesheet" type="text/css" href="/student_grid/main.css">
+	<title>List user Page</title>
+	<link rel="stylesheet" type="text/css" href="/student_grid/main.css">
 </head>
 
 <body>
-    <%- include("../nav") %>
+	<%- include("../nav") %>
 
-    <%- include('paginationController',{currentPage : currentPage,totalPages:totalPages}) -%>
+		<%- include('paginationController',{currentPage : currentPage,totalPages:totalPages}) -%>
 
-        <table class="listStudentGrid">
-            <thead>
-                <tr>
-                    <td>Student Id</td>
-                    <td>First Name</td>
-                    <td>Last Name</td>
-                    <td>Email</td>
-                    <td>Email2</td>
-                    <td>Board</td>
-                    <td>Birth Date</td>
-                    <td>Address</td>
-                    <td>City</td>
-                    <td>Country</td>
-                    <td>Country Code</td>
-                    <td>Created At</td>
-                </tr>
-            </thead>
-            <tbody>
-                <% students && students.forEach((obj)=>{ %>
-                    <tr>
-                        <% var o=obj; for (const key in o) {%>
-                            <td>
-                                <%= o[key]%>
-                            </td>
-                        <% } %>
-                    </tr>
-                <% })%>
-            </tbody>
-        </table>
+			<table class="listStudentGrid">
+				<thead>
+					<tr>
+						<td>Student Id</td>
+						<td>First Name</td>
+						<td>Last Name</td>
+						<td>Email</td>
+						<td>Email2</td>
+						<td>Board</td>
+						<td>Birth Date</td>
+						<td>Address</td>
+						<td>City</td>
+						<td>Country</td>
+						<td>Country Code</td>
+						<td>Created At</td>
+					</tr>
+				</thead>
+				<tbody>
+					<% students && students.forEach((obj)=>{ %>
+						<tr>
+							<% var o=obj; for (const key in o) {%>
+								<td>
+									<%= o[key]%>
+								</td>
+								<% } %>
+						</tr>
+						<% })%>
+				</tbody>
+			</table>
 
 
 </body>

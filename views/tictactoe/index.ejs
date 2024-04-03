@@ -1,196 +1,204 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tic Tac Toe</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Tic Tac Toe</title>
 </head>
 <style>
-    body{
-        background: lightseagreen;
-    }
-    .tableContainer {
-        display: flex;
-        justify-content: center;
-        min-width: fit-content;
-        margin-top: 15px;
-    }
+	body {
+		background: lightseagreen;
+	}
 
-    #tableMain {
-        height: 39rem;
-        width: 39rem;
-        border: 2px solid white;
-        border-radius: 20px;
-        box-shadow: 5px 5px white ;
-        padding: 0;
-        font-size: 4rem;
-        color: lightgoldenrodyellow;
-    }
+	.tableContainer {
+		display: flex;
+		justify-content: center;
+		min-width: fit-content;
+		margin-top: 15px;
+	}
 
-    
-    #tableMain tr td{
-        border: 2px solid black;
-        border-radius: 3px;
-    }
+	#tableMain {
+		height: 39rem;
+		width: 39rem;
+		border: 2px solid white;
+		border-radius: 20px;
+		box-shadow: 5px 5px white;
+		padding: 0;
+		font-size: 4rem;
+		color: lightgoldenrodyellow;
+	}
 
-    #tableMain td {
-        height: 13rem;
-        width: 13rem;
-        background: lightskyblue;
-        cursor: pointer;
-        text-align: center;
-        border-radius: 2px; 
-    }
-    .box{
-        border: 2px solid;
-        font-size: 2.5rem;
-        align-items: center;
-        background: lightgoldenrodyellow;
-        border: 2px solid white;
-        border-radius: 20px;
-        box-shadow: 5px 5px black ;
-    }
-    #gameOver{
-        font-size: 2.5rem;
-        padding: 10px;
-        display: flex;
-        width: fit-content;
-        margin: 10px 0;
-    }       
 
-    .cornerCellLeft{
-        border-left: 0 !important;
-    }
-    .cornerCellRight{
-        border-right: 0 !important;
-    }
-    .cellBottom{
-        border-bottom: 0 !important;
-    }
-    .cellTop{
-        border-top: 0 !important;
-    }
+	#tableMain tr td {
+		border: 2px solid black;
+		border-radius: 3px;
+	}
 
-    .turnLabel{
-        display: flex;
-        justify-content: center;
-        font-size: 1.5rem;
-        color: black;
-        width: fit-content;
-        margin: 0 auto;
-        padding: 10px;
-    }
-    
+	#tableMain td {
+		height: 13rem;
+		width: 13rem;
+		background: lightskyblue;
+		cursor: pointer;
+		text-align: center;
+		border-radius: 2px;
+	}
+
+	.box {
+		border: 2px solid;
+		font-size: 2.5rem;
+		align-items: center;
+		background: lightgoldenrodyellow;
+		border: 2px solid white;
+		border-radius: 20px;
+		box-shadow: 5px 5px black;
+	}
+
+	#gameOver {
+		font-size: 2.5rem;
+		padding: 10px;
+		display: flex;
+		width: fit-content;
+		margin: 10px 0;
+	}
+
+	.cornerCellLeft {
+		border-left: 0 !important;
+	}
+
+	.cornerCellRight {
+		border-right: 0 !important;
+	}
+
+	.cellBottom {
+		border-bottom: 0 !important;
+	}
+
+	.cellTop {
+		border-top: 0 !important;
+	}
+
+	.turnLabel {
+		display: flex;
+		justify-content: center;
+		font-size: 1.5rem;
+		color: black;
+		width: fit-content;
+		margin: 0 auto;
+		padding: 10px;
+	}
 </style>
+
 <body>
-    <h2 style="display: flex;justify-content: center;">Name: Parth Ghoghari Em.Id : 24DEV052 Date: 02-02-2024</h2>
-    <h2 style="display: flex;justify-content: center;">Task: Tic Tac Toe</h2>
-
-    
-    <span class="turnLabel box">Next turn : &nbsp <span id="turn">0</span>  </span>
-    <div class="tableContainer">
-
-        <table id="tableMain" >
-            <tbody id="tableMainBody">
-                <tr>
-                    <td class="cornerCellLeft cellTop" id="1"></td>
-                    <td class="cellTop" id="2"></td>
-                    <td class="cornerCellRight cellTop" id="3"></td>
-                </tr>
-                <tr>
-                    <td class="cornerCellLeft" id="4"></td>
-                    <td id="5"></td>
-                    <td class="cornerCellRight " id="6"></td>
-                </tr>
-                <tr>
-                    <td class="cornerCellLeft  cellBottom" id="7"></td>
-                    <td  class="cellBottom" id="8"></td>
-                    <td class="cornerCellRight cellBottom" id="9"></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div style="display: flex;justify-content: space-around; margin-top: 1.5rem;">
-        <span  id="gameOver" class="box" style="display: none;">Game Over , Result : <span id="finalScore"></span></span>
-        <span class="box"  id="reload" style="display: none; cursor: pointer;" onclick="location.reload()">Play Again</span>
-    </div>
-
-    <script>
-        var tableMainEle = document.getElementById("tableMain");
-        var allTds = tableMainEle.getElementsByTagName("td");
-        for (let i = 0; i < allTds.length; i++) {//to add event listener on all the cells
-            allTds[i].addEventListener("click",putMark);
-        }
-
-        var nextIsXFlag = 0;//flag to indicate that the next move is of x or not 
+	<h2 style="display: flex;justify-content: center;">Name: Parth Ghoghari Em.Id : 24DEV052 Date: 02-02-2024</h2>
+	<h2 style="display: flex;justify-content: center;">Task: Tic Tac Toe</h2>
 
 
-        // matrix to store value in table form
-        var matrix = [
-            [0,0,0],
-            [0,0,0],
-            [0,0,0]
-        ];
+	<span class="turnLabel box">Next turn : &nbsp <span id="turn">0</span> </span>
+	<div class="tableContainer">
+
+		<table id="tableMain">
+			<tbody id="tableMainBody">
+				<tr>
+					<td class="cornerCellLeft cellTop" id="1"></td>
+					<td class="cellTop" id="2"></td>
+					<td class="cornerCellRight cellTop" id="3"></td>
+				</tr>
+				<tr>
+					<td class="cornerCellLeft" id="4"></td>
+					<td id="5"></td>
+					<td class="cornerCellRight " id="6"></td>
+				</tr>
+				<tr>
+					<td class="cornerCellLeft  cellBottom" id="7"></td>
+					<td class="cellBottom" id="8"></td>
+					<td class="cornerCellRight cellBottom" id="9"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div style="display: flex;justify-content: space-around; margin-top: 1.5rem;">
+		<span id="gameOver" class="box" style="display: none;">Game Over , Result : <span id="finalScore"></span></span>
+		<span class="box" id="reload" style="display: none; cursor: pointer;" onclick="location.reload()">Play Again</span>
+	</div>
+
+	<script>
+		var tableMainEle = document.getElementById("tableMain");
+		var allTds = tableMainEle.getElementsByTagName("td");
+		for (let i = 0; i < allTds.length; i++) {//to add event listener on all the cells
+			allTds[i].addEventListener("click", putMark);
+		}
+
+		var nextIsXFlag = 0;//flag to indicate that the next move is of x or not 
 
 
-        function fillMatrix(id,mark){//this function will help to put the mark in matrix either 0 or x accordingly 
-            // console.log(id,mark);
-            if(id<4)matrix[0][id-1]=mark;//check in row1
-            else if(id>3 && id<7)matrix[1][id-1-3]=mark;//check in row2
-            else matrix[2][id-1-6]=mark;//check in row3
-            // console.log(matrix);
-        }
+		// matrix to store value in table form
+		var matrix = [
+			[0, 0, 0],
+			[0, 0, 0],
+			[0, 0, 0]
+		];
 
-        var markedCount= 0;//to store the count of total filled cells
 
-        var turnEle = document.getElementById("turn");// label for next turn
+		function fillMatrix(id, mark) {//this function will help to put the mark in matrix either 0 or x accordingly 
+			// console.log(id,mark);
+			if (id < 4) matrix[0][id - 1] = mark;//check in row1
+			else if (id > 3 && id < 7) matrix[1][id - 1 - 3] = mark;//check in row2
+			else matrix[2][id - 1 - 6] = mark;//check in row3
+			// console.log(matrix);
+		}
 
-        function putMark(event){// event object has properties and methods for that event
-            var curTd = document.getElementById(event.target.id);
-            if(nextIsXFlag && curTd.innerText===""){
-                curTd.innerText = "x";
-                nextIsXFlag = 0;
-                fillMatrix(Number(curTd.id),"x");
-                markedCount++;
-                turnEle.innerText = "0";// updating the label for next turn
-            }else if(curTd.innerText===""){
-                curTd.innerText = "0";
-                nextIsXFlag =1;
-                fillMatrix(Number(curTd.id),"0");
-                markedCount++;
-                turnEle.innerText = "x";// updating the label for next turn
-            }
+		var markedCount = 0;//to store the count of total filled cells
 
-            var res = checkMatrix();// to check if game over or not
-            // console.log(res);
-            if(res==="x" || res==="0"){// if res is 0 or x then winner is found 
-                document.getElementById("gameOver").style.display="flex";
-                document.getElementById("finalScore").innerText= res+" won";
-                document.getElementById("reload").style.display ="flex";
-                var allTds = document.getElementsByTagName("td");
-                for (let i = 0; i < allTds.length; i++) {//game is over so removing all the events to avoid any anomaly
-                    allTds[i].removeEventListener("click",putMark)
-                }
-            }
-        }   
+		var turnEle = document.getElementById("turn");// label for next turn
 
-        function checkMatrix(){//this will return the result if game is over
-            if(markedCount===9){//if all marked the draw intially and if after below ifs if winner found then it will be overwrite no anomaly
-                document.getElementById("gameOver").style.display="flex";
-                document.getElementById("finalScore").innerText="draw";
-                document.getElementById("reload").style.display ="flex";
-            }
-            if(matrix[0][0]===matrix[0][1] && matrix[0][1]===matrix[0][2])return matrix[0][0];
-            if(matrix[1][0]===matrix[1][1] && matrix[1][1]===matrix[1][2])return matrix[1][0];
-            if(matrix[2][0]===matrix[2][1] && matrix[2][1]===matrix[2][2])return matrix[2][0];
-            else if(matrix[0][0]===matrix[1][1] && matrix[1][1]===matrix[2][2]) return matrix[0][0];
-            else if(matrix[0][2]===matrix[1][1] && matrix[1][1]===matrix[2][0]) return matrix[0][2];
-            else if(matrix[0][0]===matrix[1][0] && matrix[1][0]===matrix[2][0]) return matrix[0][0];
-            else if(matrix[0][1]===matrix[1][1] && matrix[1][1]===matrix[2][1]) return matrix[0][1];
-            else if(matrix[0][2]===matrix[1][2] && matrix[1][2]===matrix[2][2]) return matrix[0][2];
-            else return 1;
-        }
+		function putMark(event) {// event object has properties and methods for that event
+			var curTd = document.getElementById(event.target.id);
+			if (nextIsXFlag && curTd.innerText === "") {
+				curTd.innerText = "x";
+				nextIsXFlag = 0;
+				fillMatrix(Number(curTd.id), "x");
+				markedCount++;
+				turnEle.innerText = "0";// updating the label for next turn
+			} else if (curTd.innerText === "") {
+				curTd.innerText = "0";
+				nextIsXFlag = 1;
+				fillMatrix(Number(curTd.id), "0");
+				markedCount++;
+				turnEle.innerText = "x";// updating the label for next turn
+			}
 
-    </script>
+			var res = checkMatrix();// to check if game over or not
+			// console.log(res);
+			if (res === "x" || res === "0") {// if res is 0 or x then winner is found 
+				document.getElementById("gameOver").style.display = "flex";
+				document.getElementById("finalScore").innerText = res + " won";
+				document.getElementById("reload").style.display = "flex";
+				var allTds = document.getElementsByTagName("td");
+				for (let i = 0; i < allTds.length; i++) {//game is over so removing all the events to avoid any anomaly
+					allTds[i].removeEventListener("click", putMark)
+				}
+			}
+		}
+
+		function checkMatrix() {//this will return the result if game is over
+			if (markedCount === 9) {//if all marked the draw intially and if after below ifs if winner found then it will be overwrite no anomaly
+				document.getElementById("gameOver").style.display = "flex";
+				document.getElementById("finalScore").innerText = "draw";
+				document.getElementById("reload").style.display = "flex";
+			}
+			if (matrix[0][0] === matrix[0][1] && matrix[0][1] === matrix[0][2]) return matrix[0][0];
+			if (matrix[1][0] === matrix[1][1] && matrix[1][1] === matrix[1][2]) return matrix[1][0];
+			if (matrix[2][0] === matrix[2][1] && matrix[2][1] === matrix[2][2]) return matrix[2][0];
+			else if (matrix[0][0] === matrix[1][1] && matrix[1][1] === matrix[2][2]) return matrix[0][0];
+			else if (matrix[0][2] === matrix[1][1] && matrix[1][1] === matrix[2][0]) return matrix[0][2];
+			else if (matrix[0][0] === matrix[1][0] && matrix[1][0] === matrix[2][0]) return matrix[0][0];
+			else if (matrix[0][1] === matrix[1][1] && matrix[1][1] === matrix[2][1]) return matrix[0][1];
+			else if (matrix[0][2] === matrix[1][2] && matrix[1][2] === matrix[2][2]) return matrix[0][2];
+			else return 1;
+		}
+
+	</script>
 </body>
+
 </html>

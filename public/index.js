@@ -1,10 +1,10 @@
 
-window.onload = async ()=>{
-    var checkAuthFetch = await fetch("/api/checkAuth",{
+window.onload = async () => {
+	var checkAuthFetch = await fetch("/api/checkAuth", {
 
-    }) 
-    var checkAuthFetchResult = await checkAuthFetch.json();
+	})
+	var checkAuthFetchResult = await checkAuthFetch.json();
 
-    // console.log(checkAuthFetchResult);
+	// console.log(checkAuthFetchResult);
 }
 

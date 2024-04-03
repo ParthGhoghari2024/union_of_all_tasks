@@ -2,119 +2,117 @@
 <html>
 
 <head>
-    <title>Result Page</title>
-    <link rel="stylesheet" type="text/css" href="/student_grid/main.css">
+	<title>Result Page</title>
+	<link rel="stylesheet" type="text/css" href="/student_grid/main.css">
 </head>
 
 <body>
-    <%- include("../nav") %>
+	<%- include("../nav") %>
 
-    <div class="container">
+		<div class="container">
 
-        <table id="resultTable">
-            <thead>
-                <tr>
-                    <td>Student Id</td>
-                    <td>Student Name</td>
-                    <td>Exam Name</td>
-                    <td>Subject Name</td>
-                    <td>Practical Total Marks</td>
-                    <td>Practical Optained Marks</td>
-                    <td>Theory Total Marks</td>
-                    <td>Theory Optained Marks</td>
-                    <td>Total Marks</td>
-                    <td>Total Optained Marks</td>
-                </tr>
-            </thead>
-            <tbody>
+			<table id="resultTable">
+				<thead>
+					<tr>
+						<td>Student Id</td>
+						<td>Student Name</td>
+						<td>Exam Name</td>
+						<td>Subject Name</td>
+						<td>Practical Total Marks</td>
+						<td>Practical Optained Marks</td>
+						<td>Theory Total Marks</td>
+						<td>Theory Optained Marks</td>
+						<td>Total Marks</td>
+						<td>Total Optained Marks</td>
+					</tr>
+				</thead>
+				<tbody>
 
-                <% totalPracOfFinal=0; totalOptainedPracOfFinal=0 %>
-                    <% totalMarks=0; totalOptainedMarks=0;%>
-                        <% for (let i=0; i < data.length; i++) { %>
-                            <%if(data[i].examName==="final"){ totalPracOfFinal +=data[i].pracTotalMarks;
-                                totalOptainedPracOfFinal +=data[i].pracOptainedMarks; }%>
-                                <tr>
-                                    <% if(i==0){ %>
-                                        <td rowspan="18">
-                                            <%=data[i].id %>
-                                        </td>
-                                        <td rowspan="18">
-                                            <%=data[i].name %>
-                                        </td>
-                                        <% } %>
-                                            <% if(i%6==0 ){%>
-                                                <td rowspan="6">
-                                                    <%= data[i].examName %>
-                                                </td>
-                                                <% }%>
-                                                    <td>
-                                                        <%= data[i].subName %>
-                                                    </td>
-                                                    <td>
-                                                        <%=data[i].pracTotalMarks %>
-                                                    </td>
-                                                    <td>
-                                                        <%=data[i].pracOptainedMarks %>
-                                                    </td>
-                                                    <td>
-                                                        <%=data[i].theoryTotalMarks %>
-                                                    </td>
-                                                    <td>
-                                                        <%=data[i].theoryOptainedMarks %>
-                                                    </td>
-                                                    <td>
-                                                        <%=data[i].pracTotalMarks +data[i].theoryTotalMarks %>
-                                                            <% totalMarks +=data[i].pracTotalMarks
-                                                                +data[i].theoryTotalMarks %>
-                                                    </td>
-                                                    <td>
-                                                        <%=data[i].pracOptainedMarks +data[i].theoryOptainedMarks %>
-                                                            <% totalOptainedMarks +=data[i].pracOptainedMarks
-                                                                +data[i].theoryOptainedMarks %>
-                                                    </td>
-                                </tr>
-                                <% } %>
-                                    <tr>
-                                        <td>Grand Total</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>
-                                            <%=totalMarks %>
-                                        </td>
-                                        <td>
-                                            <%= totalOptainedMarks %>
-                                        </td>
-                                    </tr>
-            </tbody>
-        </table>
+					<% totalPracOfFinal=0; totalOptainedPracOfFinal=0 %>
+						<% totalMarks=0; totalOptainedMarks=0;%>
+							<% for (let i=0; i < data.length; i++) { %>
+								<%if(data[i].examName==="final"){ totalPracOfFinal +=data[i].pracTotalMarks; totalOptainedPracOfFinal
+									+=data[i].pracOptainedMarks; }%>
+									<tr>
+										<% if(i==0){ %>
+											<td rowspan="18">
+												<%=data[i].id %>
+											</td>
+											<td rowspan="18">
+												<%=data[i].name %>
+											</td>
+											<% } %>
+												<% if(i%6==0 ){%>
+													<td rowspan="6">
+														<%= data[i].examName %>
+													</td>
+													<% }%>
+														<td>
+															<%= data[i].subName %>
+														</td>
+														<td>
+															<%=data[i].pracTotalMarks %>
+														</td>
+														<td>
+															<%=data[i].pracOptainedMarks %>
+														</td>
+														<td>
+															<%=data[i].theoryTotalMarks %>
+														</td>
+														<td>
+															<%=data[i].theoryOptainedMarks %>
+														</td>
+														<td>
+															<%=data[i].pracTotalMarks +data[i].theoryTotalMarks %>
+																<% totalMarks +=data[i].pracTotalMarks +data[i].theoryTotalMarks %>
+														</td>
+														<td>
+															<%=data[i].pracOptainedMarks +data[i].theoryOptainedMarks %>
+																<% totalOptainedMarks +=data[i].pracOptainedMarks +data[i].theoryOptainedMarks %>
+														</td>
+									</tr>
+									<% } %>
+										<tr>
+											<td>Grand Total</td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td>
+												<%=totalMarks %>
+											</td>
+											<td>
+												<%= totalOptainedMarks %>
+											</td>
+										</tr>
+				</tbody>
+			</table>
 
-    </div>
-    <table style="display: flex;justify-content: center;">
-            <tr>
-                <td colspan="3">Attendance Report</td>
-            </tr>
-            <tr>
-                <td>Days present</td>
-                <td>Total days</td>
-                <td>Percentage</td>
-            </tr>
-            <tr>
-                <td>
-                    <%= AttedanceByIdAndMonth[0].presentDays %>
-                </td>
-                <td>
-                    <%= AttedanceByIdAndMonth[0].totalDays %>
-                </td>
-                <td>
-                    <%= parseFloat((AttedanceByIdAndMonth[0].presentDays/AttedanceByIdAndMonth[0].totalDays)*100).toFixed(2) %>%
-                </td>
-            </tr>
-    </table>
+		</div>
+		<table style="display: flex;justify-content: center;">
+			<tr>
+				<td colspan="3">Attendance Report</td>
+			</tr>
+			<tr>
+				<td>Days present</td>
+				<td>Total days</td>
+				<td>Percentage</td>
+			</tr>
+			<tr>
+				<td>
+					<%= AttedanceByIdAndMonth[0].presentDays %>
+				</td>
+				<td>
+					<%= AttedanceByIdAndMonth[0].totalDays %>
+				</td>
+				<td>
+					<%= parseFloat((AttedanceByIdAndMonth[0].presentDays/AttedanceByIdAndMonth[0].totalDays)*100).toFixed(2) %>%
+				</td>
+			</tr>
+		</table>
 
 
 

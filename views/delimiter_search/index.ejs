@@ -2,80 +2,80 @@
 <html>
 
 <head>
-    <title>Delimiter Index Page</title>
-    <link rel="stylesheet" type="text/css" href="delimiter_search_public/main.css">
+	<title>Delimiter Index Page</title>
+	<link rel="stylesheet" type="text/css" href="delimiter_search_public/main.css">
 </head>
 
 <body>
-    <%- include("../nav") %>
+	<%- include("../nav") %>
 
-    <div style="display: flex;flex-direction: row;">
-        <table style="height: 10rem;width: 10rem;">
-            <tr class="tableHeadTr">
-                <td>
-                    column name
-                </td>
-                <td>
-                    symbol
-                </td>
-            </tr>
-            <tr>
-                <td>firstname</td>
-                <td>_</td>
-            </tr>
-            <tr>
-                <td>lastname</td>
-                <td>^</td>
-            </tr>
-            <tr>
-                <td>email</td>
-                <td>$</td>
-            </tr>
-            <tr>
-                <td>email2</td>
-                <td>{</td>
-            </tr>
-            <tr>
-                <td>country</td>
-                <td>}</td>
-            </tr>
-            <tr>
-                <td>city</td>
-                <td>:</td>
-            </tr>
-        </table>
-        <div>
-            <form action=""  id="form1" method="get">
-                <label for="id" >searchId:</label>
-                <input type="text" name="search" tabindex="1" id="formSearch" style="width: 40rem;" autofocus>
-                <input type="submit" value="go" tabindex="2" id="searchId" class="searchBtn">    
-            </form>
-            <table>
-                <thead>
-                    <tr>
-                        <% metaData.forEach((obj)=>{ %>
-                            <td>
-                                <%=obj.name%>
-                            </td>
-                            <% }) %>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% for(var i=0;i < data.length;i++){ %>
-                        <tr>
-                            <% for(var key in data[i]){ %>
-                                <td>
-                                    <%=data[i][key] %>
-                                </td>
-                                <% } %>
-                        </tr>
-                        <% } %>
-                </tbody>
-    
-            </table>
+		<div style="display: flex;flex-direction: row;">
+			<table style="height: 10rem;width: 10rem;">
+				<tr class="tableHeadTr">
+					<td>
+						column name
+					</td>
+					<td>
+						symbol
+					</td>
+				</tr>
+				<tr>
+					<td>firstname</td>
+					<td>_</td>
+				</tr>
+				<tr>
+					<td>lastname</td>
+					<td>^</td>
+				</tr>
+				<tr>
+					<td>email</td>
+					<td>$</td>
+				</tr>
+				<tr>
+					<td>email2</td>
+					<td>{</td>
+				</tr>
+				<tr>
+					<td>country</td>
+					<td>}</td>
+				</tr>
+				<tr>
+					<td>city</td>
+					<td>:</td>
+				</tr>
+			</table>
+			<div>
+				<form action="" id="form1" method="get">
+					<label for="id">searchId:</label>
+					<input type="text" name="search" tabindex="1" id="formSearch" style="width: 40rem;" autofocus>
+					<input type="submit" value="go" tabindex="2" id="searchId" class="searchBtn">
+				</form>
+				<table>
+					<thead>
+						<tr>
+							<% metaData.forEach((obj)=>{ %>
+								<td>
+									<%=obj.name%>
+								</td>
+								<% }) %>
+						</tr>
+					</thead>
+					<tbody>
+						<% for(var i=0;i < data.length;i++){ %>
+							<tr>
+								<% for(var key in data[i]){ %>
+									<td>
+										<%=data[i][key] %>
+									</td>
+									<% } %>
+							</tr>
+							<% } %>
+					</tbody>
 
-        </div>
-    </div>
+				</table>
+
+			</div>
+		</div>
 
 
 </body>

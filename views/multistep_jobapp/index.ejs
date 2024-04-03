@@ -2,66 +2,66 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index Page</title>
-    <link rel="stylesheet" href="/multistep_jobapp/main.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Index Page</title>
+	<link rel="stylesheet" href="/multistep_jobapp/main.css">
 </head>
 
 <body>
-    <%- include("../nav") %>
+	<%- include("../nav") %>
 
-    <div class="controllerContainer">
+		<div class="controllerContainer">
 
-    </div>
-    <form action="" id="form">
+		</div>
+		<form action="" id="form">
 
-        <div class="formMainContainer">
-
-
-            <div style="display: flex; gap:1rem">
-                <input type="text" name="searchId" id="idText" placeholder="Enter id for update ">
-                <input type="button" value="Update Employee (ex. id 118)" onclick="goToUpdate()">
-                <input type="hidden" name="id" id="id" value="-1">
-                <input type="button" value="insert new" onclick="window.location = '/multistep-jobapp'">
-            </div>
-            <span>Mode : <span id="actionText">Insert</span> </span>
-
-            <table class="inputTable basicDetailsTable" id="basicDetailsTable" style="display: none;">
-
-            </table>
-
-            <table class="inputTable" id="eduTable" style="display: none;">
-            </table>
-            <table class="inputTable" id="workExTable" style="display: none;">
-            </table>
-
-            <table class="inputTable" id="langTable" style="display: none;">
-            </table>
-
-            <table class="inputTable" id="techTable" style="display: none;">
-            </table>
-
-            <table class="inputTable" id="refTable" style="display: none;">
-            </table>
-            <table class="inputTable" id="preferencesTable" style="display: none;">
-            </table>
-
-             <span id="resultOfSubmitTag" style="color: green; font-size: 1.5rem;"></span>
-             <span id="errorMsg" style="color: red; font-size: 1.5rem;"></span>
+			<div class="formMainContainer">
 
 
+				<div style="display: flex; gap:1rem">
+					<input type="text" name="searchId" id="idText" placeholder="Enter id for update ">
+					<input type="button" value="Update Employee (ex. id 118)" onclick="goToUpdate()">
+					<input type="hidden" name="id" id="id" value="-1">
+					<input type="button" value="insert new" onclick="window.location = '/multistep-jobapp'">
+				</div>
+				<span>Mode : <span id="actionText">Insert</span> </span>
 
-            <div class="formnavigationController">
-                <input type="button" value="Prev" id="prevBtn" class="slideBtn" onclick="changeSlide(0)">
-                <input type="button" value="Next" id="nextBtn" class="slideBtn" onclick="changeSlide(1)">
-            </div>
+				<table class="inputTable basicDetailsTable" id="basicDetailsTable" style="display: none;">
+
+				</table>
+
+				<table class="inputTable" id="eduTable" style="display: none;">
+				</table>
+				<table class="inputTable" id="workExTable" style="display: none;">
+				</table>
+
+				<table class="inputTable" id="langTable" style="display: none;">
+				</table>
+
+				<table class="inputTable" id="techTable" style="display: none;">
+				</table>
+
+				<table class="inputTable" id="refTable" style="display: none;">
+				</table>
+				<table class="inputTable" id="preferencesTable" style="display: none;">
+				</table>
+
+				<span id="resultOfSubmitTag" style="color: green; font-size: 1.5rem;"></span>
+				<span id="errorMsg" style="color: red; font-size: 1.5rem;"></span>
 
 
-        </div>
-    </form>
 
-    <script src="/multistep_jobapp/index.js"></script>
+				<div class="formnavigationController">
+					<input type="button" value="Prev" id="prevBtn" class="slideBtn" onclick="changeSlide(0)">
+					<input type="button" value="Next" id="nextBtn" class="slideBtn" onclick="changeSlide(1)">
+				</div>
+
+
+			</div>
+		</form>
+
+		<script src="/multistep_jobapp/index.js"></script>
 </body>
 
 </html>

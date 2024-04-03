@@ -2,24 +2,28 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Active User Page</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Active User Page</title>
 </head>
 
 <body>
-    <div style="display: flex;flex-direction: column; align-items: center;">
-        <%if(error===0) {%>
-            <span>For Email <span style="font-size: 1.2rem; color: white;background: black; padding: 0 1rem;"><%= email %></span> Account activated </span>
+	<div style="display: flex;flex-direction: column; align-items: center;">
+		<%if(error===0) {%>
+			<span>For Email <span style="font-size: 1.2rem; color: white;background: black; padding: 0 1rem;">
+					<%= email %>
+				</span> Account activated </span>
 
-            <span>Go to <a href="/">Login</a></span>
-        <% }else {%>
-            <span>For Email <span style="font-size: 1.2rem; color: white;background: black; padding: 0 1rem;"><%= email %></span> Activation Time Failed </span>
-            <span>registered details is no longer valid </span>
-            <span> <a href="/register">Register Again</a></span>
-        <% } %>
+			<span>Go to <a href="/">Login</a></span>
+			<% }else {%>
+				<span>For Email <span style="font-size: 1.2rem; color: white;background: black; padding: 0 1rem;">
+						<%= email %>
+					</span> Activation Time Failed </span>
+				<span>registered details is no longer valid </span>
+				<span> <a href="/register">Register Again</a></span>
+				<% } %>
 
-    </div>
+	</div>
 
 
 </body>

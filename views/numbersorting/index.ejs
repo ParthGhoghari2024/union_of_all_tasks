@@ -1,146 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sort using JS</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Sort using JS</title>
 </head>
 
 <style>
-    body{
-        background: lightseagreen;
-    }
-    .numberInputGroup , .numberOutputGroup{
-        display: flex;
-        justify-content:space-around;
-        width: 35%;
-        margin: 10px auto;
-    }
-    .numberInputGroup input[type=text]{
-        height: 2rem;
-        width: 4rem;
-    }
-    .box{
-        border: 2px solid;
-        font-size: 1.2rem;
-        align-items: center;
-        background: lightgoldenrodyellow;
-        border: 2px solid black;
-    }
-    #sortBtn{
-        margin: 0 auto ;
-        background: lightcoral;
-        border: 2px solid black;
-        font-size: 1.2rem;
-        cursor: pointer;
-        padding: 5px;
-    }
-    .numOutput{
-        height: 2rem;
-        width: 4rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .lable{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: lightcoral;
-    }
+	body {
+		background: lightseagreen;
+	}
+
+	.numberInputGroup,
+	.numberOutputGroup {
+		display: flex;
+		justify-content: space-around;
+		width: 35%;
+		margin: 10px auto;
+	}
+
+	.numberInputGroup input[type=text] {
+		height: 2rem;
+		width: 4rem;
+	}
+
+	.box {
+		border: 2px solid;
+		font-size: 1.2rem;
+		align-items: center;
+		background: lightgoldenrodyellow;
+		border: 2px solid black;
+	}
+
+	#sortBtn {
+		margin: 0 auto;
+		background: lightcoral;
+		border: 2px solid black;
+		font-size: 1.2rem;
+		cursor: pointer;
+		padding: 5px;
+	}
+
+	.numOutput {
+		height: 2rem;
+		width: 4rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.lable {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background: lightcoral;
+	}
 </style>
+
 <body>
-    
-    
-    <h2 style="display: flex;justify-content: center;">Name: Parth Ghoghari Em.Id : 24DEV052 Date: 05-02-2024</h2>
-    <h2 style="display: flex;justify-content: center;">Task: Sorting Using Javascript</h2>
 
 
-    <div class="numberInputGroup" id="numInputs">
-        <span  class="box lable"  >Enter  Numbers : &nbsp</span>
-        <input type="text" class="box numInput" name="" id="">
-        <input type="text" class="box numInput" name="" id="">
-        <input type="text" class="box numInput" name="" id="">
-        <input type="text" class="box numInput" name="" id="">
-        <input type="text" class="box numInput" name="" id="">
-        <input id="sortBtn" type="button" value="sort" onclick="sortNumbers()">
-    </div>
-    <div class="numberOutputGroup" id="numOutputs" style="display: none;">
-        <span  class="box lable"  >Sorted Numbers : &nbsp</span>
-        <span  class="box numOutput"> 1</span>
-        <span  class="box numOutput"> 2</span>
-        <span  class="box numOutput"> 3</span>
-        <span  class="box numOutput"> 4</span>
-        <span  class="box numOutput"> 5</span>
-    </div>
-
-    <script>
-
-        function sortNumbers(){
-            
-            var numberInputGroup = document.getElementById("numInputs");
-    
-            var numbers = [];
-    
-            var numberInputArray = numberInputGroup.getElementsByClassName("numInput");
-    
-            for (let i = 0; i < numberInputArray.length; i++) {
-                numbers[i] = Number(numberInputArray[i].value);
-            }
-    
-
-            //SELECTION SORT    
-            var temp=0;
-            var t=0;
-
-            for (let i = 0; i < numbers.length; i++) {
-                temp=i;
-                for (let j = i; j < numbers.length; j++) {
-                    if(numbers[j]<numbers[temp]){
-                        temp=j;
-                    }
-                }
-                //swapping 
-                t = numbers[i];
-                numbers[i] = numbers[temp];
-                numbers[temp]=t;
-            }
+	<h2 style="display: flex;justify-content: center;">Name: Parth Ghoghari Em.Id : 24DEV052 Date: 05-02-2024</h2>
+	<h2 style="display: flex;justify-content: center;">Task: Sorting Using Javascript</h2>
 
 
+	<div class="numberInputGroup" id="numInputs">
+		<span class="box lable">Enter Numbers : &nbsp</span>
+		<input type="text" class="box numInput" name="" id="">
+		<input type="text" class="box numInput" name="" id="">
+		<input type="text" class="box numInput" name="" id="">
+		<input type="text" class="box numInput" name="" id="">
+		<input type="text" class="box numInput" name="" id="">
+		<input id="sortBtn" type="button" value="sort" onclick="sortNumbers()">
+	</div>
+	<div class="numberOutputGroup" id="numOutputs" style="display: none;">
+		<span class="box lable">Sorted Numbers : &nbsp</span>
+		<span class="box numOutput"> 1</span>
+		<span class="box numOutput"> 2</span>
+		<span class="box numOutput"> 3</span>
+		<span class="box numOutput"> 4</span>
+		<span class="box numOutput"> 5</span>
+	</div>
 
-            //INSERTION SORT 
-            // var temp=0;
+	<script>
 
-            // var j=0;
-            // // 3 4 2 
-            // for (let i = 1; i < numbers.length; i++) {
-            //     temp = numbers[i];
-            //     j=i-1;
-            //     while( j>=0 && numbers[j]>temp ){ 
-            //         numbers[j+1]=numbers[j];
-            //         j--;
-            //     }
-            //     numbers[j+1]=temp;
-            // }
+		function sortNumbers() {
+
+			var numberInputGroup = document.getElementById("numInputs");
+
+			var numbers = [];
+
+			var numberInputArray = numberInputGroup.getElementsByClassName("numInput");
+
+			for (let i = 0; i < numberInputArray.length; i++) {
+				numbers[i] = Number(numberInputArray[i].value);
+			}
 
 
-            var numberOutputGroup = document.getElementById("numOutputs");
+			//SELECTION SORT    
+			var temp = 0;
+			var t = 0;
 
-            numberOutputGroup.style.display = "flex"
-
-            var numberOutputSpans = numberOutputGroup.getElementsByClassName("numOutput");
-
-            for (let i = 0; i < numberOutputSpans.length; i++) {
-                numberOutputSpans[i].innerText = numbers[i];
-            }
-
-        }
+			for (let i = 0; i < numbers.length; i++) {
+				temp = i;
+				for (let j = i; j < numbers.length; j++) {
+					if (numbers[j] < numbers[temp]) {
+						temp = j;
+					}
+				}
+				//swapping 
+				t = numbers[i];
+				numbers[i] = numbers[temp];
+				numbers[temp] = t;
+			}
 
 
 
+			//INSERTION SORT 
+			// var temp=0;
 
-    </script>
+			// var j=0;
+			// // 3 4 2 
+			// for (let i = 1; i < numbers.length; i++) {
+			//     temp = numbers[i];
+			//     j=i-1;
+			//     while( j>=0 && numbers[j]>temp ){ 
+			//         numbers[j+1]=numbers[j];
+			//         j--;
+			//     }
+			//     numbers[j+1]=temp;
+			// }
+
+
+			var numberOutputGroup = document.getElementById("numOutputs");
+
+			numberOutputGroup.style.display = "flex"
+
+			var numberOutputSpans = numberOutputGroup.getElementsByClassName("numOutput");
+
+			for (let i = 0; i < numberOutputSpans.length; i++) {
+				numberOutputSpans[i].innerText = numbers[i];
+			}
+
+		}
+
+
+
+
+	</script>
 
 
 </body>
+
 </html>

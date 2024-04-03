@@ -2,161 +2,165 @@
 <html>
 
 <head>
-    <title>List user Page</title>
-    <link rel="stylesheet" type="text/css" href="/student_grid/main.css">
+	<title>List user Page</title>
+	<link rel="stylesheet" type="text/css" href="/student_grid/main.css">
 </head>
 
 <body>
-    <%- include("../nav") %>
+	<%- include("../nav") %>
 
-    <%- include('attendancePaginationController',{currentPage : currentPage,totalPages:totalPages}) -%>
-        <div class="container">
-            <div class="searchBox">
-                <form action=""  id="form1" method="get">
-                    <label for="id">Id:</label>
-                    <input type="text" name="id" tabindex="1" id="formSearchId" autofocus>
-                    <input type="submit" value="go" tabindex="2" id="searchId" class="searchBtn">    
-                    <span class="showMoreTag" tabindex="3">show More</span>
-                </form>
-                <div id="moreSearchContainer">
-                    <form  id="moreSearch" action="" method="get">
-                        <label for="id">First name:</label>
-                        <input type="text"  id="inputFName" name="firstname"   >
-                        <label for="id">Last name:</label>
-                        <input type="text"  id="inputLName"name="lastname"   >
-                        <label for="id">present days:</label>
-                        <input type="text"  id="inputPresentdays"name="presentdays"   >
-                        <label for="id">Percentage:</label>
-                        <input type="text" id="inputPercentage" name="percentage" >
-                        <select name="andOr" id="andOrBy">
-                            <option value="and">AND</option>
-                            <option value="or">OR</option>
-                        </select>
-                        <input type="submit" value="go" class="searchBtn">   
-                    </form>
-                    <span>note :-- AND , OR -- will work only in combination with either (firstname AND/OR lastname) or (presentDays AND/OR percentage)</span>
+		<%- include('attendancePaginationController',{currentPage : currentPage,totalPages:totalPages}) -%>
+			<div class="container">
+				<div class="searchBox">
+					<form action="" id="form1" method="get">
+						<label for="id">Id:</label>
+						<input type="text" name="id" tabindex="1" id="formSearchId" autofocus>
+						<input type="submit" value="go" tabindex="2" id="searchId" class="searchBtn">
+						<span class="showMoreTag" tabindex="3">show More</span>
+					</form>
+					<div id="moreSearchContainer">
+						<form id="moreSearch" action="" method="get">
+							<label for="id">First name:</label>
+							<input type="text" id="inputFName" name="firstname">
+							<label for="id">Last name:</label>
+							<input type="text" id="inputLName" name="lastname">
+							<label for="id">present days:</label>
+							<input type="text" id="inputPresentdays" name="presentdays">
+							<label for="id">Percentage:</label>
+							<input type="text" id="inputPercentage" name="percentage">
+							<select name="andOr" id="andOrBy">
+								<option value="and">AND</option>
+								<option value="or">OR</option>
+							</select>
+							<input type="submit" value="go" class="searchBtn">
+						</form>
+						<span>note :-- AND , OR -- will work only in combination with either (firstname AND/OR lastname) or
+							(presentDays AND/OR percentage)</span>
 
-                </div>
-            </div>
+					</div>
+				</div>
 
-            <table>
-                <tr class="tableHeadTr">
-                    <td>
-                        <a tabindex="4" href="/student-grid/attendanceGrid?page= <%= 1 %>&order=id&asc=<%=ascQuery=='asc'?'desc' : 'asc' %>&firstname=<%=searchMoreQuery.firstname%>&lastname=<%=searchMoreQuery.lastname%>&presentdays=<%=searchMoreQuery.presentdays%>&percentage=<%=searchMoreQuery.percentage%>&andOr=<%=searchMoreQuery.andOr%>">
-                            Student Id
-                            <% if( orderBy==="id"  ){ %>
-                                <span class="<%= (ascQuery==='asc')? 'active' : '' %>"> ↑</span>
-                                <span class="<%= (ascQuery!=='asc')? 'active' : '' %>" > ↓</span>
-                            <% } %>
-                        </a>
-                    </td>
+				<table>
+					<tr class="tableHeadTr">
+						<td>
+							<a tabindex="4"
+								href="/student-grid/attendanceGrid?page= <%= 1 %>&order=id&asc=<%=ascQuery=='asc'?'desc' : 'asc' %>&firstname=<%=searchMoreQuery.firstname%>&lastname=<%=searchMoreQuery.lastname%>&presentdays=<%=searchMoreQuery.presentdays%>&percentage=<%=searchMoreQuery.percentage%>&andOr=<%=searchMoreQuery.andOr%>">
+								Student Id
+								<% if( orderBy==="id" ){ %>
+									<span class="<%= (ascQuery==='asc')? 'active' : '' %>"> ↑</span>
+									<span class="<%= (ascQuery!=='asc')? 'active' : '' %>"> ↓</span>
+									<% } %>
+							</a>
+						</td>
 
-                    <td>
-                        <a tabindex="5" href="/student-grid/attendanceGrid?page= <%= 1 %>&order=name&asc=<%=ascQuery=='asc'?'desc' : 'asc' %>&firstname=<%=searchMoreQuery.firstname%>&lastname=<%=searchMoreQuery.lastname%>&presentdays=<%=searchMoreQuery.presentdays%>&percentage=<%=searchMoreQuery.percentage%>&andOr=<%=searchMoreQuery.andOr%>">
-                            Name
-                            <% if( orderBy==="name"  ){ %>
-                                <span class="<%= (ascQuery==='asc')? 'active' : '' %>"> ↑</span>
-                                <span class="<%= (ascQuery!=='asc')? 'active' : '' %>" > ↓</span>
-                            <% } %>
-                        </a>
-                    </td>
-                    <td>
-                        <a tabindex="6"
-                            href="/student-grid/attendanceGrid?page= <%= 1 %>&order=presentDays&asc=<%=ascQuery=='asc'?'desc' : 'asc' %>&firstname=<%=searchMoreQuery.firstname%>&lastname=<%=searchMoreQuery.lastname%>&presentdays=<%=searchMoreQuery.presentdays%>&percentage=<%=searchMoreQuery.percentage%>&andOr=<%=searchMoreQuery.andOr%>">
-                            Present Days
-                            <% if( orderBy==="presentDays"  ){ %>
-                                <span class="<%= (ascQuery==='asc')? 'active' : '' %>"> ↑</span>
-                                <span class="<%= (ascQuery!=='asc')? 'active' : '' %>" > ↓</span>
-                            <% } %>
-                        </a></td>
-                    <td>
-                        <a tabindex="7"
-                            href="/student-grid/attendanceGrid?page= <%= 1 %>&order=percentage&asc=<%=ascQuery=='asc'?'desc' : 'asc' %>&firstname=<%=searchMoreQuery.firstname%>&lastname=<%=searchMoreQuery.lastname%>&presentdays=<%=searchMoreQuery.presentdays%>&percentage=<%=searchMoreQuery.percentage%>&andOr=<%=searchMoreQuery.andOr%>">
-                            Percentage
-                            <% if( orderBy==="percentage"  ){ %>
-                                <span class="<%= (ascQuery==='asc')? 'active' : '' %>"> ↑</span>
-                                <span class="<%= (ascQuery!=='asc')? 'active' : '' %>" > ↓</span>
-                            <% } %>
-                        </a>
-                    </td>
-                </tr>
-                <% data && data.forEach((obj)=>{ %>
-                    <tr>
-                        <td>
-                            <%=obj.id %>
-                        </td>
-                        <td>
-                            <%=obj.name %>
-                        </td>
-                        <td>
-                            <%=obj.presentDays %>
-                        </td>
-                        <td>
-                            <%= parseFloat(obj.presentDays/daysOfMonth * 100).toFixed(2) %>%
-                        </td>
-                    </tr>
-                    <% })%>
-            </table>
-        </div>
+						<td>
+							<a tabindex="5"
+								href="/student-grid/attendanceGrid?page= <%= 1 %>&order=name&asc=<%=ascQuery=='asc'?'desc' : 'asc' %>&firstname=<%=searchMoreQuery.firstname%>&lastname=<%=searchMoreQuery.lastname%>&presentdays=<%=searchMoreQuery.presentdays%>&percentage=<%=searchMoreQuery.percentage%>&andOr=<%=searchMoreQuery.andOr%>">
+								Name
+								<% if( orderBy==="name" ){ %>
+									<span class="<%= (ascQuery==='asc')? 'active' : '' %>"> ↑</span>
+									<span class="<%= (ascQuery!=='asc')? 'active' : '' %>"> ↓</span>
+									<% } %>
+							</a>
+						</td>
+						<td>
+							<a tabindex="6"
+								href="/student-grid/attendanceGrid?page= <%= 1 %>&order=presentDays&asc=<%=ascQuery=='asc'?'desc' : 'asc' %>&firstname=<%=searchMoreQuery.firstname%>&lastname=<%=searchMoreQuery.lastname%>&presentdays=<%=searchMoreQuery.presentdays%>&percentage=<%=searchMoreQuery.percentage%>&andOr=<%=searchMoreQuery.andOr%>">
+								Present Days
+								<% if( orderBy==="presentDays" ){ %>
+									<span class="<%= (ascQuery==='asc')? 'active' : '' %>"> ↑</span>
+									<span class="<%= (ascQuery!=='asc')? 'active' : '' %>"> ↓</span>
+									<% } %>
+							</a>
+						</td>
+						<td>
+							<a tabindex="7"
+								href="/student-grid/attendanceGrid?page= <%= 1 %>&order=percentage&asc=<%=ascQuery=='asc'?'desc' : 'asc' %>&firstname=<%=searchMoreQuery.firstname%>&lastname=<%=searchMoreQuery.lastname%>&presentdays=<%=searchMoreQuery.presentdays%>&percentage=<%=searchMoreQuery.percentage%>&andOr=<%=searchMoreQuery.andOr%>">
+								Percentage
+								<% if( orderBy==="percentage" ){ %>
+									<span class="<%= (ascQuery==='asc')? 'active' : '' %>"> ↑</span>
+									<span class="<%= (ascQuery!=='asc')? 'active' : '' %>"> ↓</span>
+									<% } %>
+							</a>
+						</td>
+					</tr>
+					<% data && data.forEach((obj)=>{ %>
+						<tr>
+							<td>
+								<%=obj.id %>
+							</td>
+							<td>
+								<%=obj.name %>
+							</td>
+							<td>
+								<%=obj.presentDays %>
+							</td>
+							<td>
+								<%= parseFloat(obj.presentDays/daysOfMonth * 100).toFixed(2) %>%
+							</td>
+						</tr>
+						<% })%>
+				</table>
+			</div>
 
-        <script>
+			<script>
 
-            document.getElementById("form1").addEventListener("submit",(e)=>{
-                e.preventDefault();
-                const query = new URLSearchParams(window.location.search);
-                query.set("id",document.getElementById("formSearchId").value)
-                query.set("firstname","")
-                query.set("lastname","")
-                query.set("presentdays","")
-                query.set("percentage","")
-                query.set("andOr","")
-                query.set("page",1)
+				document.getElementById("form1").addEventListener("submit", (e) => {
+					e.preventDefault();
+					const query = new URLSearchParams(window.location.search);
+					query.set("id", document.getElementById("formSearchId").value)
+					query.set("firstname", "")
+					query.set("lastname", "")
+					query.set("presentdays", "")
+					query.set("percentage", "")
+					query.set("andOr", "")
+					query.set("page", 1)
 
-                window.location.href = window.location.href.split("?")[0]+"?"+query.toString() 
-            })
-            document.getElementById("moreSearch").addEventListener("submit",(e)=>{
-                e.preventDefault();
-                const query = new URLSearchParams(window.location.search);
-                query.set("firstname",document.getElementById("inputFName").value)
-                query.set("lastname",document.getElementById("inputLName").value)
-                query.set("presentdays",document.getElementById("inputPresentdays").value)
-                query.set("percentage",document.getElementById("inputPercentage").value)
-                query.set("andOr",document.getElementById("andOrBy").value)
-                query.set("page",1)
-                query.set("id","")
-                window.location.href = window.location.href.split("?")[0]+"?"+query.toString() 
-            })
-            window.onload = ()=>{
-                var showMoreTag = document.getElementsByClassName("showMoreTag")[0];
-                showMoreTag.addEventListener("click",()=>{
-                    var moreSearchContainer =document.getElementById("moreSearchContainer")
-                    moreSearchContainer.classList.toggle("showMoreSearchContainer")
-                })
+					window.location.href = window.location.href.split("?")[0] + "?" + query.toString()
+				})
+				document.getElementById("moreSearch").addEventListener("submit", (e) => {
+					e.preventDefault();
+					const query = new URLSearchParams(window.location.search);
+					query.set("firstname", document.getElementById("inputFName").value)
+					query.set("lastname", document.getElementById("inputLName").value)
+					query.set("presentdays", document.getElementById("inputPresentdays").value)
+					query.set("percentage", document.getElementById("inputPercentage").value)
+					query.set("andOr", document.getElementById("andOrBy").value)
+					query.set("page", 1)
+					query.set("id", "")
+					window.location.href = window.location.href.split("?")[0] + "?" + query.toString()
+				})
+				window.onload = () => {
+					var showMoreTag = document.getElementsByClassName("showMoreTag")[0];
+					showMoreTag.addEventListener("click", () => {
+						var moreSearchContainer = document.getElementById("moreSearchContainer")
+						moreSearchContainer.classList.toggle("showMoreSearchContainer")
+					})
 
-                const query = new URLSearchParams(window.location.search);
-                
-                const firstnameQuery = query.get("firstname");
-                const lastnameQuery = query.get("lastname");
-                const presentdaysQuery = query.get("presentdays");
-                const percentageQuery = query.get("percentage")
+					const query = new URLSearchParams(window.location.search);
 
-                const firstnameInput = document.getElementById("inputFName");
-                const lastnameInput = document.getElementById("inputLName");
-                const presentdaysInput =  document.getElementById("inputPresentdays");
-                const percentageInput = document.getElementById("inputPercentage")
+					const firstnameQuery = query.get("firstname");
+					const lastnameQuery = query.get("lastname");
+					const presentdaysQuery = query.get("presentdays");
+					const percentageQuery = query.get("percentage")
 
-                if(firstnameQuery || lastnameQuery || presentdaysQuery || percentageQuery){
-                    var moreSearchContainer =document.getElementById("moreSearchContainer")
-                    moreSearchContainer.classList.add("showMoreSearchContainer");
-                    firstnameInput.value = firstnameQuery || "";
-                    lastnameInput.value = lastnameQuery || "";
-                    presentdaysInput.value = presentdaysQuery || "";
-                    percentageInput.value = percentageQuery || "";
-                }
+					const firstnameInput = document.getElementById("inputFName");
+					const lastnameInput = document.getElementById("inputLName");
+					const presentdaysInput = document.getElementById("inputPresentdays");
+					const percentageInput = document.getElementById("inputPercentage")
+
+					if (firstnameQuery || lastnameQuery || presentdaysQuery || percentageQuery) {
+						var moreSearchContainer = document.getElementById("moreSearchContainer")
+						moreSearchContainer.classList.add("showMoreSearchContainer");
+						firstnameInput.value = firstnameQuery || "";
+						lastnameInput.value = lastnameQuery || "";
+						presentdaysInput.value = presentdaysQuery || "";
+						percentageInput.value = percentageQuery || "";
+					}
 
 
-            }
-        </script>
+				}
+			</script>
 
 </body>
 
