@@ -99,7 +99,10 @@ async function sendResetPassword() {
 	document.getElementById("successMsg").innerHTML = "";
 	if (newPasswordFetchResult) {
 		if (newPasswordFetchResult.error === 1) {
-			document.getElementById("errorMsg").innerText = "Something went wrong"
+			console.log("1");
+			// document.getElementById("errorMsg").innerText = "Something went wrong"
+			document.getElementById("errorMsg").innerText = newPasswordFetchResult.errorMsg || "Something went wrong";
+
 		} else {
 			document.getElementById("successMsg").innerHTML = "Password changed <a href='/' >Login</a>"
 		}

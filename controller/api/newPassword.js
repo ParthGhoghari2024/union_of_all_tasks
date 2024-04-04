@@ -24,10 +24,16 @@ async function newPassword(req, res) {
 			res.json({ error: 1 });
 			return;
 		}
+		var pwRegEx = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+		if (!pwRegEx.test(userPassword)) {
+			// res.json({ registered: 0, error: "Password requirement Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character" })
+			res.json({ error: 1, errorMsg: "Password requirement Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character" });
+			return;
+		}
 		let activationTimeLimitInHours = 4;
 		let tokenValidate = (Math.abs(new Date() - new Date(loginData[0].tokenGenerationTime)) / (3600 * 1000)) <= activationTimeLimitInHours;
 		if (tokenValidate === false) {//forgot password token expired
-			res.json({ error: 1, errorMsg: "Token Expired" })
+			res.json({ error: 1, errorMsg: "Token Expired regenerate forgot password link" })
 			return;
 		}
 		let passwordSalt = loginData[0].passwordSalt;

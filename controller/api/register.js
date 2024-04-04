@@ -19,6 +19,11 @@ async function register(req, res) {
 			res.json({ registered: 0, error: "Password and Confirm Password Not Matched" })
 			return;
 		}
+		var pwRegEx = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+		if (!pwRegEx.test(registerDetails.password)) {
+			res.json({ registered: 0, error: "Password requirement Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character" })
+			return;
+		}
 		let userDataByEmail = await getLoginDataByUserEmail(registerDetails.email);
 		// console.log(userDataByEmail);
 
