@@ -71,7 +71,7 @@ mainRouter.route("/html-template-1").get(authorizationMiddleware, htmlTemplate1P
 mainRouter.route("/html-template-2").get(authorizationMiddleware, htmlTemplate2Page)
 mainRouter.route("/html-template-3").get(authorizationMiddleware, htmlTemplate3Page)
 
-mainRouter.route("/delimiter-search", authorizationMiddleware).get(delimiterIndexPage)
+mainRouter.route("/delimiter-search").get(authorizationMiddleware, delimiterIndexPage)
 
 
 mainRouter.route("/job-application-form").get(authorizationMiddleware, jobAppIndexPageRoute)
