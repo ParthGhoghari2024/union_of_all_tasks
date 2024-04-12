@@ -1,9 +1,9 @@
 const getSelectMetaData = require("../../helper/job_app_crud/getSelectMetaData");
-var selectGender;
-var selectRelationshipStatus;
+let selectGender;
+let selectRelationshipStatus;
 async function jobAppValidate(req, res, next) {
 	try {
-		var reqBody = req.body;
+		let reqBody = req.body;
 		selectGender = await getSelectMetaData("gender");
 		selectRelationshipStatus = await getSelectMetaData("relationship_status");
 
@@ -61,19 +61,19 @@ async function jobAppValidate(req, res, next) {
 		}
 		// console.log(reqBody);
 
-		var validateBasicDeatilsResult = validateBasicDeatils(reqBody, req, res);
+		let validateBasicDeatilsResult = validateBasicDeatils(reqBody, req, res);
 		if (validateBasicDeatilsResult) return;
-		var validateEduDetailsResult = validateEduDetails(reqBody, req, res);
+		let validateEduDetailsResult = validateEduDetails(reqBody, req, res);
 		if (validateEduDetailsResult) return;
-		var validateWorkExDetailsResult = validateWorkExDetails(reqBody, req, res);
+		let validateWorkExDetailsResult = validateWorkExDetails(reqBody, req, res);
 		if (validateWorkExDetailsResult) return;
-		var validateLanguageDetailsResult = validateLanguageDetails(reqBody, req, res);
+		let validateLanguageDetailsResult = validateLanguageDetails(reqBody, req, res);
 		if (validateLanguageDetailsResult) return;
-		var validateTechDetailsResult = validateTechDetails(reqBody, req, res);
+		let validateTechDetailsResult = validateTechDetails(reqBody, req, res);
 		if (validateTechDetailsResult) return;
-		var validateRefDetailsResult = validateRefDetails(reqBody, req, res);
+		let validateRefDetailsResult = validateRefDetails(reqBody, req, res);
 		if (validateRefDetailsResult) return;
-		var validatePreferencesDetailsResult = validatePreferencesDetails(reqBody, req, res);
+		let validatePreferencesDetailsResult = validatePreferencesDetails(reqBody, req, res);
 		if (validatePreferencesDetailsResult) return;
 
 		next();
@@ -110,7 +110,7 @@ function validateBasicDeatils(reqBody, req, res) {
 		})
 		return 1;
 	}
-	var emailRegEx = /\S+@\S+\.\S+/;
+	let emailRegEx = /\S+@\S+\.\S+/;
 	if (!emailRegEx.test(reqBody.email)) {
 		res.render("job_app_crud/form", {
 			error: "Enter Email properly", reqBody: reqBody, selectGender: {
@@ -174,15 +174,15 @@ function validateEduDetails(reqBody, req, res) {
 	return 0;
 }
 function validateWorkExDetails(reqBody, req, res) {
-	var workExpCompanyNames = req.body.company_name;
-	var workExpCompanyDesignations = req.body.designation_company;
-	var workExpCompanyFromDate = req.body.from_date_company;
-	var workExpCompanyToDate = req.body.to_date_company;
+	let workExpCompanyNames = req.body.company_name;
+	let workExpCompanyDesignations = req.body.designation_company;
+	let workExpCompanyFromDate = req.body.from_date_company;
+	let workExpCompanyToDate = req.body.to_date_company;
 
 
 
 	for (let i = 0; i < workExpCompanyNames.length; i++) {
-		var temp = {
+		let temp = {
 			companyName: workExpCompanyNames[i] === "" ? null : workExpCompanyNames[i],
 			designation: workExpCompanyDesignations[i] === "" ? null : workExpCompanyDesignations[i],
 			fromDate: new Date(workExpCompanyFromDate[i]),
@@ -209,7 +209,7 @@ function validateWorkExDetails(reqBody, req, res) {
 }
 
 function validateLanguageDetails(reqBody, req, res) {
-	var temp = JSON.parse(JSON.stringify(reqBody));//to copy object without reference
+	let temp = JSON.parse(JSON.stringify(reqBody));//to copy object without reference
 	// if(reqBody.language_1[0]==="" && reqBody.language_1[1]==="" && reqBody.language_1[2]===""){
 	//     temp.language_1=null;
 	// }
@@ -223,9 +223,9 @@ function validateLanguageDetails(reqBody, req, res) {
 	//     res.render("form", { error: "select language properly", reqBody: reqBody })
 	//     return 1;
 	// }
-	var checkForLanguage_1 = temp.language_1.filter((obj) => obj != "").length === 1;
-	var checkForLanguage_2 = temp.language_2.filter((obj) => obj != "").length === 1;
-	var checkForLanguage_3 = temp.language_3.filter((obj) => obj != "").length === 1;
+	let checkForLanguage_1 = temp.language_1.filter((obj) => obj != "").length === 1;
+	let checkForLanguage_2 = temp.language_2.filter((obj) => obj != "").length === 1;
+	let checkForLanguage_3 = temp.language_3.filter((obj) => obj != "").length === 1;
 
 	if (checkForLanguage_1 || checkForLanguage_2 || checkForLanguage_3) {
 		res.render("job_app_crud/form", {
@@ -245,7 +245,7 @@ function validateLanguageDetails(reqBody, req, res) {
 }
 
 function validateTechDetails(reqBody, req, res) {
-	var temp = JSON.parse(JSON.stringify(reqBody));//to copy object without reference
+	let temp = JSON.parse(JSON.stringify(reqBody));//to copy object without reference
 	if (reqBody.tech_1[0] === "" && reqBody.tech_1[1] === "" && reqBody.tech_1[2] === "") {
 		temp.tech_1 = null;
 	}
@@ -271,13 +271,13 @@ function validateTechDetails(reqBody, req, res) {
 	return 0;
 }
 function validateRefDetails(reqBody, req, res) {
-	var refNames = req.body.reference_name;
-	var refContacts = req.body.reference_contact;
-	var refRelations = req.body.reference_relation;
+	let refNames = req.body.reference_name;
+	let refContacts = req.body.reference_contact;
+	let refRelations = req.body.reference_relation;
 
 
 	for (let i = 0; i < refNames.length; i++) {
-		var t = {
+		let t = {
 			name: refNames[i],
 			contactNumber: refContacts[i],
 			relation: refRelations[i]
